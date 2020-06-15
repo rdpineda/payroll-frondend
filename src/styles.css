@@ -1,0 +1,49 @@
+body {
+    background-color: #e1e1e1;
+}
+
+#themecolors li {
+    cursor: pointer;
+}
+
+.menu:hover {
+    background: #eeeeee;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.w150 {
+    width: 150px;
+}
+
+.img-center {
+    align-items: center;
+}
+
+.img-50 {
+    width: 50px;
+}
+
+.w70 {
+    width: 70px;
+}
+
+.w100 {
+    width: 100px;
+}
+
+.oculto {
+    display: none;
+}
+
+.fondo-negro {
+    background-color: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+}

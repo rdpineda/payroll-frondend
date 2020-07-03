@@ -23,6 +23,7 @@ export class UsuarioService {
   usuario: Usuario;
   token: string;
   menu: any[] = [];
+  empresas: any[] = [];
 
   constructor( public http: HttpClient,
                public _router: Router,
@@ -56,15 +57,17 @@ export class UsuarioService {
   }
 
 
-  guardarStorage(id: string, token: string, usuario: Usuario, menu: any){
+  guardarStorage(id: string, token: string, usuario: Usuario, menu: any, empresas: any){
     localStorage.setItem('id', id);
     localStorage.setItem('token', token);
     localStorage.setItem('usuario', JSON.stringify(usuario));
     localStorage.setItem('menu', JSON.stringify(menu));
+    localStorage.setItem('empresas', JSON.stringify(empresas));
 
     this.usuario = usuario;
     this.token = token;
     this.menu = menu;
+    this.empresas = empresas;
 
   }
 
@@ -77,10 +80,12 @@ export class UsuarioService {
           this.token = localStorage.getItem('token');
           this.usuario =  JSON.parse(localStorage.getItem('usuario'));
           this.menu =  JSON.parse(localStorage.getItem('menu'));
+          this.empresas =  JSON.parse(localStorage.getItem('empresas'));
     } else {
       this.token = '';
       this.usuario = null;
       this.menu = [];
+      this.empresas = [];
     }
   }
 
@@ -97,7 +102,7 @@ export class UsuarioService {
     return this.http.post( url, usuario )
               .map( (resp: any) =>{
 
-                this.guardarStorage( resp.id, resp.token, resp.usuario, resp.menu );
+                this.guardarStorage( resp.id, resp.token, resp.usuario, resp.menu, resp.empresas );
 
 
                 return true;
@@ -123,6 +128,7 @@ export class UsuarioService {
     localStorage.removeItem('token');
     localStorage.removeItem('usuario');
     localStorage.removeItem('menu');
+    localStorage.removeItem('empresas');
 
     this._router.navigate(['/login']);
 
@@ -162,7 +168,7 @@ actualizarUsuario( usuario: Usuario ){
 
         if ( usuario.id === this.usuario.id) {
           const usuarioDB: Usuario = resp.usuario;
-          this.guardarStorage( usuarioDB.id, this.token, usuarioDB,  this.menu);
+          this.guardarStorage( usuarioDB.id, this.token, usuarioDB,  this.menu, this.empresas);
         }
         Swal.fire({
           text: 'Usuario Actualizado',
@@ -193,7 +199,7 @@ cambiarImagen( archivo: File, id: string ){
         text: 'Imagen Actualizada',
         icon: 'success'
       });
-      this.guardarStorage(id, this.token, this.usuario, this.menu);
+      this.guardarStorage(id, this.token, this.usuario, this.menu, this.empresas);
 
 
     })

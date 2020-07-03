@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { NopagefoundComponent } from './nopagefound/nopagefound.component';
 import { Router, RouterModule } from '@angular/router';
@@ -26,6 +27,8 @@ import { ModalUploadComponent } from '../components/modal-upload/modal-upload.co
         BreadcrumbsComponent,
         NopagefoundComponent,
         ModalUploadComponent,
+        
+       
     ],
 
     exports: [
@@ -34,6 +37,8 @@ import { ModalUploadComponent } from '../components/modal-upload/modal-upload.co
         BreadcrumbsComponent,
         NopagefoundComponent,
         ModalUploadComponent
+       
+        
     ]
 })
 

@@ -8,6 +8,8 @@ export class Company {
         public updateUser?: string,
         public isActive?: boolean,
         public idTenant?: string,
+        public idUser?: string,
+        public img?: string,
         public createdAt?: Date,
         public updatedAt?: Date,
         public id?: string,

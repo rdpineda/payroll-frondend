@@ -25,6 +25,7 @@ export class RegisterComponent implements OnInit {
   demoDay = 50;
   createUser: any;
   updateUser: any;
+  idUser: any;
   isActive = true;
   idTenant = '51c8b7bb-11fd-4203-af7a-98ae9ca27475';
   idRol = '37188fd7-f43b-4874-bd1a-54c5cce8afee';
@@ -132,7 +133,9 @@ export class RegisterComponent implements OnInit {
               this.createUser = resp.id,
               this.createUser = resp.id,
               this.isActive,
-              this.idTenant
+              this.idTenant,
+              this.idUser = resp.id
+
           );
             this._companyService.crearCompany( company )
                 .subscribe( resp1 => {});

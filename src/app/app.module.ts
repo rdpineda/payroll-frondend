@@ -20,20 +20,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // servicios
 
+import { PipesModule } from './pipes/pipes.module';
+
 import { ServiceModule } from './services/service.module';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
+import { CompanysComponent } from './login/companys.component';
+
 import { RegisterComponent } from './login/register.component';
+
 import { PagesComponent } from './pages/pages.component';
 import { SharedModule } from './shared/shared.module';
-
-
-
-
-
-
-
+import { CardCompanyComponent } from './components/card-company/card-company.component';
 
 
 
@@ -43,7 +42,12 @@ import { SharedModule } from './shared/shared.module';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    PagesComponent
+    PagesComponent,
+    CompanysComponent,
+    CardCompanyComponent
+   
+    
+    
   ],
   imports: [
     BrowserModule,
@@ -55,7 +59,11 @@ import { SharedModule } from './shared/shared.module';
    SweetAlert2Module,
    HttpClientModule,
    SharedModule,
+   PipesModule
   ],
+  exports: [
+    CompanysComponent
+],
 
   providers: [],
   bootstrap: [AppComponent]

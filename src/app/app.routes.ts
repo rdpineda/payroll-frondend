@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './login/register.component';
+import { CompanysComponent } from './login/companys.component';
 import { NopagefoundComponent } from './shared/nopagefound/nopagefound.component';
 import { PagesComponent } from './pages/pages.component';
 import { LoginGuardsGuard } from './services/guards/login-guards.guard';
@@ -14,6 +15,7 @@ import { LoginGuardsGuard } from './services/guards/login-guards.guard';
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent},
     { path: 'register', component: RegisterComponent},
+    { path: 'companys', component: CompanysComponent},
     {
 
         path: '',

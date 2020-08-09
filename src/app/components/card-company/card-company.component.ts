@@ -8,15 +8,19 @@ import { ModalUploadService } from '../modal-upload/modal-upload.service';
 })
 export class CardCompanyComponent implements OnInit {
 
+  empresaseleccionada: any[] = [];
+  token: string;
   @Input() company: any = {};
-  @Input() index: number;
+  @Input() index: any;
 
-  @Output() companySelect: EventEmitter<number>;
+  @Output() public companySelect: EventEmitter<any>;
+  
 
   constructor( private router: Router,
                public _modalUploadService: ModalUploadService ) { 
 
     this.companySelect = new EventEmitter();
+  
   }
 
   ngOnInit(): void {
@@ -25,11 +29,16 @@ export class CardCompanyComponent implements OnInit {
   verCompany(){
 
     // this.router.navigate( ['/employee',this.index] );
-   this.companySelect.emit(this.index);
+   this.companySelect.emit({empresa: this.index, empresa1: this.company});
   }
 
    ingresar(){
-       this.companySelect.emit(this.index);
+       this.companySelect.emit({empresa: this.company, id: this.index});
+       this.guardarempresa();
+    }
+
+    guardarempresa(){
+      localStorage.setItem('empresaseleccionada', JSON.stringify(this.company));
     }
 
 }

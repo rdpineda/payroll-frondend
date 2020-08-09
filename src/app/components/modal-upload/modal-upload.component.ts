@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Usuario } from 'src/app/models/usuario.model';
 import Swal from 'sweetalert2';
 import { SubirArhivoService } from '../../services/service.index';
@@ -13,16 +13,27 @@ export class ModalUploadComponent implements OnInit {
 
   usuario: Usuario;
   imagenSubir: File;
+  @Input() imagenS: any;
   imagenTemp: string | ArrayBuffer;
+
+  @Output() public imagenSelect: EventEmitter<any> =  new EventEmitter();
   
 
 
   constructor( public _subirArchivoService: SubirArhivoService,
-               public _modalUploadService: ModalUploadService) { }
+               public _modalUploadService: ModalUploadService) { 
+
+                this.imagenSelect = new EventEmitter();
+               }
 
   ngOnInit(): void {
   }
 
+  verImagen(){
+
+    // this.router.navigate( ['/employee',this.index] );
+   this.imagenSelect.emit({imagenS: this.imagenSubir});
+  }
  
   cerrarModal(){
     this.imagenTemp = null;
@@ -62,7 +73,8 @@ export class ModalUploadComponent implements OnInit {
 
           this._modalUploadService.notificacion.emit( resp );
           this.cerrarModal();
-
+          console.log('modal', this.imagenSubir);
+        
         })
         .catch(resp =>{
           console.log('error en la carga');

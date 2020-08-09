@@ -11,6 +11,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { HospitalesComponent } from './hospitales/hospitales.component';
 import { MedicosComponent } from './medicos/medicos.component';
+import { CompanyComponent } from './company/company.component';
 import { MedicoComponent } from './medicos/medico.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
 import { AdminGuard } from '../services/service.index';
@@ -39,6 +40,7 @@ const pagesRoutes: Routes = [
             data: { titulo: 'Usuarios' }
         },
         { path: 'hospitales', component: HospitalesComponent, data: { titulo: 'Hospitales' }},
+        { path: 'company/:id', component: CompanyComponent, data: { titulo: 'Company' }},
         { path: 'medicos', component: MedicosComponent, data: { titulo: 'Medicos' }},
         { path: 'medico/:id', component: MedicoComponent, data: { titulo: 'Actualizar Medicos' }},
         { path: '', redirectTo: '/dashboard', pathMatch: 'full'}

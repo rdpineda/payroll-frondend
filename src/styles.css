@@ -1,5 +1,5 @@
 body {
-    background-color: #e1e1e1;
+    background-color: #f4f6f9;
 }
 
 #themecolors li {
@@ -26,8 +26,16 @@ body {
     width: 50px;
 }
 
-.w70 {
-    width: 70px;
+.img-75 {
+    width: 80px;
+}
+
+.img-100 {
+    width: 100px;
+}
+
+.w40 {
+    width: 40px;
 }
 
 .w100 {

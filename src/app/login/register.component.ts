@@ -3,8 +3,10 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { Router } from '@angular/router';
 import { UsuarioService } from '../services/service.index';
 import { CompanyService } from '../services/service.index';
+import { CompanyInfoService } from '../services/service.index';
 import { Usuario } from '../models/usuario.model';
 import { Company } from '../models/company.model';
+import { CompanyInfo } from '../models/companyInfo.model';
 
 
 import Swal from 'sweetalert2';
@@ -26,6 +28,7 @@ export class RegisterComponent implements OnInit {
   createUser: any;
   updateUser: any;
   idUser: any;
+  idCompany: any;
   isActive = true;
   idTenant = '51c8b7bb-11fd-4203-af7a-98ae9ca27475';
   idRol = '37188fd7-f43b-4874-bd1a-54c5cce8afee';
@@ -36,6 +39,7 @@ export class RegisterComponent implements OnInit {
   // tslint:disable-next-line: variable-name
   constructor( public _usuarioService: UsuarioService,
                public _companyService: CompanyService,
+               public _companyInfoService: CompanyInfoService,
                public _router: Router,
                private fb: FormBuilder ) {
 
@@ -131,14 +135,28 @@ export class RegisterComponent implements OnInit {
               this.starDemoDay,
               this.demoDay,
               this.createUser = resp.id,
-              this.createUser = resp.id,
+              this.updateUser = resp.id,
               this.isActive,
               this.idTenant,
               this.idUser = resp.id
 
           );
             this._companyService.crearCompany( company )
-                .subscribe( resp1 => {});
+                .subscribe( respc => {
+
+            const companyInfo = new CompanyInfo(
+                  this.forma.value.empresa,
+                  this.idCompany = respc.id,
+                  this.forma.value.correo,
+                  this.createUser = resp.id,
+                  this.updateUser = resp.id,
+                  this.isActive,
+                  this.idTenant,
+              );
+                this._companyInfoService.crearCompanyInfo( companyInfo )
+                    .subscribe( respci => {});
+
+                  });
           });
 
 

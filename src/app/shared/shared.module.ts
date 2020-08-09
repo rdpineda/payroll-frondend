@@ -8,6 +8,7 @@ import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { PipesModule } from '../pipes/pipes.module';
 import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
+import { CardCompanyComponent } from '../components/card-company/card-company.component';
 
 
 
@@ -27,6 +28,7 @@ import { ModalUploadComponent } from '../components/modal-upload/modal-upload.co
         BreadcrumbsComponent,
         NopagefoundComponent,
         ModalUploadComponent,
+        CardCompanyComponent,
         
        
     ],
@@ -36,7 +38,8 @@ import { ModalUploadComponent } from '../components/modal-upload/modal-upload.co
         SidebarComponent,
         BreadcrumbsComponent,
         NopagefoundComponent,
-        ModalUploadComponent
+        ModalUploadComponent,
+        CardCompanyComponent
        
         
     ]

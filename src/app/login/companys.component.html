@@ -1,6 +1,4 @@
 <div id="main-wrapper">
-
-
     <header class="topbar">
         <nav class="navbar top-navbar navbar-expand-md navbar-light">
             <!-- ============================================================== -->
@@ -101,21 +99,45 @@
             </div>
         </nav>
     </header>
-</div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
 
-<div class="container main-container">
-    <div class="container-fluid">
-        <div class="text-center mt-1">
-            <div class="row">
-                <div class="col">
-                    <div class="card-columns">
-                        <app-card-company (companySelect)="vercompany( $event )" [company]="company" [index]="company.id" *ngFor="let company of companys;"></app-card-company>
+                    <div class="page-company">
+                        <div class="container main-container page-company">
+                            <div class="container-fluid page-company">
+
+
+                                <div class="text-right">
+
+                                    <button (click)="crearEmpresa()" type="button" class="btn waves-effect waves-light btn-rounded btn-success">
+                                            <i class="fa fa-plus"></i>
+                                            Crear Empresa
+                                         </button>
+                                </div>
+                                <br>
+
+                                <div class="card-columns">
+                                    <app-card-company (companySelect)="vercompany( $event )" [company]="company" [index]="company.id" *ngFor="let company of companys1;"></app-card-company>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
+
 </div>
+
+
+
+
+
+
 
 
 

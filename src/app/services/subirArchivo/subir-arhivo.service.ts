@@ -9,6 +9,7 @@ export class SubirArhivoService {
   constructor() { }
 
   subirArchivo( archivo: File, tipo: string, id: string){
+    console.log('archivo', archivo);
 
     return new Promise( (resolve, reject)  =>{
 
@@ -21,10 +22,10 @@ export class SubirArhivoService {
 
       if ( xhr.readyState === 4 ) {
         if ( xhr.status === 200 ){
-          console.log('imagen subida');
+         
           resolve( JSON.parse(xhr.response));
         } else {
-          console.log('fallo la subida');
+         
           reject(xhr.response);
         }
       }

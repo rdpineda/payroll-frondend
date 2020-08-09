@@ -19,9 +19,13 @@
                 <!-- <li class="nav-devider"></li>
                 <li class="nav-small-cap">PERSONAL</li> -->
 
+
                 <li *ngFor="let menu of _sidebar.menu" style="background-color: #fafafa;">
-                    <a *ngIf="menu.submenu.length === 0" routerLinkActive="active" [routerLink]="[menu.url]" class="waves-effect waves-dark" class="menu" style="background-color: #fafafa;" aria-expanded="false"><i [class]="menu.icono"></i><span class="hide-menu" >{{menu.titulo}}</span></a>
-                    <a *ngIf="menu.submenu.length > 0" [routerLink]="[menu.url]" class="has-arrow waves-effect waves-dark menu" aria-expanded="false"><i [class]="menu.icono"></i><span class="hide-menu" >{{menu.titulo}}</span></a>
+
+
+                    <a *ngIf="menu.url === '/company' " routerLinkActive="active" [routerLink]="[menu.url, id.id]" class="waves-effect waves-dark" class="menu" style="background-color: #fafafa;" aria-expanded="false"><i [class]="menu.icono"></i><span class="hide-menu" >{{menu.titulo}}</span></a>
+                    <a *ngIf="menu.submenu.length === 0 && menu.url != '/company' " routerLinkActive="active" [routerLink]="[menu.url]" class="waves-effect waves-dark" class="menu" style="background-color: #fafafa;" aria-expanded="false"><i [class]="menu.icono"></i><span class="hide-menu" >{{menu.titulo}}</span></a>
+                    <a *ngIf="menu.submenu.length > 0" routerLinkActive="active" [routerLink]="[menu.url]" class="has-arrow waves-effect waves-dark menu" aria-expanded="false"><i [class]="menu.icono"></i><span class="hide-menu" >{{menu.titulo}}</span></a>
 
                     <ul aria-expanded="false" class="collapse">
                         <li *ngFor="let submenu of menu.submenu">

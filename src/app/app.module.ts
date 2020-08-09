@@ -32,7 +32,9 @@ import { RegisterComponent } from './login/register.component';
 
 import { PagesComponent } from './pages/pages.component';
 import { SharedModule } from './shared/shared.module';
-import { CardCompanyComponent } from './components/card-company/card-company.component';
+
+
+
 
 
 
@@ -44,8 +46,6 @@ import { CardCompanyComponent } from './components/card-company/card-company.com
     RegisterComponent,
     PagesComponent,
     CompanysComponent,
-    CardCompanyComponent
-   
     
     
   ],

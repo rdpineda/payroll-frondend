@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //ng2-charts
 import { ChartsModule } from 'ng2-charts';
@@ -27,6 +27,9 @@ import { HospitalesComponent } from './hospitales/hospitales.component';
 import { MedicosComponent } from './medicos/medicos.component';
 import { MedicoComponent } from './medicos/medico.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
+import { CompanyComponent } from './company/company.component';
+import { InfoCompanyComponent } from '../components/info-company/info-company.component';
+
 
 
 
@@ -46,7 +49,10 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
         HospitalesComponent,
         MedicosComponent,
         MedicoComponent,
-        BusquedaComponent
+        BusquedaComponent,
+        CompanyComponent,
+        InfoCompanyComponent
+        
     ],
 
     exports: [
@@ -59,6 +65,7 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
         SharedModule,
         PAGES_ROUTES,
         FormsModule,
+        ReactiveFormsModule,
         ChartsModule,
         PipesModule,
         CommonModule,

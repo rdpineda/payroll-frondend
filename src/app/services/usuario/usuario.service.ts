@@ -25,10 +25,12 @@ export class UsuarioService {
   menu: any[] = [];
   empresas: any[] = [];
 
+
   constructor( public http: HttpClient,
                public _router: Router,
                public _subirArchivoService: SubirArhivoService) { 
     this.cargarStorage();
+   
   }
 
   renuevaToken(){
@@ -71,6 +73,9 @@ export class UsuarioService {
 
   }
 
+  
+
+
   estaLogueado(){
     return (this.token.length > 5 )? true : false;
   }
@@ -94,7 +99,7 @@ export class UsuarioService {
 
     if ( recordar ){
       localStorage.setItem('email', usuario.userName);
-    }else{
+    } else {
       localStorage.removeItem('email');
     }
   
@@ -129,6 +134,7 @@ export class UsuarioService {
     localStorage.removeItem('usuario');
     localStorage.removeItem('menu');
     localStorage.removeItem('empresas');
+    localStorage.removeItem('empresaseleccionada');
 
     this._router.navigate(['/login']);
 

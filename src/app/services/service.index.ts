@@ -9,6 +9,7 @@ export { UsuarioService } from './usuario/usuario.service';
 export { HospitalService } from './hospital/hospital.service';
 export { MedicoService } from './medico/medico.service';
 export { CompanyService } from './company/company.service';
+export { CompanyInfoService } from './companyInfo/company-info.service';
 
 
 

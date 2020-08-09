@@ -15,7 +15,7 @@ import { LoginGuardsGuard } from './services/guards/login-guards.guard';
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent},
     { path: 'register', component: RegisterComponent},
-    { path: 'companys', component: CompanysComponent},
+    { path: 'companies', component: CompanysComponent},
     {
 
         path: '',

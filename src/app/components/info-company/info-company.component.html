@@ -1,0 +1,151 @@
+<form autocomplete="off" [formGroup]="forma" (ngSubmit)="guardar()">
+
+    <div>
+
+        <div class="form-group row mb-1">
+
+            <div>
+
+                <img (click)="actualizarImagen( companyInfo )" [src]="company.img | imagen: 'company'" class="img-75 pointer">
+
+
+            </div>
+
+
+            <div class="col-3">
+                <label class="col col-form-label col-form-label-sm waves-dark"><small class="text-muted">Razón Social</small></label>
+                <input [ngModel]="companyInfo.name" class="form-control form-control-sm" type="text" formControlName="name" [class.is-invalid]="nameNoValido">
+                <small *ngIf="nameNoValido" class="text-danger">Por favor este campo es Obligatorio</small>
+            </div>
+
+            <div class="col-4">
+                <label class="col col-form-label col-form-label-sm"><small class="text-muted">Tipo de Identificacion</small></label>
+                <input class="form-control form-control-sm" type="text" formControlName="tidentificacion" [class.is-invalid]="tidentificacionNoValido">
+                <small *ngIf="tidentificacionNoValido" class="text-danger">Por favor este campo es Obligatorio</small>
+            </div>
+
+            <div class="col-3">
+                <label class="col col-form-label col-form-label-sm"><small class="text-muted">Nit</small></label>
+                <input class="form-control form-control-sm" type="text" formControlName="nit" [class.is-invalid]="nitNoValido">
+                <small *ngIf="nitNoValido" class="text-danger">Por favor este campo es Obligatorio</small>
+            </div>
+
+            <div class="col">
+                <label class="col col-form-label col-form-label-sm"><small class="text-muted">Dv</small></label>
+                <input class="form-control form-control-sm w40" type="text" formControlName="digitov" [class.is-invalid]="digitovNoValido">
+                <small *ngIf="digitovNoValido" class="text-danger">Por favor este campo es Obligatorio</small>
+            </div>
+
+
+
+        </div>
+
+        <div class="form-group row mb-1">
+            <div class="col">
+                <label class="col-5 col-form-label col-form-label-sm"><small class="text-muted">Pais</small></label>
+                <select class="form-control form-control-sm" name="pais" formControlName="pais" [class.is-invalid]="paisNoValido">
+             <small *ngIf="paisNoValido" class="text-danger">Por favor seleccione un Pais</small>
+              <option value="">Seleccione Pais</option>
+              <option>Colombia</option>
+          </select>
+            </div>
+
+
+            <div class="col">
+                <label class="col-8 col-form-label col-form-label-sm"><small class="text-muted">Departamento</small></label>
+                <select class="form-control form-control-sm" name="depto" formControlName="depto" [class.is-invalid]="deptoNoValido">
+             <small *ngIf="deptoNoValido" class="text-danger">Por favor seleccione un departamento</small>
+              <option value="">Seleccione Departamento</option>
+              <option>Antioquia</option>
+              <option>Amazonas</option>
+              </select>
+            </div>
+
+
+            <div class="col">
+                <label class="col-7 col-form-label col-form-label-sm"><small class="text-muted">Ciudad</small></label>
+                <select class="form-control form-control-sm" name="ciudad" formControlName="ciudad" [class.is-invalid]="ciudadNoValido">
+                     <small *ngIf="ciudadNoValido" class="text-danger">Por favor seleccione una Ciudad</small>
+                      <option value="">Seleccione Ciudad</option>
+                  <option>Medellin</option>
+                  <option>Envigago</option>
+                  </select>
+            </div>
+        </div>
+
+        <div class="form-group row mb-1">
+            <div class="col">
+                <label class="col-5 col-form-label col-form-label-sm"><small class="text-muted">Dirección</small></label>
+                <input class="form-control form-control-sm" type="text" formControlName="direccion" [class.is-invalid]="direccionNoValido">
+                <small *ngIf="direccionNoValido" class="text-danger">Por favor Campo Obligatorio</small>
+            </div>
+
+            <div class="col">
+                <label class="col-8 col-form-label col-form-label-sm"><small class="text-muted">Telefono de Contacto</small></label>
+                <input class="form-control form-control-sm" type="text" formControlName="telefono">
+            </div>
+
+            <div class="col">
+                <label class="col-5 col-form-label col-form-label-sm"><small class="text-muted">Celular</small></label>
+                <input class="form-control form-control-sm" type="text" formControlName="celular">
+            </div>
+
+        </div>
+
+        <div class="form-group row mb-1">
+            <div class="col">
+                <label class="col-6 col-form-label col-form-label-sm"><small class="text-muted">Correo Electronico</small></label>
+                <input [ngModel]="companyInfo.email" class="form-control form-control-sm" type="text" formControlName="email" [class.is-invalid]="correoNoValido">
+                <small *ngIf="correoNoValido" class="text-danger"> Ingrese un correo valido</small>
+            </div>
+
+            <div class="col">
+                <label class="col-8 col-form-label col-form-label-sm"><small class="text-muted">Representante Legal</small></label>
+                <input class="form-control form-control-sm" type="text" formControlName="rlegal">
+            </div>
+
+            <div class="col">
+                <label class="col-6 col-form-label col-form-label-sm"><small class="text-muted">Fecha de Fundación</small></label>
+                <input class="form-control form-control-sm" type="date" formControlName="ffundacion">
+            </div>
+
+        </div>
+
+        <div class="form-group row mb-1">
+            <div class="col">
+                <label class="col-5 col-form-label col-form-label-sm"><small class="text-muted">Entidad de Riesgo</small></label>
+                <select class="form-control form-control-sm" name="riesgoe" formControlName="riesgoe" [class.is-invalid]="riesgoeNoValido">
+             <small *ngIf="riesgoeNoValido" class="text-danger">Por favor seleccione una entidad</small>
+              <option value="">Seleccione una Entidad</option>
+              <option value="1">Seguros Sura</option>
+          </select>
+            </div>
+
+            <div class="col">
+                <label class="col-5 col-form-label col-form-label-sm"><small class="text-muted">Caja de Compensacion</small></label>
+                <select class="form-control form-control-sm" name="caja" formControlName="caja" [class.is-invalid]="cajaNoValido">
+                <small *ngIf="cajaNoValido" class="text-danger">Por favor seleccione una caja</small>
+                 <option value="">Seleccione una Entidad</option>
+                 <option value="1">Comfama</option>
+                 <option value="2">Comfenalco</option>
+             </select>
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+
+    <div class="form-group row mt-4">
+
+        <div class="input-group col">
+            <button type="submit" class="btn btn-success">
+              <i class="fa fa-save m-2"></i>
+            Guardar
+          </button>
+        </div>
+    </div>
+
+</form>

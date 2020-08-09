@@ -1,10 +1,26 @@
-<div class="row">
+<!-- <div class="row">
     <div class="col">
         <div class="card animated fadeIn fast" style="text-align: center;">
             <img (click)="ingresar()" [src]="company.img | imagen: 'company'" class="rounded mx-auto d-block pointer card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">{{company.name}}</h5>
             </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <!-- <blockquote class="blockquote mb-0"> -->
+
+            <img (click)="ingresar()" [src]="company.img | imagen: 'company'" class="img-150 img-rounded card-img-top pointer" alt="compañia">
+            <footer style="text-align: center;">
+                <small class="text-muted">
+                        {{company.name}}
+                    </small>
+            </footer>
+            <!-- </blockquote> -->
         </div>
     </div>
 </div>

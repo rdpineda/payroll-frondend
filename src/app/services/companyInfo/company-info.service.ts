@@ -80,6 +80,21 @@ export class CompanyInfoService {
           });
     }
 
+    actualizarCompanyInfo( companyInfo: CompanyInfo ){
+
+      let url = URL_SERVICIOS + '/companyInfo/' + companyInfo.id;
+      url += '?token=' + this._usuarioService.token;
+      return this.http.put( url, companyInfo)
+          .map( (resp: any) =>{
+            Swal.fire({
+              text: 'Informacion básica Actualizado' + '' +  companyInfo.name,
+              icon: 'success'
+            });
+            return resp.companyInfo;
+          });
+    }
+
+
     cambiarImagen( archivo: File, id: string ){
 
       this._subirArhivoService.subirArchivo( archivo, 'companyInfo', id )

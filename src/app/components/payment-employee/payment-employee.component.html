@@ -1,0 +1,62 @@
+<form autocomplete="off" [formGroup]="forma" (ngSubmit)="guardar()">
+
+
+    <div>
+
+
+
+        <div class="form-group row mb-1">
+
+            <div class="col">
+                <label class="col-6 col-form-label col-form-label-sm"><small class="text-muted">Banco</small></label>
+                <select [(ngModel)]="employeePayment.idBank" class="form-control form-control-sm" name="bank" formControlName="bank" [class.is-invalid]="bankNoValido">
+             <small *ngIf="bankNoValido" class="text-danger">Por favor seleccione un banco</small>
+              <option value="">Seleccione Banco</option>
+              <option  *ngFor="let bank of banks" [value]="bank.id">
+                {{bank.name}}
+            </option>
+              </select>
+            </div>
+        </div>
+
+
+        <div class="form-group row mb-1">
+            <div class="col">
+                <label class="col-6 col-form-label col-form-label-sm"><small class="text-muted">Tipo de Cuenta</small></label>
+                <select [(ngModel)]="employeePayment.idAccountType" class="form-control form-control-sm" name="accountType" formControlName="accountType" [class.is-invalid]="accountTypeNoValido">
+                     <small *ngIf="accountTypeNoValido" class="text-danger">Por favor seleccione un tipo de cuenta</small>
+                      <option value="">Seleccione Tipo Cuenta</option>
+                      <option  *ngFor="let accountT of accountType" [value]="accountT.id">
+                        {{accountT.description}}
+                    </option>
+                  </select>
+            </div>
+        </div>
+
+
+
+        <div class="form-group row mb-1">
+
+            <div class="col">
+                <label class="col-6 col-form-label col-form-label-sm"><small class="text-muted">Número de Cuenta</small></label>
+                <input [(ngModel)]="employeePayment.accountNumber" name="accountNumber" class="form-control form-control-sm" type="number" formControlName="accountNumber" [class.is-invalid]="accountNumberNoValido">
+                <small *ngIf="accountNumberNoValido" class="text-danger">Por favor Campo Obligatorio</small>
+            </div>
+
+        </div>
+
+
+
+        <div class="form-group row mt-4">
+
+            <div class="input-group col">
+                <button type="submit" class="btn btn-sm btn-outline-info">
+              <i class="fa fa-save m-2"></i>
+            Guardar
+          </button>
+            </div>
+
+        </div>
+    </div>
+
+</form>

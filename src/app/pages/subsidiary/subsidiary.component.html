@@ -1,0 +1,103 @@
+<input #input (keyup)="buscarSubsidiary( input.value )" type="text" class="form-control" placeholder="Buscar Sucursal...">
+
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="text-right">
+                    <button type="button" class="btn btn-sm btn-circle boton" data-toggle="modal" data-target="#subsidiaryModal">
+                            <i class="fa fa-plus boton text-color"></i>
+                         </button>
+                </div>
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+
+                            <th>
+                                <h6 class="text-color"><strong>Sucursal</strong></h6>
+                            </th>
+
+                            <th>
+                                <h6 class="text-color"><strong>Activo</strong></h6>
+                            </th>
+                            <th>
+                                <h6 class="text-color"><strong>Actualizar</strong></h6>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let subsidiaryC of subsidiary let i= index">
+
+                            <td>
+                                <input [(ngModel)]="subsidiaryC.description" name="descripcion" type="text" class="form-control form-control-sm" placeholder="Descripcion" style="width: 30rem;">
+                            </td>
+
+
+                            <td>
+                                <input [(ngModel)]="subsidiaryC.isActive" name="estado" id="{{'checkbox-subsidiary' + i}}" type="checkbox" class=" form-control form-control-sm filled-in chk-col-light-blue">
+                                <label for="{{'checkbox-subsidiary' + i}}"></label>
+                            </td>
+
+                            <td>
+                                <button (click)="guardarSubsidiary( subsidiaryC )" type="button" class="btn btn-info btn-sm float-center ">
+                                    <i class="fa fa-save "></i>
+                                </button>
+                                <!--  <button (click)="borrarCentroCostos( costC )" type="button" class="btn btn-danger btn-sm">
+                                    <i class="fa fa-trash-o"></i>
+                                </button> -->
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="subsidiaryModal" tabindex="-1" aria-labelledby="subsidiaryModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="subsidiaryModalLabel">Area</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <form autocomplete="off" [formGroup]="forma" (ngSubmit)="guardar()" id="subsidiaryform" action="index.html">
+
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">sucursal:</label>
+                        <input class="form-control form-control-sm" formControlName="descripcion" name="descripcion" type="text" placeholder="descripcion" [class.is-invalid]="descripcionNoValido">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <input class="form-control form-control-sm filled-in chk-col-light-blue" formControlName="estado" name="estado" id="checkbox-estadoceco" type="checkbox" [class.is-invalid]="estadoNoValido">
+                        <label for="checkbox-estadoceco">Activo</label>
+
+                    </div>
+
+                    <div class="form-group">
+                        <button type="button" class="btn btn-secondary mr-3" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+
+                    </div>
+
+                </form>
+            </div>
+            <!-- <div class="modal-footer"> -->
+
+
+            <!-- </div> -->
+        </div>
+    </div>
+</div>

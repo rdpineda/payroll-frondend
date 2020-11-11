@@ -1,0 +1,149 @@
+<form autocomplete="off" [formGroup]="forma" (ngSubmit)="guardar()">
+
+
+    <div>
+        <div class="form-group row mb-1">
+            <div class="col">
+                <label class="col col-form-label col-form-label-sm"><small class="text-muted">Tipo de Identificacion</small></label>
+                <select [(ngModel)]="employee.idIdentificationType" class="form-control form-control-sm" name="tipodoc" formControlName="tipodoc" [class.is-invalid]="tipodocNoValido">
+             <small *ngIf="tipodocNoValido" class="text-danger">Por favor seleccione un Tipo de Identificacion</small>
+             <option value="">Seleccionar Tipo Documento</option>
+             <option *ngFor="let tipo of tiposd" [value]="tipo.id">
+                {{tipo.description}}
+            </option>
+          </select>
+            </div>
+
+            <div class="col">
+                <label class="col col-form-label col-form-label-sm"><small class="text-muted">Número de Documento</small></label>
+                <input [(ngModel)]="employee.identification" class="form-control form-control-sm" type="text" placeholder="Número de Documento" formControlName="documento" [class.is-invalid]="documentoNoValido">
+                <small *ngIf="documentoNoValido" class="text-danger">Por favor este campo es Obligatorio</small>
+            </div>
+
+        </div>
+
+        <div class="form-group row mb-1">
+            <div class="col">
+                <label class="col-7 col-form-label col-form-label-sm"><small class="text-muted">Primer Nombre</small></label>
+                <input [(ngModel)]="employee.firstname" class="form-control form-control-sm" type="text" placeholder="Primer Nombre" formControlName="pnombre" [class.is-invalid]="pnombreNoValido">
+                <small *ngIf="pnombreNoValido" class="text-danger">Por favor este campo es Obligatorio</small>
+            </div>
+
+            <div class="col">
+                <label class="col-8 col-form-label col-form-label-sm"><small class="text-muted">Segundo Nombre</small></label>
+                <input [(ngModel)]="employee.secondname" class="form-control form-control-sm" type="text" placeholder="Segundo Nombre" formControlName="snombre">
+            </div>
+
+            <div class="col">
+                <label class="col-7 col-form-label col-form-label-sm"><small class="text-muted">Primer Apellido</small></label>
+                <input [(ngModel)]="employee.surname" class="form-control form-control-sm" type="text" placeholder="Primer Apellido" formControlName="papellido" [class.is-invalid]="papellidoNoValido">
+                <small *ngIf="papellidoNoValido" class="text-danger">Por favor este campo es Obligatorio</small>
+            </div>
+            <div class="col">
+                <label class="col-8 col-form-label col-form-label-sm"><small class="text-muted">Segundo Apellido</small></label>
+                <input [(ngModel)]="employee.secondsurname" class="form-control form-control-sm" type="text" placeholder="Segundo Apellido" formControlName="sapellido">
+            </div>
+
+        </div>
+
+
+
+        <div class="form-group row mb-1">
+            <div class="col">
+                <label class="col-5 col-form-label col-form-label-sm"><small class="text-muted">Género</small></label>
+                <select [(ngModel)]="employee.idGender" class="form-control form-control-sm" name="genero" formControlName="genero" [class.is-invalid]="generoNoValido">
+                <small *ngIf="generoNoValido" class="text-danger">Por favorseleccione un género</small>
+                 <option value="">Seleccione Género</option>
+                 <option *ngFor="let genero of generos" [value]="genero.id">
+                    {{genero.description}}
+                </option>
+              </select>
+            </div>
+
+            <div class="col">
+                <label class="col-5 col-form-label col-form-label-sm"><small class="text-muted">Fecha de Cumpleados</small></label>
+                <input [(ngModel)]="employee.birthDate" class="form-control form-control-sm" type="date" placeholder="Fecha de Cumpleaños" formControlName="fnacimiento">
+            </div>
+
+        </div>
+
+        <div class="form-group row mb-1">
+            <div class="col">
+                <label class="col-5 col-form-label col-form-label-sm"><small class="text-muted">Pais Residencia</small></label>
+                <select [(ngModel)]="employee.idCountry" class="form-control form-control-sm" name="paisr" formControlName="paisr" [class.is-invalid]="paisrNoValido">
+             <small *ngIf="paisrNoValido" class="text-danger">Por favor seleccione un Pais</small>
+             <option value="">Seleccione Pais</option>
+             <option *ngFor="let pais of paises" [value]="pais.id">
+                {{pais.name}}
+            </option>
+          </select>
+            </div>
+
+
+            <div class="col">
+                <label class="col-8 col-form-label col-form-label-sm"><small class="text-muted">Departamento Residencia</small></label>
+                <select [(ngModel)]="employee.idState" class="form-control form-control-sm" name="deptor" formControlName="deptor" [class.is-invalid]="deptorNoValido" (change)="onSelect($event.target.value)">
+             <small *ngIf="deptorNoValido" class="text-danger">Por favor seleccione un departamento</small>
+             <option value="">Seleccione Departamento</option>
+             <option *ngFor="let depto of deptos" [value]="depto.id">
+                {{depto.name}}
+            </option>
+              </select>
+            </div>
+
+
+            <div class="col">
+                <label class="col-7 col-form-label col-form-label-sm"><small class="text-muted">Municipio de Residencia</small></label>
+                <select [(ngModel)]="employee.idCity" class="form-control form-control-sm" name="ciudadr" formControlName="ciudadr" [class.is-invalid]="ciudadrNoValido">
+                     <small *ngIf="ciudadrNoValido" class="text-danger">Por favor seleccione una Ciudad</small>
+                      <option value="">Seleccione Ciudad</option>
+                      <option *ngFor="let municipio of municipios" [value]="municipio.id">
+                        {{municipio.name}}
+                    </option>
+                  </select>
+            </div>
+
+
+
+        </div>
+
+        <div class="form-group row mb-1">
+            <div class="col">
+                <label class="col-5 col-form-label col-form-label-sm"><small class="text-muted">Dirección</small></label>
+                <input [(ngModel)]="employee.address" class="form-control form-control-sm" type="text" placeholder="Dirección" formControlName="direccion" [class.is-invalid]="direccionNoValido">
+                <small *ngIf="direccionNoValido" class="text-danger">Por favor Campo Obligatorio</small>
+            </div>
+
+            <div class="col">
+                <label class="col-5 col-form-label col-form-label-sm"><small class="text-muted">Telefono</small></label>
+                <input [(ngModel)]="employee.phone" class="form-control form-control-sm" type="text" placeholder="Telefono" formControlName="telefono">
+            </div>
+
+            <div class="col">
+                <label class="col-5 col-form-label col-form-label-sm"><small class="text-muted">Celular</small></label>
+                <input [(ngModel)]="employee.cellPhone" class="form-control form-control-sm" type="text" placeholder="Celular" formControlName="celular">
+            </div>
+
+
+        </div>
+
+        <div class="form-group row mb-3">
+            <div class="col">
+                <label class="col-5 col-form-label col-form-label-sm"><small class="text-muted">Correo Electronico</small></label>
+                <input [(ngModel)]="employee.email" class="form-control form-control-sm" type="text" placeholder="Correo Electronico" formControlName="email" [class.is-invalid]="correoNoValido">
+                <small *ngIf="correoNoValido" class="text-danger"> Ingrese un correo valido</small>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="form-group row">
+
+        <div class="input-group col ">
+            <button type="submit" class="btn btn-sm mx-auto w-50 text-white btn-success" style="background-color: #00c8ff ;">
+              <i class="fa fa-save m-2"></i>
+            Guardar
+          </button>
+        </div>
+    </div>
+</form>

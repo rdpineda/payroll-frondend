@@ -30,8 +30,6 @@ cargarMedicos(){
 cargarMedico( id: string){
 
   let url = URL_SERVICIOS + '/medico/' + id;
-  console.log(id);
-  console.log(id, 'id servicio');
   return this.http.get( url )
       .map( (resp: any) => resp.medico );
 

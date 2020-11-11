@@ -8,7 +8,18 @@ import { UsuarioService } from '../../services/usuario/usuario.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ModalUploadService } from '../modal-upload/modal-upload.service';
 import { SubirArhivoService } from '../../services/service.index';
+import { Country } from 'src/app/models/country.model';
+import { State } from 'src/app/models/state.model';
+import { City } from 'src/app/models/city.model';
+import { SocialSecurityEntity } from 'src/app/models/socialSecurityEntity.model';
+import { IdentificationType } from 'src/app/models/identificationType.model';
+import { CountryService } from '../../services/service.index';
+import { StateService } from '../../services/service.index';
+import { CityService } from '../../services/service.index';
+import { SocialSecurityEntityService } from '../../services/service.index';
+import { IdentificationTypeService } from '../../services/service.index';
 import Swal from 'sweetalert2';
+import { Usuario } from '../../models/usuario.model';
 
 
 @Component({
@@ -24,10 +35,19 @@ export class InfoCompanyComponent implements OnInit {
   public date: Date = new Date();
   forma: FormGroup;
   company: any;
+  paises: Country[] = [];
+  deptos: State[] = [];
+  municipios: City[] = [];
+  socialss: SocialSecurityEntity[] = [];
+  cajas: SocialSecurityEntity[] = [];
+  riesgos: SocialSecurityEntity[] = [];
+  tiposd: IdentificationType[] = [];
   empresaseleccionada: any = {};
   empresa: any = {};
+  idcaja = '85c0ad60-034f-48d5-b798-fd55ad0e92fd';
+  idriesgo = 'a9bd6d67-7578-497a-b1b9-118c897e9db3';
   // tslint:disable-next-line: max-line-length
-  companyInfo: CompanyInfo = new CompanyInfo('', '', '', '', '', true, '', '', '', '', '', '', '', this.date, '', this.date, this.date, '', '', '', '', '');
+  companyInfo: CompanyInfo = new CompanyInfo('', '', '', '', '', true, '', '', '', '', '', '', '', this.date, '', '', '', this.date, this.date, '', '', '', '');
 
 
   constructor(private fb: FormBuilder,
@@ -37,7 +57,12 @@ export class InfoCompanyComponent implements OnInit {
                public _activatedRoute: ActivatedRoute,
                public _modalUploadServices: ModalUploadService,
                public _usuarioService: UsuarioService,
-               public _subirArchivoService: SubirArhivoService ) { 
+               public _subirArchivoService: SubirArhivoService,
+               public _countryService: CountryService,
+               public _identificationTypeService: IdentificationTypeService,
+               public _stateService: StateService,
+               public _cityService: CityService,
+               public _socialSecurityEntityService: SocialSecurityEntityService ) { 
 
                 this.company = this._usuarioService.empresas;
                 this.empresaseleccionada = localStorage.getItem('empresaseleccionada');
@@ -53,17 +78,20 @@ export class InfoCompanyComponent implements OnInit {
                 }
 
               
-               
+                
                 /* _activatedRoute.params.subscribe( params => { */
                   /* const id = params['id']; */
                   
                   /* if ( id !== 'nuevo') { */
                 
-                
+            
                 this.cargarCompanyInfo( this.empresa.id );
                 this.cargarCompanySelect( this.empresa.id );
+                this.cargarMunicipios();
+               
+                // tslint:disable-next-line: no-unused-expression
                 
-                    
+                
                     
                   //}
                /*  }); */
@@ -93,13 +121,29 @@ export class InfoCompanyComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+    this.cargarPaises();
+    this.cargarDepartamentos();
+    this.cargarTiposd();
+    this.cargarEntidadesRiegos(this.idriesgo);
+    this.cargarCajasCompensacion(this.idcaja);
+    
+    
+    
+   
+     
+
     this._modalUploadServices.notificacion
     .subscribe( () => this.cargarCompanyInfo(this.empresa.id));
     
     this._modalUploadServices.notificacion
     .subscribe( () => this.cargarCompanySelect(this.empresa.id));
 
+    
+
   }
+
+
 
 
   crearFormulario(){
@@ -124,7 +168,9 @@ export class InfoCompanyComponent implements OnInit {
 
   }
 
-  guardar(){
+
+
+  guardar(companyInfo: CompanyInfo){
 
     if (this.forma.invalid){
   
@@ -143,18 +189,64 @@ export class InfoCompanyComponent implements OnInit {
       });
     }
   
-    //aca se utiliza un servicio para guardar informacion en la base de datos
+    
+
+    this._companyInfoService.actualizarCompanyInfo( companyInfo )
+            .subscribe( () => this.cargarCompanyInfo(this.empresa.id));
+    
+    
   
-    this.forma.reset();
+    // this.forma.reset();
   
   }
+
+  cargarPaises() {
+    this._countryService.cargarPaises()
+    .subscribe( resp => this.paises = resp);
+  }
+
+  cargarDepartamentos() {
+    this._stateService.cargarDepartamentos()
+    .subscribe( resp => this.deptos = resp);
+  }
+
+  
+
+   cargarCajasCompensacion(id: string) {
+    this._socialSecurityEntityService.obtenerCajasCompensacion(id)
+    .subscribe( resp => this.cajas = resp);
+    
+  } 
+
+  cargarEntidadesRiegos(id: string) {
+    this._socialSecurityEntityService.obtenerEntidadesRiesgo(id)
+    .subscribe( resp => this.riesgos = resp);
+ 
+  }
+
+
+  cargarMunicipiosDeptos(id: string) {
+    this._cityService.obtenerMunicipioDepto(id)
+    .subscribe( resp => this.municipios = resp);
+  }
+
+  cargarMunicipios() {
+    this._cityService.cargarMunicipios()
+    .subscribe( resp => this.municipios = resp);
+  }
+
+  cargarTiposd() {
+    this._identificationTypeService.cargarTiposDocumentos()
+    .subscribe( resp => this.tiposd = resp);
+    console.log(this.tiposd);
+  }
+
+  
 
   cargarCompanyInfo( id: string ) {
     this._companyInfoService.cargarCompanyInfo( id )
         .subscribe( company => {
           this.companyInfo = company;
-          
-          console.log('info', this.companyInfo);
         });
 
   }
@@ -176,4 +268,10 @@ export class InfoCompanyComponent implements OnInit {
     this._modalUploadServices.mostrarModal('companys', companyInfo.id );
     
   }
+
+onSelect(id: string): void {
+  this.cargarMunicipiosDeptos(id);
+  
+}
+
 }

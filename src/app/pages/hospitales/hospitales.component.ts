@@ -25,6 +25,7 @@ export class HospitalesComponent implements OnInit {
   cargarHospitales() {
     this._hospitalService.cargarHospitales()
         .subscribe( resp => this.hospitales = resp );
+      
   }
 
   buscarHospital( termino: string){

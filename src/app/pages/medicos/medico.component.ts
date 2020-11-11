@@ -27,7 +27,6 @@ export class MedicoComponent implements OnInit {
   _activatedRoute.params.subscribe( params => {
     const id = params['id'];
     if ( id !== 'nuevo') {
-      console.log('cargando medico constructor');
       this.cargarMedico( id );
     }
   });

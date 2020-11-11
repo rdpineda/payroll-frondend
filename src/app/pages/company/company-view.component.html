@@ -1,0 +1,263 @@
+<div class="row gutters-sm">
+    <div class="d-md-block">
+        <div class="card" style="width: 16rem;">
+            <div class="card-body" style="background-color: #fafafa;">
+                <nav class="nav flex-column nav-pills nav-gap-y-1 waves-effect waves-dark">
+                    <div class="d-flex flex-column align-items-center text-center waves-effect waves-dark">
+                        <img [src]="company.img | imagen: 'company'" alt="Compañia" width="100">
+                        <button (click)="actualizarImagen( companyInfo )" type="button" class="btn btn-link"><small>Cambiar Logo</small></button>
+                        <div class="mb-2">
+                            <h4> {{companyInfo.name}}</h4>
+                        </div>
+                    </div>
+                    <a href="#basica" data-toggle="tab" class="nav-item nav-link nav-link-faded active">
+                        <small>Información Básica</small>
+                    </a>
+                    <a href="#pago" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
+                        <small>Información para Pago</small>
+                    </a>
+                    <a href="#nomina" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
+                        <small>Información de Nomina</small>
+                    </a>
+                    <a href="#cecos" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
+                        <small>Centro de Cosotos</small>
+                    </a>
+                    <a href="#areas" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
+                        <small>Áreas</small>
+                    </a>
+                    <a href="#sucursales" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
+                        <small>Sucursales</small>
+                    </a>
+                    <a href="#cargos" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
+                        <small>Cargos</small>
+                    </a>
+                    <a href="#conceptos" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
+                        <small>Conceptos</small>
+                    </a>
+
+
+
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+
+            <div class="card-body tab-content">
+
+                <div class="tab-pane active" id="basica">
+
+                    <form>
+                        <div class="row">
+                            <div class="col" style="text-align:right">
+                                <button [routerLink]="['/company', empresa.id, 'Edit']" class="btn btn-lg btn-circle boton" data-toggle="tooltip" data-placement="top" title="Editar">
+                            <i class="fa fa-edit text-primary boton text-color"></i>
+                            
+                        </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h6 class="mb-0 text-color"><strong>Nit:</strong></h6>
+                            </div>
+                            <div class="col-sm-8 text-secondary">
+                                <small>{{companyInfo.identification}} - {{companyInfo.verificationNumber}}</small>
+                            </div>
+                        </div>
+                        <br>
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h6 class="mb-0 text-color"><strong>Email:</strong></h6>
+                            </div>
+                            <div class="col-sm-8 text-secondary">
+                                <small>{{companyInfo.email}}</small>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h6 class="mb-0 text-color"><strong>Dirección:</strong></h6>
+                            </div>
+                            <div class="col-sm-8 text-secondary">
+                                <small>{{companyInfo.address}}</small>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h6 class="mb-0 text-color"><strong>Telefono de Contacto:</strong></h6>
+                            </div>
+                            <div class="col-sm-8 text-secondary">
+                                <small>{{companyInfo.phone}}</small>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h6 class="mb-0 text-color"><strong>Pais:</strong></h6>
+                            </div>
+                            <div class="col-sm-8 text-secondary">
+                                <small>{{paises.name}}</small>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h6 class="mb-0 text-color"><strong>Departamento:</strong></h6>
+                            </div>
+                            <div class="col-sm-8 text-secondary">
+                                <small>{{depto.name}}</small>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h6 class="mb-0 text-color"><strong>Municipio:</strong></h6>
+                            </div>
+                            <div class="col-sm-8 text-secondary">
+                                <small>{{municip.name}}</small>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h6 class="mb-0 text-color"><strong>Representante Legal:</strong></h6>
+                            </div>
+                            <div class="col-sm-8 text-secondary">
+                                <small>{{companyInfo.legalRepresentant}}</small>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h6 class="mb-0 text-color"><strong>Fecha de Fundación:</strong> </h6>
+                            </div>
+                            <div class="col-sm-8 text-secondary">
+                                <small>{{companyInfo.fundationDate}}</small>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h6 class="mb-0 text-color"><strong>Caja de Compensación:</strong> </h6>
+                            </div>
+                            <div class="col-sm-8 text-secondary">
+                                <small>{{caja[0].name}}</small>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h6 class="mb-0 text-color"><strong>Entidad de Riesgo:</strong> </h6>
+                            </div>
+                            <div class="col-sm-8 text-secondary">
+                                <small>{{riesgo[0].name}}</small>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="tab-pane" id="pago">
+
+                    <form>
+                        <div class="row">
+                            <div class="col" style="text-align:right">
+                                <button [routerLink]="['/companyPayment', empresa.id, 'Edit']" class="btn btn-lg btn-circle" data-toggle="tooltip" data-placement="top" title="Editar">
+                            <i class="fa fa-edit text-primary"></i>
+                        </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h6 class="mb-0">Periodo de Pago</h6>
+                            </div>
+                            <div class="col-sm-8 text-secondary">
+                                <small>{{paymentFrequency.description}}</small>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h6 class="mb-0">Forma de Pago</h6>
+                            </div>
+                            <div class="col-sm-8 text-secondary">
+                                <small>{{paymentMethod.description}}</small>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h6 class="mb-0">Banco Dispersor</h6>
+                            </div>
+                            <div class="col-sm-8 text-secondary">
+                                <small>{{banks[0].name}}</small>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h6 class="mb-0">Tipo de Cuenta</h6>
+                            </div>
+                            <div class="col-sm-8 text-secondary">
+                                <small>{{accountType[0].description}}</small>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h6 class="mb-0">Número de Cuenta</h6>
+                            </div>
+                            <div class="col-sm-8 text-secondary">
+                                <small>{{companyPayment.accountNumber}}</small>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="tab-pane" id="nomina">
+
+                    <form>
+                        <div class="row">
+                            <div class="col" style="text-align:right">
+                                <button [routerLink]="['/companyPayroll', empresa.id, 'Edit']" class="btn btn-lg btn-circle" data-toggle="tooltip" data-placement="top" title="Editar">
+                            <i class="fa fa-edit text-primary"></i>
+                        </button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="tab-pane" id="cecos">
+
+                    <form>
+                        <app-cost-center></app-cost-center>
+                    </form>
+                </div>
+                <div class="tab-pane" id="areas">
+
+                    <form>
+                        <app-area></app-area>
+                    </form>
+                </div>
+                <div class="tab-pane" id="sucursales">
+
+                    <form>
+                        <app-subsidiary></app-subsidiary>
+                    </form>
+                </div>
+                <div class="tab-pane" id="cargos">
+
+                    <form>
+                        <app-position></app-position>
+                    </form>
+                </div>
+                <div class="tab-pane" id="conceptos">
+
+                    <form>
+                        <app-concept></app-concept>
+                    </form>
+                </div>
+
+
+            </div>

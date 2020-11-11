@@ -1,0 +1,121 @@
+<!-- <div class="card m-2" style="background-color: #e5ebf2;">
+    
+    <div class="card-body">
+      <h5 class="card-title text-primary color-text font-weight-bold">Lista de Empleados</h5>
+      <p class="card-text text-primary color-text font-italic">Aquí puedes crear, editar y consultar la informacion de todos los empleados</p>
+    
+      <div>
+      
+      <ul>
+        
+        <li>
+        <a href="#" class="card-link">Consultar desprendible de pago</a>
+       </li>
+       
+       <li>
+        <a href="#" class="card-link">Descargar listado de empleados</a>
+       </li>
+      </ul>
+    
+    </div>
+    </div>
+
+
+        </div> -->
+
+
+<div>
+    <div>
+
+
+
+
+        <form class="form-inline my-2 my-lg-0">
+            <!-- <i class="fa fa-search"></i> -->
+            <div class="input-group input-group mb-3 mt-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">
+                            <i class="fa fa-search icon"> </i> 
+                          </span>
+                </div>
+
+                <input class="form-control mr-sm-2 input-field" spellcheck="false" autocomplete="none" style="width: 35rem;" type="search" placeholder="Busca empleado" name="busqueda" [(ngModel)]="busqueda" aria-label="Buscar" #buscartexto>
+            </div>
+
+
+
+            <!-- <button (click)="searchemployee(buscartexto.value)"
+                        class="btn btn-outline-primary mr-lg-5" type="button">Buscar</button> -->
+
+            <button [routerLink]="['/employee', 'new', 'Personal']" class="btn m-2 mb-3 text-white btn-primary1" type="button" style="background-color:#00c8ff ;">
+                    <i class="fa fa-user-plus"></i>
+                    NUEVO EMPLEADO
+                    </button>
+            <button class="btn m-2 mb-3 btn-color btn-prueba" type="button" style="background-color:#ffff ">
+                    <i class="fa fa-file-import"></i>
+                    IMPORTAR EMPLEADO</button>
+        </form>
+
+
+
+    </div>
+
+
+
+</div>
+
+
+
+
+
+<div class="col-md-12">
+    <div class="card">
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs customtab" role="tablist">
+            <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#activo" role="tab"><span class="hidden-sm-up"><i class="ti-home"></i></span> <span class="hidden-xs-down">Activos</span></a> </li>
+            <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#retirado" role="tab"><span class="hidden-sm-up"><i class="ti-user"></i></span> <span class="hidden-xs-down">Retirados</span></a> </li>
+
+
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-pane active p-20" id="activo" role="tabpanel">
+
+
+                <!-- <div class="card-columns1" style="max-width: 5000px; font-size: 13px; align-items: center;"> -->
+                <div>
+
+
+
+                    <div class="card-columns card-columns1">
+                        <app-card-employee (employeeSelect)="veremployee( $event )" [employee]="employee" [index]="employee.id" *ngFor="let employee of employees"></app-card-employee>
+
+
+                    </div>
+
+
+
+                    <!-- </div> -->
+                </div>
+
+            </div>
+            <div class="tab-pane" id="retirado" role="tabpanel">
+                <div class="p-20">
+
+                </div>
+
+            </div>
+
+            <div class="tab-pane p-20" id="nomina" role="tabpanel">
+
+
+            </div>
+
+
+
+
+        </div>
+
+
+    </div>

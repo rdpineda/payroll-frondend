@@ -4,9 +4,13 @@ import { Router } from '@angular/router';
 import { UsuarioService } from '../services/service.index';
 import { CompanyService } from '../services/service.index';
 import { CompanyInfoService } from '../services/service.index';
+import { CompanyPaymentService } from '../services/service.index';
+import { CompanyPayrollService } from '../services/service.index';
 import { Usuario } from '../models/usuario.model';
 import { Company } from '../models/company.model';
 import { CompanyInfo } from '../models/companyInfo.model';
+import { CompanyPayment } from '../models/companyPayment.model';
+import { CompanyPayroll } from '../models/companyPayroll.model';
 
 
 import Swal from 'sweetalert2';
@@ -40,6 +44,8 @@ export class RegisterComponent implements OnInit {
   constructor( public _usuarioService: UsuarioService,
                public _companyService: CompanyService,
                public _companyInfoService: CompanyInfoService,
+               public _companyPaymentService: CompanyPaymentService,
+               public _companyPayrollService: CompanyPayrollService,
                public _router: Router,
                private fb: FormBuilder ) {
 
@@ -153,8 +159,33 @@ export class RegisterComponent implements OnInit {
                   this.isActive,
                   this.idTenant,
               );
-                this._companyInfoService.crearCompanyInfo( companyInfo )
-                    .subscribe( respci => {});
+
+            const companyPayment = new CompanyPayment(
+                this.idCompany = respc.id,
+                this.createUser = resp.id,
+                this.updateUser = resp.id,
+                this.isActive,
+                this.idTenant,
+              );
+
+            const companyPayroll = new CompanyPayroll(
+                this.idCompany = respc.id,
+                this.createUser = resp.id,
+                this.updateUser = resp.id,
+                this.isActive,
+                this.idTenant,
+              );
+            this._companyInfoService.crearCompanyInfo( companyInfo )
+                    .subscribe( respci => {
+                    });
+
+            this._companyPaymentService.crearCompanyPayment( companyPayment )
+                    .subscribe( respcp => {
+                    });
+
+            this._companyPayrollService.crearCompanyPayroll( companyPayroll )
+                    .subscribe( respcp => {
+                    });
 
                   });
           });

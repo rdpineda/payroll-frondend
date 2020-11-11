@@ -1,0 +1,130 @@
+<input #input (keyup)="buscarCentroCosto( input.value )" type="text" class="form-control" placeholder="Buscar Centro de Costo...">
+
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="text-right">
+                    <button type="button" class="btn btn-sm btn-circle boton" data-toggle="modal" data-target="#cecoModal">
+                            <i class="fa fa-plus boton text-color"></i>
+                         </button>
+                </div>
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                <h6 class="text-color"><strong>Código</strong></h6>
+                            </th>
+                            <th>
+                                <h6 class="text-color"><strong>Descripción</strong></h6>
+                            </th>
+                            <th>
+                                <h6 class="text-color"><strong>Gasto</strong></h6>
+                            </th>
+                            <th>
+                                <h6 class="text-color"><strong>Activo</strong></h6>
+                            </th>
+                            <th>
+                                <h6 class="text-color"><strong>Actualizar</strong></h6>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let costC of costCenter let i= index">
+                            <td>
+                                <input [(ngModel)]="costC.code" name="codigo" type="text" class="form-control form-control-sm " placeholder="Codigo" style="width: 6rem; border-width: 0px;">
+                            </td>
+
+                            <td>
+                                <input [(ngModel)]="costC.description" name="descripcion" type="text" class="form-control form-control-sm" placeholder="Descripcion" style="width: 13rem; border-width: 0px;">
+                            </td>
+
+                            <td>
+                                <select [(ngModel)]="costC.idSpendingAccount" class="form-control form-control-sm" name="cuentagasto" style="width: 8rem; border-width: 0px;">
+
+                                     <!-- <option value="">Seleccione la Cuenta de Gasto</option> -->
+                                     <option *ngFor="let cuentaG of cuentagasto" [value]="cuentaG.id">
+                                       <small>{{cuentaG.code}} -  {{cuentaG.description}}</small> 
+                                    </option>
+                                 </select>
+                            </td>
+                            <td class="float-right">
+                                <input [(ngModel)]="costC.isActive" name="estado" id="{{'checkbox-signup' + i}}" type="checkbox" class=" form-control form-control-sm filled-in chk-col-light-blue">
+                                <label for="{{'checkbox-signup' + i}}"></label>
+                            </td>
+
+                            <td>
+                                <button (click)="guardarCentroCostos( costC )" type="button" class="btn btn-info btn-sm float-center ">
+                                    <i class="fa fa-save "></i>
+                                </button>
+                                <!--  <button (click)="borrarCentroCostos( costC )" type="button" class="btn btn-danger btn-sm">
+                                    <i class="fa fa-trash-o"></i>
+                                </button> -->
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="cecoModal" tabindex="-1" aria-labelledby="cecoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cecoModalLabel">Centro de Costos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <form autocomplete="off" [formGroup]="forma" (ngSubmit)="guardar()" id="centroCostoform" action="index.html">
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Centro de Costo:</label>
+                        <input class="form-control form-control-sm" formControlName="codigo" name="codigo" type="text" placeholder="Codigo" [class.is-invalid]="codigoNoValido">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Descripción:</label>
+                        <input class="form-control form-control-sm" formControlName="descripcion" name="descripcion" type="text" placeholder="descripcion" [class.is-invalid]="descripcionNoValido">
+
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Cuenta de Gasto:</label>
+                        <select class="form-control form-control-sm" formControlName="cuentagasto" name="cuentagasto" [class.is-invalid]="cuentagastoNoValido">
+
+                            <option value="">Seleccione la Cuenta de Gasto</option>
+                            <option *ngFor="let cuentaG of cuentagasto" [value]="cuentaG.id">
+                               {{cuentaG.code}} -  {{cuentaG.description}}
+                           </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+
+                        <input class="form-control form-control-sm filled-in chk-col-light-blue" formControlName="estado" name="estado" id="checkbox-estadoceco" type="checkbox" [class.is-invalid]="estadoNoValido">
+                        <label for="checkbox-estadoceco">Activo</label>
+
+                    </div>
+
+                    <div class="form-group">
+                        <button type="button" class="btn btn-secondary mr-3" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+
+                    </div>
+
+                </form>
+            </div>
+            <!-- <div class="modal-footer"> -->
+
+
+            <!-- </div> -->
+        </div>
+    </div>
+</div>

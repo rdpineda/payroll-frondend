@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col">
+        <div class="card  border border-primary">
+
+            <div class="card-body">
+                <div class="media align-items-center"> <img [src]="employee.img | imagen: 'employee'" class="img-75 img-rounded card-img-top" alt="empleado">
+
+                    <div class="media-body overflow-hidden ml-2">
+                        <h5 class="card-text mb-0">{{employee.firstname}} {{employee.surname}}</h5>
+                        <p class="card-text text-uppercase text-muted">{{employee.identification}}</p>
+                        <p class="card-text">
+
+                            {{employee.email}}<br><abbr title="Phone"></abbr>{{employee.phone}}
+                        </p>
+                    </div>
+                </div>
+                <button (click)="viewEmployee()" class=" btn stretched-link">
+       <!--  <i class="fa fa-search"></i> -->
+     </button>
+            </div>
+        </div>
+    </div>
+</div>

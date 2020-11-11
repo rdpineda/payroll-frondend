@@ -1,0 +1,83 @@
+<form autocomplete="off" [formGroup]="forma" (ngSubmit)="guardar()">
+
+
+    <div>
+        <div class="form-group row mb-1">
+            <div class="col">
+                <label class="col col-form-label col-form-label-sm"><small class="text-muted">Tipo Cotizante</small></label>
+                <select [(ngModel)]="employeeSocialSecurity.idContributorType" class="form-control form-control-sm" name="contributorType" formControlName="contributorType" [class.is-invalid]="contributorTypeNoValido">
+             <small *ngIf="contributorTypeNoValido" class="text-danger">Por favor seleccione un tipo cotizante</small>
+             <option value="">Seleccionar tipo cotizante</option>
+             <option *ngFor="let contributorTypeT of contributorType" [value]="contributorTypeT.id">
+                {{contributorTypeT.description}}  
+            </option>
+          </select>
+            </div>
+        </div>
+
+
+        <div class="form-group row mb-1">
+            <div class="col">
+                <label class="col col-form-label col-form-label-sm"><small class="text-muted">Subtipo Cotizante</small></label>
+                <select [(ngModel)]="employeeSocialSecurity.idContributorSubType" class="form-control form-control-sm" name="contributorSubType" formControlName="contributorSubType" [class.is-invalid]="contributorSubTypeNoValido">
+             <small *ngIf="contributorSubTypeNoValido" class="text-danger">Por favor seleccione un sub tipo cotizante</small>
+             <option value="">Seleccionar Subtipo cotizante</option>
+             <option *ngFor="let contributorSubTypeT of contributorSubType" [value]="contributorSubTypeT.id">
+                {{contributorSubTypeT.description}}
+            </option>
+          </select>
+            </div>
+        </div>
+
+        <div class="form-group row mb-1">
+            <div class="col">
+                <label class="col col-form-label col-form-label-sm"><small class="text-muted">Entidad Salud</small></label>
+                <select [(ngModel)]="employeeSocialSecurity.idEntityHealth" class="form-control form-control-sm" name="entityHealth" formControlName="entityHealth" [class.is-invalid]="entityHealthNoValido">
+             <small *ngIf="entityHealthNoValido" class="text-danger">Por favor seleccione entidad de salud</small>
+             <option value="">Seleccionar entidad de salud</option>
+             <option *ngFor="let entityHealthT of entityHealth" [value]="entityHealthT.id">
+                {{entityHealthT.identification}} - {{entityHealthT.name}}
+            </option>
+          </select>
+            </div>
+        </div>
+
+        <div class="form-group row mb-1">
+            <div class="col">
+                <label class="col col-form-label col-form-label-sm"><small class="text-muted">Entidad Pension</small></label>
+                <select [(ngModel)]="employeeSocialSecurity.idEntityPension" class="form-control form-control-sm" name="entityPension" formControlName="entityPension" [class.is-invalid]="entityPensionNoValido">
+             <small *ngIf="entityPensionNoValido" class="text-danger">Por favor seleccione entidad de pension</small>
+             <option value="">Seleccionar entidad de pension</option>
+             <option *ngFor="let entityPensionT of entityPension" [value]="entityPensionT.id">
+                {{entityPensionT.identification}} - {{entityPensionT.name}}
+            </option>
+          </select>
+            </div>
+        </div>
+
+        <div class="form-group row mb-1">
+            <div class="col">
+                <label class="col col-form-label col-form-label-sm"><small class="text-muted">Fondo Cesantias</small></label>
+                <select [(ngModel)]="employeeSocialSecurity.idEntitySeverance" class="form-control form-control-sm" name="entitySeverance" formControlName="entitySeverance" [class.is-invalid]="entitySeveranceNoValido">
+             <small *ngIf="entitySeveranceNoValido" class="text-danger">Por favor seleccione fondo de cesantias</small>
+             <option value="">Seleccionar fondo de cesantias</option>
+             <option *ngFor="let entitySeveranceT of entitySeverance" [value]="entitySeveranceT.id">
+                {{entitySeveranceT.identification}} - {{entitySeveranceT.name}}
+            </option>
+          </select>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="form-group row">
+
+        <div class="input-group col ">
+            <button type="submit" class="btn btn-sm mx-auto w-50 text-white btn-success" style="background-color: #00c8ff ;">
+              <i class="fa fa-save m-2"></i>
+            Guardar
+          </button>
+        </div>
+    </div>
+</form>

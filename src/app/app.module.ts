@@ -28,10 +28,25 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { CompanysComponent } from './login/companys.component';
 
+
+
 import { RegisterComponent } from './login/register.component';
 
 import { PagesComponent } from './pages/pages.component';
 import { SharedModule } from './shared/shared.module';
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -46,8 +61,15 @@ import { SharedModule } from './shared/shared.module';
     RegisterComponent,
     PagesComponent,
     CompanysComponent,
+   
     
     
+    
+ 
+    
+    
+  
+   
   ],
   imports: [
     BrowserModule,

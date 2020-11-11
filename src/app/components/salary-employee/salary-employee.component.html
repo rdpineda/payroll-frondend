@@ -1,0 +1,61 @@
+<form autocomplete="off" [formGroup]="forma" (ngSubmit)="guardar()">
+
+
+    <div>
+        <div class="form-group row mb-1">
+            <div class="col">
+                <label class="col col-form-label col-form-label-sm"><small class="text-muted">Tipo de Salario</small></label>
+                <select [(ngModel)]="employeeSalary.idSalaryType" class="form-control form-control-sm" name="salaryType" formControlName="salaryType" [class.is-invalid]="salaryTypeNoValido">
+             <small *ngIf="salaryTypeNoValido" class="text-danger">Por favor seleccione un Tipo de salario</small>
+             <option value="">Seleccionar Tipo de salario</option>
+             <option *ngFor="let salaryT of salaryType" [value]="salaryT.id">
+                {{salaryT.description}}
+            </option>
+          </select>
+            </div>
+
+            <div class="col">
+                <label class="col col-form-label col-form-label-sm"><small class="text-muted">Tipo de Salario</small></label>
+                <input [(ngModel)]="employeeSalary.salary" type="number" class="form-control form-control-sm" name="salary" formControlName="salary" [class.is-invalid]="salaryNoValido">
+                <small *ngIf="salaryNoValido" class="text-danger">Por favor ingresa el salario</small>
+
+            </div>
+        </div>
+
+        <div class="form-group row mb-4">
+
+            <div class="col">
+                <label class="col-5 col-form-label col-form-label-sm"><small class="text-muted">Fecha Inicial</small></label>
+                <input [(ngModel)]="employeeSalary.initialSalaryDate" class="form-control form-control-sm" type="date" placeholder="Fecha Inicial" formControlName="initialSalaryDate" [class.is-invalid]="initialSalaryDateNoValido">
+                <small *ngIf="initialSalaryDateNoValido" class="text-danger">Por favor ingresar una fecha Inicial</small>
+            </div>
+
+            <div class="col">
+                <label class="col-5 col-form-label col-form-label-sm"><small class="text-muted">Fecha Final</small></label>
+                <input [(ngModel)]="employeeSalary.endSalaryDate" class="form-control form-control-sm" type="date" placeholder="Fecha Final" formControlName="endSalaryDate" [class.is-invalid]="endSalaryDateNoValido">
+                <small *ngIf="endSalaryDateNoValido" class="text-danger">Por favor ingresar una fecha Final</small>
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+    </div>
+
+    <div class="form-group row">
+
+        <div class="input-group col ">
+            <button type="submit" class="btn btn-sm mx-auto w-50 text-white btn-success" style="background-color: #00c8ff ;">
+              <i class="fa fa-save m-2"></i>
+            Guardar
+          </button>
+        </div>
+    </div>
+</form>

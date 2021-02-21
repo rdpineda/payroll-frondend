@@ -73,9 +73,12 @@ export class JobEmployeeComponent implements OnInit {
                   }
                 }
 
-               /*  this.activatedRoute.params.subscribe( params =>{
-                  this.getEmployeeWorking( params[ 'id' ]);
-              }); */
+                this.activatedRoute.params.subscribe( params =>{
+                
+                  const id = params['id'];
+                   if(id !== 'new') {this.getEmployeeJob( params[ 'id' ])};
+                
+              });
 
 
     this.crearFormulario();
@@ -136,8 +139,8 @@ export class JobEmployeeComponent implements OnInit {
       const id = params['id'];
       const Employee = params['Employee'];
       if ( id !== 'new') {
-        this._employeeJobService.actualizarEmployeeJob( this.employeeJob )
-        .subscribe( () => this.getEmployeeJob(this.employeeJob.id));
+        this._employeeJobService.actualizarEmployeeJob( this.employeeJob[0] )
+        .subscribe( () => this.getEmployeeJob(this.employeeJob[0].idEmployee));
       } else {
           const employeeJobr = new EmployeeJob(
          
@@ -195,7 +198,7 @@ export class JobEmployeeComponent implements OnInit {
   
   getEmployeeJob( id: string ) {
     this._employeeJobService.cargarEmployeeJob( id )
-        .subscribe( employeeJob => {
+        .subscribe( (employeeJob) => {
           this.employeeJob = employeeJob;
         });
 

@@ -69,9 +69,10 @@ export class PersonalEmployeeComponent implements OnInit {
                   }
                 }
 
-                this.activatedRoute.params.subscribe( params =>{
-                  this.cargarEmployee( params[ 'id' ]);
-              });
+                this.activatedRoute.params.subscribe( params => {
+                  const id = params['id'];
+                   if(id !== 'new') {this.cargarEmployee( params[ 'id' ])};
+              }); 
                
                 
                 this.cargarMunicipios();
@@ -166,6 +167,7 @@ export class PersonalEmployeeComponent implements OnInit {
       if ( id !== 'new') {
         this._employeeService.actualizarEmployee( this.employee )
         .subscribe( () => this.cargarEmployee(this.employee.id));
+       
       } else {
 
         const employeer = new Employee(
@@ -197,7 +199,8 @@ export class PersonalEmployeeComponent implements OnInit {
               this.newEmployee = employee;
              
               this._router.navigate(['/employee', 'new', this.newEmployee.id, 'working']);
-              this.cargarEmployee(this.newEmployee.id);
+              if(this.newEmployee.id) {this.cargarEmployee(this.newEmployee.id)};
+              
         });
       }
     });

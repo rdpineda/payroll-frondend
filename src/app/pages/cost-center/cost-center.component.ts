@@ -80,6 +80,7 @@ export class CostCenterComponent implements OnInit {
   ngOnInit(): void {
 
     this.cargarCuentaGasto();
+    console.log(this.cargarCuentaGasto());
     
   }
 
@@ -172,6 +173,7 @@ export class CostCenterComponent implements OnInit {
   cargarCuentaGasto() {
     this._spendingAccountService.cargarCuentaGastos()
     .subscribe( resp => this.cuentagasto = resp);
+    
  
   }
 

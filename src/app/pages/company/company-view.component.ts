@@ -34,7 +34,7 @@ export class CompanyViewComponent implements OnInit {
   imagenTemp: string | ArrayBuffer;
   public date: Date = new Date();
   forma: FormGroup;
-  company: any = {};
+  company:any = {};
   public companyInfo: any = {};
   public companyPayment: any = {};
   empresaseleccionada: any = {};
@@ -107,16 +107,17 @@ export class CompanyViewComponent implements OnInit {
   cargarCompanyInfo( id: string ) {
     this._companyInfoService.cargarCompanyInfo( id )
         .subscribe( company => {
-          console.log('ec',  company );
           this.companyInfo = company;
-          this.obtenerPaises( this.companyInfo.idCountry );
-          this.obtenerDepartamento(this.companyInfo.idState);
-          this.obtenerMunicipios(this.companyInfo.idCity);
-          this.obtenerCajasCompensacion(this.companyInfo.idCompensationFund);
-          this.obtenerEntidadRiesgos(this.companyInfo.idEntityRisks);
+          console.log('company', company)
+         
+          if (this.companyInfo.idCountry) {this.obtenerPaises( this.companyInfo.idCountry )};
+          if (this.companyInfo.idState) {this.obtenerDepartamento(this.companyInfo.idState)};
+          if (this.companyInfo.idCity) {this.obtenerMunicipios(this.companyInfo.idCity)};
+          if (this.companyInfo.idCompensationFund) {this.obtenerCajasCompensacion(this.companyInfo.idCompensationFund)};
+          if (this.companyInfo.idEntityRisks) {this.obtenerEntidadRiesgos(this.companyInfo.idEntityRisks)};
          
          /*  this.companyInfo.idCountry = company.idCountry.id; */
-         
+          
         });
 
   }
@@ -125,10 +126,12 @@ export class CompanyViewComponent implements OnInit {
     this._companyPaymentService.cargarCompanyPayment( id )
         .subscribe( company => {
           this.companyPayment = company;
-          this.obtenerFrecuenciaPago( this.companyPayment.idPaymentFrequency );
-          this.obtenerMetodoPago( this.companyPayment.idPaymentMethod );
-          this.obtenerBancos( this.companyPayment.idBank );
-          this.obtenerTipoCuentas( this.companyPayment.idAccountType);
+         
+          if (this.companyPayment.idPaymentFrequency) {this.obtenerFrecuenciaPago( this.companyPayment.idPaymentFrequency )};
+          if (this.companyPayment.idPaymentMethod) {this.obtenerMetodoPago( this.companyPayment.idPaymentMethod )};
+          if (this.companyPayment.idBank) {this.obtenerBancos( this.companyPayment.idBank )};
+          if (this.companyPayment.idAccountType) {this.obtenerTipoCuentas( this.companyPayment.idAccountType)};
+          
         });
 
   }

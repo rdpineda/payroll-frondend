@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../services/service.index';
+import { ConceptService } from '../services/service.index';
 import { CompanyService } from '../services/service.index';
 import { CompanyInfoService } from '../services/service.index';
 import { CompanyPaymentService } from '../services/service.index';
 import { CompanyPayrollService } from '../services/service.index';
 import { Usuario } from '../models/usuario.model';
+import { Concept } from '../models/concept.model';
 import { Company } from '../models/company.model';
 import { CompanyInfo } from '../models/companyInfo.model';
 import { CompanyPayment } from '../models/companyPayment.model';
@@ -33,6 +35,7 @@ export class RegisterComponent implements OnInit {
   updateUser: any;
   idUser: any;
   idCompany: any;
+  concept: Concept[] = [];
   isActive = true;
   idTenant = '51c8b7bb-11fd-4203-af7a-98ae9ca27475';
   idRol = '37188fd7-f43b-4874-bd1a-54c5cce8afee';
@@ -42,6 +45,7 @@ export class RegisterComponent implements OnInit {
   
   // tslint:disable-next-line: variable-name
   constructor( public _usuarioService: UsuarioService,
+               public _conceptService: ConceptService,
                public _companyService: CompanyService,
                public _companyInfoService: CompanyInfoService,
                public _companyPaymentService: CompanyPaymentService,
@@ -50,6 +54,7 @@ export class RegisterComponent implements OnInit {
                private fb: FormBuilder ) {
 
       this.crearFormulario();
+      this.cargarConcept();
                }
 
 
@@ -187,9 +192,25 @@ export class RegisterComponent implements OnInit {
                     .subscribe( respcp => {
                     });
 
+                    // **aca va el json que guarda los conceptos a cada empresa**
+
+                    this._conceptService.crearConceptStandard(respc.id)
+                    .subscribe( respc => {
+                      
+                    });
+
+
                   });
           });
 
+
+  }
+
+  cargarConcept() {
+    this._conceptService.cargarConcept( )
+        .subscribe( concept => {
+          this.concept = concept;
+        });
 
   }
 

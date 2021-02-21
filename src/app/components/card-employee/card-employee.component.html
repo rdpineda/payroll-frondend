@@ -6,12 +6,30 @@
                 <div class="media align-items-center"> <img [src]="employee.img | imagen: 'employee'" class="img-75 img-rounded card-img-top" alt="empleado">
 
                     <div class="media-body overflow-hidden ml-2">
-                        <h5 class="card-text mb-0">{{employee.firstname}} {{employee.surname}}</h5>
-                        <p class="card-text text-uppercase text-muted">{{employee.identification}}</p>
-                        <p class="card-text">
 
-                            {{employee.email}}<br><abbr title="Phone"></abbr>{{employee.phone}}
-                        </p>
+                        <h5 class="card-text mb-0">{{employee.firstname}} {{employee.surname}}</h5>
+                        <h5 class="card-text mb-0">{{employee.identification}} </h5>
+                        <ul class="list-unstyled m-t-md">
+                            <li>
+
+                                <label>Email:</label> {{employee.email}}
+                            </li>
+                            <li>
+
+                                <label>Tel:</label> {{employee.phone}}
+                            </li>
+                        </ul>
+
+                        <!--  <h5 class="card-text mb-0">{{employee.firstname}} {{employee.surname}}</h5>
+                        <h5 class="card-text mb-0">{{employee.identification}} </h5>
+                        <h5 class="card-text mb-0">{{employee.email}} </h5>
+                        <h5 class="card-text mb-0"> {{employee.phone}}</h5> -->
+
+
+                        <!--  <p class="card-text">
+
+                            <br><abbr title="Phone"></abbr>{{employee.phone}}
+                        </p> -->
                     </div>
                 </div>
                 <button (click)="viewEmployee()" class=" btn stretched-link">

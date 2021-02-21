@@ -1,12 +1,18 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UsuarioService } from '../services/usuario/usuario.service';
 import { CompanyService } from '../services/company/company.service';
+import { ConceptService } from '../services/service.index';
+import { CompanyPaymentService } from '../services/service.index';
+import { CompanyPayrollService } from '../services/service.index';
 import { SharedService } from '../services/shared/shared.service';
 import { CompanyInfoService } from '../services/service.index';
 import { HeaderComponent } from '../shared/header/header.component';
 import { Usuario } from '../models/usuario.model';
 import { Company } from '../models/company.model';
 import { CompanyInfo } from '../models/companyInfo.model';
+import { Concept } from '../models/concept.model';
+import { CompanyPayment } from '../models/companyPayment.model';
+import { CompanyPayroll } from '../models/companyPayroll.model';
 import { Router } from '@angular/router';
 import { ImagenPipe } from '../pipes/imagen.pipe';
 import { ModalUploadService } from '../components/modal-upload/modal-upload.service';
@@ -30,6 +36,7 @@ export class CompanysComponent implements OnInit {
   idUser: any;
   correo: any;
   idCompany: any;
+  concept: Concept[] = [];
   isActive = true;
   idTenant = '51c8b7bb-11fd-4203-af7a-98ae9ca27475';
   idRol = '37188fd7-f43b-4874-bd1a-54c5cce8afee';
@@ -42,6 +49,9 @@ export class CompanysComponent implements OnInit {
   constructor( public _usuarioService: UsuarioService,
                public _sharedService: SharedService,
                public _companyService: CompanyService,
+               public _conceptService: ConceptService,
+               public _companyPaymentService: CompanyPaymentService,
+               public _companyPayrollService: CompanyPayrollService,
                public router: Router,
                public _modalUploadService: ModalUploadService,
                public _companyInfoService: CompanyInfoService ) {
@@ -117,10 +127,39 @@ export class CompanysComponent implements OnInit {
                 this.isActive,
                 this.idTenant,
             );
+
+            const companyPayment = new CompanyPayment(
+              this.idCompany = respc.id,
+              this.createUser = this.usuario.id,
+              this.updateUser =  this.usuario.id,
+              this.isActive,
+              this.idTenant,
+            );
+
+          const companyPayroll = new CompanyPayroll(
+              this.idCompany = respc.id,
+              this.createUser =  this.usuario.id,
+              this.updateUser = this.usuario.id,
+              this.isActive,
+              this.idTenant,
+            );
               this._companyInfoService.crearCompanyInfo( companyInfo )
                   .subscribe( respci => {
+                  });
+                  this._companyPaymentService.crearCompanyPayment( companyPayment )
+                  .subscribe( respcp => {
+                  });
+
+          this._companyPayrollService.crearCompanyPayroll( companyPayroll )
+                  .subscribe( respcp => {
+                  });
+
+                  this._conceptService.crearConceptStandard(respc.id)
+                  .subscribe( respc => {
                     this.cargarEmpresasUsuario(this.usuario.id);
                   });
+                   
+                  
             });
   }
 });

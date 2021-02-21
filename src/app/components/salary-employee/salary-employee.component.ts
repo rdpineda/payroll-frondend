@@ -126,8 +126,8 @@ export class SalaryEmployeeComponent implements OnInit {
       const id = params['id'];
       const Employee = params['Employee'];
       if ( id !== 'new') {
-        this._employeeSalaryService.actualizarEmployeeSalary( this.employeeSalary )
-        .subscribe( () => this.getEmployeeSalary(this.employeeSalary.id));
+        this._employeeSalaryService.actualizarEmployeeSalary( this.employeeSalary[0] )
+        .subscribe( () => this.getEmployeeSalary(this.employeeSalary[0].idEmployee));
       } else {
           const employeeSalaryr = new EmployeeSalary(
          

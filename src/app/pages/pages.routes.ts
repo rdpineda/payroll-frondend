@@ -31,6 +31,7 @@ import { SubsidiaryComponent } from './subsidiary/subsidiary.component';
 import { PositionComponent } from './position/position.component';
 import { ConceptComponent } from './concept/concept.component';
 import { EmployeeComponent } from './employees/employee.component';
+
 import { BusquedaComponent } from './busqueda/busqueda.component';
 import { AdminGuard } from '../services/service.index';
 import { VerificaTokenGuard } from '../services/guards/verifica-token.guard';
@@ -70,9 +71,14 @@ const pagesRoutes: Routes = [
         { path: 'medicos', component: MedicosComponent, data: { titulo: 'Medicos' }},
         { path: 'employees', component: EmployeesComponent, data: { titulo: 'Empleados' }},
         { path: 'employee/:id', component: EmployeeComponent, data: { titulo: 'Actualizar Empleados' }},
+        // { path: 'employeeWorking/:id/Edit', component: EditEmployeeWorkingComponent, data: { titulo: 'Actualizar Empleados' }},
        /*  { path: 'employees/:new', component: NewEmployeeComponent, data: { titulo: 'Nuevo Empleado' }}, */
         { path: 'employee/:id/Personal', component: EditEmployeeComponent, data: { titulo: 'Nuevo Empleados' }},
         { path: 'employee/:id/Edit', component: EditEmployeeComponent, data: { titulo: 'Actualizar Empleados' }},
+        { path: 'employeeWorking/:id/Edit', component: EditEmployeeWorkingComponent, data: { titulo: 'Actualizar Empleados' }},
+        { path: 'employeeJob/:id/Edit', component: EditEmployeeJobComponent, data: { titulo: 'Actualizar Empleados' }},
+        { path: 'employeePayment/:id/Edit', component: EditEmployeePaymentComponent, data: { titulo: 'Actualizar Empleados' }},
+        { path: 'employeeSocialSecurity/:id/Edit', component: EditEmployeeSocialSecurityComponent, data: { titulo: 'Actualizar Empleados' }},
         { path: 'employee/:id/:Employee/working', component: EditEmployeeWorkingComponent, data: { titulo: 'Nuevo Empleados' }},
         { path: 'employee/:id/:Employee/contract', component: EditEmployeeContractComponent, data: { titulo: 'Nuevo Empleados' }},
         { path: 'employee/:id/:Employee/salary', component: EditEmployeeSalaryComponent, data: { titulo: 'Nuevo Empleados' }},

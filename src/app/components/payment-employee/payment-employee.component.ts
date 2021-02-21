@@ -65,6 +65,13 @@ export class PaymentEmployeeComponent implements OnInit {
                   }
                 }
 
+                this.activatedRoute.params.subscribe( params =>{
+                 
+                  const id = params['id'];
+                    if (id !== 'new') {this.cargarEmployeePayment( params[ 'id' ])};
+                 
+                  
+              });
 
         
     this.crearFormulario();
@@ -126,8 +133,8 @@ export class PaymentEmployeeComponent implements OnInit {
       const id = params['id'];
       const Employee = params['Employee'];
       if ( id !== 'new') {
-        this._employeePaymentService.actualizarEmployeePayment( this.employeePayment )
-        .subscribe( () => this.cargarEmployeePayment(this.employeePayment.id));
+        this._employeePaymentService.actualizarEmployeePayment( this.employeePayment[0] )
+        .subscribe( () => this.cargarEmployeePayment(this.employeePayment[0].idEmployee));
       } else {
           const employeePaymentr = new EmployeePayment(
          
@@ -180,7 +187,7 @@ export class PaymentEmployeeComponent implements OnInit {
 
   cargarEmployeePayment( id: string ) {
     this._employeePaymentService.cargarEmployeePayment( id )
-        .subscribe( employeePayment => {
+        .subscribe( (employeePayment) => {
           this.employeePayment = employeePayment;
         });
 

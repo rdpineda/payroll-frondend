@@ -38,7 +38,9 @@ export class EmployeeJobService  {
 
       let url = URL_SERVICIOS + '/employeeJob/' + idEmployee;
       return this.http.get( url )
+      
           .map( (resp: any) => resp.employeeJob );
+          
     }
     buscarEmployeeJob( termino: string ) {
       let url = URL_SERVICIOS + '/busqueda/coleccion/companys/' + termino;

@@ -125,8 +125,8 @@ export class InfoCompanyComponent implements OnInit {
     this.cargarPaises();
     this.cargarDepartamentos();
     this.cargarTiposd();
-    this.cargarEntidadesRiegos(this.idriesgo);
-    this.cargarCajasCompensacion(this.idcaja);
+    this.cargarEntidadesRiegos();
+    this.cargarCajasCompensacion();
     
     
     
@@ -212,14 +212,14 @@ export class InfoCompanyComponent implements OnInit {
 
   
 
-   cargarCajasCompensacion(id: string) {
-    this._socialSecurityEntityService.obtenerCajasCompensacion(id)
+   cargarCajasCompensacion() {
+    this._socialSecurityEntityService.obtenerCajasCompensacion()
     .subscribe( resp => this.cajas = resp);
     
   } 
 
-  cargarEntidadesRiegos(id: string) {
-    this._socialSecurityEntityService.obtenerEntidadesRiesgo(id)
+  cargarEntidadesRiegos() {
+    this._socialSecurityEntityService.obtenerEntidadesRiesgo()
     .subscribe( resp => this.riesgos = resp);
  
   }

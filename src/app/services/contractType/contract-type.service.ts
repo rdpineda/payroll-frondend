@@ -21,8 +21,12 @@ export class ContractTypeService {
   }
   obtenerTipoContrato( id: string ){
     let url = URL_SERVICIOS + '/contractType/' + id;
+    
     return this.http.get( url )
+    
         .map( (resp: any ) => resp.contractType );
+    
+
   }
 
 

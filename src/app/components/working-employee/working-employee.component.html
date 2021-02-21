@@ -3,19 +3,34 @@
 
     <div>
         <div class="form-group row mb-1">
-            <div class="col">
+            <div *ngIf = "!employeeWorking[0]; else EmployeeType" class="col">
                 <label class="col col-form-label col-form-label-sm"><small class="text-muted">Tipo de Empleado</small></label>
-                <select [(ngModel)]="employeeWorking.idEmployeeType" class="form-control form-control-sm" name="employeeType" formControlName="employeeType" [class.is-invalid]="employeeTypeNoValido">
-             <small *ngIf="employeeTypeNoValido" class="text-danger">Por favor seleccione un Tipo de Empleado</small>
-             <option value="">Seleccionar Tipo de Empleado</option>
-             <option *ngFor="let employeeT of employeeType" [value]="employeeT.id">
-                {{employeeT.description}}
-            </option>
-          </select>
+                <select  [(ngModel)]="employeeWorking.idEmployeeType" class="form-control form-control-sm" name="employeeType" formControlName="employeeType" [class.is-invalid]="employeeTypeNoValido">
+                    
+                   <small *ngIf="employeeTypeNoValido" class="text-danger">Por favor seleccione un Tipo de Empleado</small>
+                   <option value="">Seleccionar Tipo de Empleado</option>
+                     <option *ngFor="let employeeT of employeeType" [value]="employeeT.id">
+                       {{employeeT.description}}
+                     </option>
+                </select>
+                
             </div>
+              <ng-template #EmployeeType>
+               <div class="col">
+                <label class="col col-form-label col-form-label-sm"><small class="text-muted">Tipo de Empleado</small></label>
+                <select  [(ngModel)]="employeeWorking[0].idEmployeeType" class="form-control form-control-sm" name="employeeType" formControlName="employeeType" [class.is-invalid]="employeeTypeNoValido">
+                    
+                   <small *ngIf="employeeTypeNoValido" class="text-danger">Por favor seleccione un Tipo de Empleado</small>
+                   <option value="">Seleccionar Tipo de Empleado</option>
+                     <option *ngFor="let employeeT of employeeType" [value]="employeeT.id">
+                       {{employeeT.description}}
+                     </option>
+                </select>
+                
+            </div>
+              </ng-template>
 
-
-            <div class="col">
+            <div  *ngIf = "!employeeWorking[0]; else ContractRegime" class="col">
                 <label class="col col-form-label col-form-label-sm"><small class="text-muted">Regimen Laboral</small></label>
                 <select [(ngModel)]="employeeWorking.idContractRegime" class="form-control form-control-sm" name="contractRegime" formControlName="contractRegime" [class.is-invalid]="contractRegimeNoValido">
              <small *ngIf="contractRegimeNoValido" class="text-danger">Por favor seleccione un Regimen Laboral</small>
@@ -25,13 +40,25 @@
             </option>
           </select>
             </div>
+             <ng-template #ContractRegime>
+                    <div class="col">
+                <label class="col col-form-label col-form-label-sm"><small class="text-muted">Regimen Laboral</small></label>
+                <select [(ngModel)]="employeeWorking[0].idContractRegime" class="form-control form-control-sm" name="contractRegime" formControlName="contractRegime" [class.is-invalid]="contractRegimeNoValido">
+             <small *ngIf="contractRegimeNoValido" class="text-danger">Por favor seleccione un Regimen Laboral</small>
+             <option value="">Seleccionar Regimen Laboral</option>
+             <option *ngFor="let contractR of contractRegime" [value]="contractR.id">
+                {{contractR.description}}
+            </option>
+          </select>
+            </div>                        
+              </ng-template>
 
 
         </div>
 
         <div class="form-group row mb-4">
 
-            <div class="col">
+            <div *ngIf = "!employeeWorking[0]; else WorkingHour" class="col">
                 <label class="col col-form-label col-form-label-sm"><small class="text-muted">Jornada Laboral</small></label>
                 <select [(ngModel)]="employeeWorking.idWorkingHour" class="form-control form-control-sm" name="workingHour" formControlName="workingHour" [class.is-invalid]="workingHourNoValido">
              <small *ngIf="workingHourNoValido" class="text-danger">Por favor seleccione una Jornada Laboral</small>
@@ -41,8 +68,20 @@
             </option>
           </select>
             </div>
+             <ng-template #WorkingHour>
+                     <div class="col">
+                <label class="col col-form-label col-form-label-sm"><small class="text-muted">Jornada Laboral</small></label>
+                <select [(ngModel)]="employeeWorking[0].idWorkingHour" class="form-control form-control-sm" name="workingHour" formControlName="workingHour" [class.is-invalid]="workingHourNoValido">
+             <small *ngIf="workingHourNoValido" class="text-danger">Por favor seleccione una Jornada Laboral</small>
+             <option value="">Seleccionar Jornada Laboral</option>
+             <option *ngFor="let workingH of workingHour" [value]="workingH.id">
+                {{workingH.description}}
+            </option>
+          </select>
+            </div>                       
+            </ng-template>
 
-            <div class="col">
+            <div *ngIf = "!employeeWorking[0]; else WorkPlaceRisks" class="col">
                 <label class="col col-form-label col-form-label-sm"><small class="text-muted">Centro de Trabajo</small></label>
                 <select [(ngModel)]="employeeWorking.idWorkPlaceRisks" class="form-control form-control-sm" name="workPlaceRisks" formControlName="workPlaceRisks" [class.is-invalid]="workPlaceRisksNoValido">
              <small *ngIf="workPlaceRisksNoValido" class="text-danger">Por favor seleccione un Centro de Trabajo</small>
@@ -52,7 +91,18 @@
             </option>
           </select>
             </div>
-
+            <ng-template #WorkPlaceRisks>
+                         <div  class="col">
+                <label class="col col-form-label col-form-label-sm"><small class="text-muted">Centro de Trabajo</small></label>
+                <select [(ngModel)]="employeeWorking[0].idWorkPlaceRisks" class="form-control form-control-sm" name="workPlaceRisks" formControlName="workPlaceRisks" [class.is-invalid]="workPlaceRisksNoValido">
+             <small *ngIf="workPlaceRisksNoValido" class="text-danger">Por favor seleccione un Centro de Trabajo</small>
+             <option value="">Seleccionar Centro de Trabajo</option>
+             <option *ngFor="let workPlaceR of workPlaceRisks" [value]="workPlaceR.id">
+                {{workPlaceR.description}} - {{workPlaceR.percentaje }} 
+            </option>
+          </select>
+            </div>                   
+            </ng-template>
 
         </div>
 
@@ -60,7 +110,7 @@
 
         <div class="form-group row mb-4">
 
-            <div class="col">
+            <div *ngIf = "!employeeWorking[0]; else transportAssistence" class="col">
 
                 <div class="checkbox checkbox-primary p-t-0">
                     <input [(ngModel)]="employeeWorking.transportAssistence" name="transportAssistence" type="checkbox" class="form-control form-control-sm filled-in chk-col-blue" formControlName="transportAssistence" id="transportAssistence">
@@ -71,10 +121,23 @@
 
 
             </div>
+             <ng-template #transportAssistence>
+                    <div class="col">
+
+                <div class="checkbox checkbox-primary p-t-0">
+                    <input [(ngModel)]="employeeWorking[0].transportAssistence" name="transportAssistence" type="checkbox" class="form-control form-control-sm filled-in chk-col-blue" formControlName="transportAssistence" id="transportAssistence">
+                    <label class="col-form-label col-form-label-sm" for="transportAssistence">
+                    Se le paga Auxilio de transporte?
+                  </label>
+                </div>
+
+
+            </div>                        
+            </ng-template>
 
 
 
-            <div class="col">
+            <div  *ngIf = "!employeeWorking[0]; else variableSalary" class="col">
 
                 <div class="checkbox checkbox-primary p-t-0">
                     <input [(ngModel)]="employeeWorking.variableSalary" type="checkbox" class="form-control form-control-sm filled-in chk-col-blue" formControlName="variableSalary" name="variableSalary" id="VariableCheck">
@@ -84,6 +147,18 @@
                 </div>
 
             </div>
+             <ng-template #variableSalary>
+                     <div  class="col">
+
+                <div class="checkbox checkbox-primary p-t-0">
+                    <input [(ngModel)]="employeeWorking[0].variableSalary" type="checkbox" class="form-control form-control-sm filled-in chk-col-blue" formControlName="variableSalary" name="variableSalary" id="VariableCheck">
+                    <label class="col-form-label col-form-label-sm" for="VariableCheck">
+                        Sueldo Variable?
+                      </label>
+                </div>
+
+            </div>                        
+            </ng-template>
 
         </div>
 

@@ -3,7 +3,7 @@
 
     <div>
         <div class="form-group row mb-1">
-            <div class="col">
+            <div *ngIf="!employeeJob[0]; else CostCenter" class="col">
                 <label class="col col-form-label col-form-label-sm"><small class="text-muted">Centro de Costo</small></label>
                 <select [(ngModel)]="employeeJob.idCostCenter" class="form-control form-control-sm" name="costCenter" formControlName="costCenter" [class.is-invalid]="costCenterNoValido">
              <small *ngIf="costCenterNoValido" class="text-danger">Por favor seleccione un centro de costo</small>
@@ -13,8 +13,22 @@
             </option>
           </select>
             </div>
+            <ng-template #CostCenter>
+                <div class="col">
+                    <label class="col col-form-label col-form-label-sm"><small class="text-muted">Centro de Costo</small></label>
+                    <select [(ngModel)]="employeeJob[0].idCostCenter" class="form-control form-control-sm" name="costCenter" formControlName="costCenter" [class.is-invalid]="costCenterNoValido">
+             <small *ngIf="costCenterNoValido" class="text-danger">Por favor seleccione un centro de costo</small>
+             <option value="">Seleccionar centro de costo</option>
+             <option *ngFor="let costCenterT of costCenter" [value]="costCenterT.id">
+                {{costCenterT.code}} - {{costCenterT.description}}  
+            </option>
+          </select>
+                </div>
+            </ng-template>
 
-            <div class="col">
+
+
+            <div *ngIf="!employeeJob[0]; else Area" class="col">
                 <label class="col col-form-label col-form-label-sm"><small class="text-muted">Area</small></label>
                 <select [(ngModel)]="employeeJob.idArea" class="form-control form-control-sm" name="area" formControlName="area" [class.is-invalid]="areaNoValido">
              <small *ngIf="areaNoValido" class="text-danger">Por favor seleccione un area</small>
@@ -25,12 +39,25 @@
           </select>
             </div>
 
+            <ng-template #Area>
+                <div class="col">
+                    <label class="col col-form-label col-form-label-sm"><small class="text-muted">Area</small></label>
+                    <select [(ngModel)]="employeeJob[0].idArea" class="form-control form-control-sm" name="area" formControlName="area" [class.is-invalid]="areaNoValido">
+             <small *ngIf="areaNoValido" class="text-danger">Por favor seleccione un area</small>
+             <option value="">Seleccionar area</option>
+             <option *ngFor="let areaT of area" [value]="areaT.id">
+                {{areaT.description}}
+            </option>
+          </select>
+                </div>
+            </ng-template>
+
         </div>
 
 
 
         <div class="form-group row mb-1">
-            <div class="col">
+            <div *ngIf="!employeeJob[0]; else Subsidiary" class="col">
                 <label class="col col-form-label col-form-label-sm"><small class="text-muted">Sucursal</small></label>
                 <select [(ngModel)]="employeeJob.idSubsidiary" class="form-control form-control-sm" name="subsidiary" formControlName="subsidiary" [class.is-invalid]="subsidiaryNoValido">
              <small *ngIf="subsidiaryNoValido" class="text-danger">Por favor seleccione una sucursal</small>
@@ -40,8 +67,21 @@
             </option>
           </select>
             </div>
+            <ng-template #Subsidiary>
+                <div class="col">
+                    <label class="col col-form-label col-form-label-sm"><small class="text-muted">Sucursal</small></label>
+                    <select [(ngModel)]="employeeJob[0].idSubsidiary" class="form-control form-control-sm" name="subsidiary" formControlName="subsidiary" [class.is-invalid]="subsidiaryNoValido">
+             <small *ngIf="subsidiaryNoValido" class="text-danger">Por favor seleccione una sucursal</small>
+             <option value="">Seleccionar Sucursal</option>
+             <option *ngFor="let subsidiaryT of subsidiary" [value]="subsidiaryT.id">
+                {{subsidiaryT.description}}
+            </option>
+          </select>
+                </div>
+            </ng-template>
 
-            <div class="col">
+
+            <div *ngIf="!employeeJob[0]; else Position" class="col">
                 <label class="col col-form-label col-form-label-sm"><small class="text-muted">Cargo</small></label>
                 <select [(ngModel)]="employeeJob.idPosition" class="form-control form-control-sm" name="position" formControlName="position" [class.is-invalid]="positionNoValido">
              <small *ngIf="positionNoValido" class="text-danger">Por favor seleccione un cargo</small>
@@ -51,6 +91,19 @@
             </option>
           </select>
             </div>
+
+            <ng-template #Position>
+                <div class="col">
+                    <label class="col col-form-label col-form-label-sm"><small class="text-muted">Cargo</small></label>
+                    <select [(ngModel)]="employeeJob[0].idPosition" class="form-control form-control-sm" name="position" formControlName="position" [class.is-invalid]="positionNoValido">
+             <small *ngIf="positionNoValido" class="text-danger">Por favor seleccione un cargo</small>
+             <option value="">Seleccionar Cargo</option>
+             <option *ngFor="let positionT of position" [value]="positionT.id">
+                {{positionT.description}}
+            </option>
+          </select>
+                </div>
+            </ng-template>
 
         </div>
 

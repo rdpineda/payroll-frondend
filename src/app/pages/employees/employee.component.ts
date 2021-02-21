@@ -7,10 +7,14 @@ import { EmployeeWorkingService} from '../../services/service.index';
 import { EmployeeJobService} from '../../services/service.index';
 import { EmployeePaymentService} from '../../services/service.index';
 import { EmployeeSocialSecurityService} from '../../services/service.index';
+import { EmployeeContractService} from '../../services/service.index';
+import { EmployeeSalaryService} from '../../services/service.index';
 import { CountryService } from '../../services/service.index';
 import { StateService } from '../../services/service.index';
 import { CityService } from '../../services/service.index';
 import { GenderService } from '../../services/service.index';
+import { ContractTypeService } from '../../services/service.index';
+import { SalaryTypeService } from '../../services/service.index';
 import { EmployeeTypeService } from '../../services/service.index';
 import { ContractRegimeService } from '../../services/service.index';
 import { WorkingHourService } from '../../services/service.index';
@@ -32,7 +36,12 @@ import { UsuarioService } from '../../services/usuario/usuario.service';
 import { EmployeeWorking } from '../../models/employeeWorking.model';
 import { EmployeeJob } from '../../models/employeeJob.model';
 import { EmployeePayment } from '../../models/employeePayment.model';
+import { EmployeeContract } from '../../models/employeeContract.model';
+import { ContractType } from '../../models/ContractType.model';
+import { SalaryType } from '../../models/SalaryType.model';
+
 import { EmployeeSocialSecurity } from '../../models/employeeSocialSecurity.model';
+import { Bank } from '../../models/bank.model';
 
 @Component({
   selector: 'app-employee',
@@ -43,10 +52,12 @@ export class EmployeeComponent implements OnInit {
 
   employee: any = {};
   // employeeWorking: EmployeeWorking[] = [];
-  employeeWorking: any = {};
+  employeeWorking: EmployeeWorking[] = [];
   employeeJob: EmployeeJob[] = [];
   employeePayment: EmployeePayment[] = [];
   employeeSocialSecurity: EmployeeSocialSecurity[] = [];
+  employeeContract: any = {};
+  employeeSalary: any = {};
   paises: any = {};
   depto: any = {};
   municip: any = {};
@@ -61,17 +72,23 @@ export class EmployeeComponent implements OnInit {
   subsidiary: any = {};
   bank: any = {};
   accountType: any = {};
+  contractType: ContractType[] = [];
+  salaryType: SalaryType[] = [];
   socialSecurityEntityHealth: any = {};
   socialSecurityEntityPension: any = {};
   socialSecurityEntitySeverance: any = {};
   contributorSubType: any = {};
   contributorType: any = {};
+  
+  
 
   constructor(private activatedRoute: ActivatedRoute,
               private _employeeService: EmployeeService,
               private _employeeWorkingService: EmployeeWorkingService,
               private _employeeJobService: EmployeeJobService,
               private _employeePaymentService: EmployeePaymentService,
+              private _employeeContractService: EmployeeContractService,
+              private _employeeSalaryService: EmployeeSalaryService,
               private _employeeSocialSecurityService: EmployeeSocialSecurityService,
               public _countryService: CountryService,
               public _stateService: StateService,
@@ -82,6 +99,8 @@ export class EmployeeComponent implements OnInit {
               public _genderService: GenderService,
               public _employeeTypeService: EmployeeTypeService,
               public _contractRegimeService: ContractRegimeService,
+              public _salaryTypeService: SalaryTypeService,
+              public _contractTypeService: ContractTypeService,
               public _workingHourService: WorkingHourService,
               public _workPlaceRisksService: WorkPlaceRisksService,
               public _costCenterService: CostCenterService,
@@ -100,6 +119,8 @@ export class EmployeeComponent implements OnInit {
       this.cargarEmployeesJob ( params [ 'id' ]);
       this.cargarEmployeesPayment ( params [ 'id' ]);
       this.cargarEmployeesSocialSecurity ( params [ 'id' ]);
+      this.cargarEmployeesContract ( params [ 'id' ]);
+      this.cargarEmployeesSalary ( params [ 'id' ]);
      
   });
 
@@ -133,7 +154,15 @@ export class EmployeeComponent implements OnInit {
   .subscribe( () =>  this.cargarEmployeesSocialSecurity( params[ 'id' ]));
 });
 
+    this.activatedRoute.params.subscribe( params =>{
+  this._modalUploadServices.notificacion
+  .subscribe( () =>  this.cargarEmployeesContract( params[ 'id' ]));
+});
 
+    this.activatedRoute.params.subscribe( params =>{
+  this._modalUploadServices.notificacion
+  .subscribe( () =>  this.cargarEmployeesSalary( params[ 'id' ]));
+});
   }
 
 
@@ -141,10 +170,12 @@ export class EmployeeComponent implements OnInit {
     this._employeeService.cargarEmployees( id )
         .subscribe( employee => {
           this.employee = employee;
-          this.obtenerPaises( this.employee.idCountry );
-          this.obtenerDepartamento(this.employee.idState);
-          this.obtenerMunicipios(this.employee.idCity);
-          this.obtenerGeneros(this.employee.idGender);
+          if(this.employee) {
+            this.obtenerPaises( this.employee.idCountry );
+            this.obtenerDepartamento(this.employee.idState);
+            this.obtenerMunicipios(this.employee.idCity);
+            this.obtenerGeneros(this.employee.idGender);
+          }
         });
 
   }
@@ -152,12 +183,14 @@ export class EmployeeComponent implements OnInit {
   cargarEmployeesWorking( id: string ) {
     this._employeeWorkingService.cargarEmployeeWorking( id )
         .subscribe( employeeWorking => {
-          console.log('w', employeeWorking);
           this.employeeWorking = employeeWorking;
-          this.obtenerEmployeeType( this.employeeWorking.idEmployeeType );
-          this.obtenerContractRegime( this.employeeWorking.idContractRegime);
-          this.obtenerWorkingHour( this.employeeWorking.idWorkingHour);
-          this.obtenerWorkPlaceRisks( this.employeeWorking.idWorkPlaceRisks);
+          if (this.employeeWorking[0]) {
+            this.obtenerEmployeeType( this.employeeWorking[0].idEmployeeType );
+            this.obtenerContractRegime( this.employeeWorking[0].idContractRegime);
+            this.obtenerWorkingHour( this.employeeWorking[0].idWorkingHour);
+            this.obtenerWorkPlaceRisks( this.employeeWorking[0].idWorkPlaceRisks);
+            
+          }
         });
 
   }
@@ -166,11 +199,12 @@ export class EmployeeComponent implements OnInit {
     this._employeeJobService.cargarEmployeeJob( id )
         .subscribe( employeeJob => {
         this.employeeJob = employeeJob;
-        this.obtenerCostCenter( this.employeeJob[0].idCostCenter );
-        this.obtenerArea( this.employeeJob[0].idArea );
-        this.obtenerPosition( this.employeeJob[0].idPosition );
-        this.obtenerSubsidiary( this.employeeJob[0].idSubsidiary );
-         
+        if (this.employeeJob[0]) {
+          this.obtenerCostCenter( this.employeeJob[0].idCostCenter );
+          this.obtenerArea( this.employeeJob[0].idArea );
+          this.obtenerPosition( this.employeeJob[0].idPosition );
+          this.obtenerSubsidiary( this.employeeJob[0].idSubsidiary );
+        }
         });
 
   }
@@ -179,10 +213,11 @@ export class EmployeeComponent implements OnInit {
     this._employeePaymentService.cargarEmployeePayment( id )
         .subscribe( employeePayment => {
         this.employeePayment = employeePayment;
-        this.obtenerBank( this.employeePayment[0].idBank );
-        this.obtenerAccountType( this.employeePayment[0].idAccountType );
-        
-         
+        if(this.employeePayment[0]){
+          this.obtenerBank( this.employeePayment[0].idBank );
+          this.obtenerAccountType( this.employeePayment[0].idAccountType );
+        }
+
         });
 
   }
@@ -190,16 +225,41 @@ export class EmployeeComponent implements OnInit {
   cargarEmployeesSocialSecurity( id: string ) {
     this._employeeSocialSecurityService.cargarEmployeeSocialSecurity( id )
         .subscribe( employeeSocialSecurity => {
-          console.log('s', employeeSocialSecurity.length);
           this.employeeSocialSecurity = employeeSocialSecurity;
-          this.obtenerSocialSecurityEntityHealth( this.employeeSocialSecurity[0].idEntityHealth );
-          this.obtenerSocialSecurityEntityPension( this.employeeSocialSecurity[0].idEntityPension );
-          this.obtenerSocialSecurityEntitySeverance( this.employeeSocialSecurity[0].idEntitySeverance);
-          this.obtenerContributorType( this.employeeSocialSecurity[0].idContributorType);
-          this.obtenerContributorSubType( this.employeeSocialSecurity[0].idContributorSubType);
+          if (this.employeeSocialSecurity[0]){
+
+            this.obtenerSocialSecurityEntityHealth( this.employeeSocialSecurity[0].idEntityHealth );
+            this.obtenerSocialSecurityEntityPension( this.employeeSocialSecurity[0].idEntityPension );
+            this.obtenerSocialSecurityEntitySeverance( this.employeeSocialSecurity[0].idEntitySeverance);
+            this.obtenerContributorType( this.employeeSocialSecurity[0].idContributorType);
+            this.obtenerContributorSubType( this.employeeSocialSecurity[0].idContributorSubType);
+          }
+        
          
         });
 
+  }
+
+  cargarEmployeesContract( id: string ) {
+    this._employeeContractService.cargarEmployeeContract( id )
+        .subscribe( employeeContract => {
+          this.employeeContract = employeeContract;
+          if (this.employeeContract[0]){
+            this.obtenerContractType();
+            console.log('contrato', this.employeeContract )
+            console.log('desc', this.obtenerContractType() )
+          }
+        });
+  }
+
+  cargarEmployeesSalary( id: string ) {
+    this._employeeSalaryService.cargarEmployeeSalary( id )
+        .subscribe( employeeSalary => {
+          this.employeeSalary = employeeSalary;
+          if (this.employeeSalary[0]){
+            this.obtenerSalaryType();
+          }
+        });
   }
 
 
@@ -210,6 +270,8 @@ export class EmployeeComponent implements OnInit {
           
   });
 }
+
+
 
 obtenerGeneros( id: string)  {
   this._genderService.obtenerGenero( id )
@@ -243,8 +305,27 @@ obtenerContractRegime( id: string)  {
   this._contractRegimeService.obtenerTipoRegime( id )
       .subscribe( contractRegime => {
         this.contractRegime = contractRegime;
+       
 });
 }
+
+
+obtenerContractType()  {
+  this._contractTypeService.cargarTipoContrato()
+      .subscribe( contractType => {
+        this.contractType = contractType;
+      });
+}
+
+obtenerSalaryType()  {
+  this._salaryTypeService.cargarTipoSalario()
+      .subscribe( salaryType => {
+        this.salaryType = salaryType;
+      });
+}
+
+
+
 
 obtenerWorkingHour( id: string)  {
   this._workingHourService.obtenerHorarioLaboral( id )
@@ -338,12 +419,29 @@ obtenerContributorType( id: string)  {
 }
 
 
-
-
 actualizarImagen( employee: Employee ){
   
   this._modalUploadServices.mostrarModal('employee', employee.id );
   
+}
+
+
+guardarEmployeeContract( centroCosto: CostCenter ){
+
+  /* this._costCenterService.actualizarCostCenter( centroCosto )
+  
+        .subscribe( () => this.cargarCostCenter(this.empresa.id));
+  console.log(centroCosto); */
+
+}
+
+guardarEmployeeSalary( centroCosto: CostCenter ){
+
+  /* this._costCenterService.actualizarCostCenter( centroCosto )
+  
+        .subscribe( () => this.cargarCostCenter(this.empresa.id));
+  console.log(centroCosto); */
+
 }
 
 }

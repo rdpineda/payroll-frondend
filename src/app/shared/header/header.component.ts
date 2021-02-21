@@ -1,10 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../../services/usuario/usuario.service';
 import { CompanyService } from '../../services/company/company.service';
+import { CompanyPaymentService } from '../../services/service.index';
+import { CompanyPayrollService } from '../../services/service.index';
 import { CompanyInfoService } from '../../services/service.index';
+import { ConceptService } from '../../services/service.index';
 import { Usuario } from '../../models/usuario.model';
 import { Company } from '../../models/company.model';
 import { CompanyInfo } from '../../models/companyInfo.model';
+import { CompanyPayment } from '../../models/companyPayment.model';
+import { CompanyPayroll } from '../../models/companyPayroll.model';
+import { Concept } from '../../models/concept.model';
 import { Router } from '@angular/router';
 import { ModalUploadService } from '../../components/modal-upload/modal-upload.service';
 import { CardCompanyComponent } from '../../components/card-company/card-company.component';
@@ -33,6 +39,7 @@ export class HeaderComponent implements OnInit {
   companys: Company [] = [];
   usuario: Usuario;
   company: Company [] = [];
+  concept: Concept[] = [];
   company1: any = {};
   company2: any = {};
   autenticado = 'n';
@@ -46,8 +53,11 @@ export class HeaderComponent implements OnInit {
 
   constructor( public _usuarioService: UsuarioService,
                public _companyService: CompanyService,
+               public _conceptService: ConceptService,
                public _modalUploadService:ModalUploadService,
                public _companyInfoService: CompanyInfoService,
+               public _companyPaymentService: CompanyPaymentService,
+               public _companyPayrollService: CompanyPayrollService,
                public router: Router) {
 
    
@@ -149,13 +159,43 @@ export class HeaderComponent implements OnInit {
                 this.isActive,
                 this.idTenant,
             );
+            const companyPayment = new CompanyPayment(
+              this.idCompany = respc.id,
+              this.createUser = this.usuario.id,
+              this.updateUser = this.usuario.id,
+              this.isActive,
+              this.idTenant,
+            );
+
+            const companyPayroll = new CompanyPayroll(
+              this.idCompany = respc.id,
+              this.createUser = this.usuario.id,
+              this.updateUser = this.usuario.id,
+              this.isActive,
+              this.idTenant,
+            );
+
               this._companyInfoService.crearCompanyInfo( companyInfo )
                   .subscribe( respci => {
-                    this.cargarEmpresasUsuario(this.usuario.id);
-                 
-                    this.router.navigate( ['/companies'] );
-                    
                   });
+
+                  this._companyPaymentService.crearCompanyPayment( companyPayment )
+                    .subscribe( respcp => {
+                    });
+
+            this._companyPayrollService.crearCompanyPayroll( companyPayroll )
+                    .subscribe( respcpy => {
+                    });
+
+                    this._conceptService.crearConceptStandard(respc.id)
+                    .subscribe( respc => {
+                      this.cargarEmpresasUsuario(this.usuario.id);
+                      this.router.navigate( ['/companies'] );
+                    });
+
+                    
+                    
+                  
             });
   }
   

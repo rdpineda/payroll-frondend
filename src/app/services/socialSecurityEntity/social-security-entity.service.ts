@@ -31,35 +31,35 @@ export class SocialSecurityEntityService {
       return this.http.get( url )
           .map( (resp: any ) => resp.socialSecurityEntity );
     }
-     obtenerCajasCompensacion( id: string ){
-      let url = URL_SERVICIOS + '/socialSecurityEntity/caja/' + id;
+     obtenerCajasCompensacion(){
+      let url = URL_SERVICIOS + '/socialSecurityEntity/caja';
       return this.http.get( url )
           .map( (resp: any ) => resp.socialSecurityEntity );
     } 
 
-    obtenerEntidadesRiesgo( id: string ){
-      let url = URL_SERVICIOS + '/socialSecurityEntity/riesgo/' + id;
+    obtenerEntidadesRiesgo(){
+      let url = URL_SERVICIOS + '/socialSecurityEntity/riesgo';
       console.log(url);
       return this.http.get( url )
           .map( (resp: any ) => resp.socialSecurityEntity );
     }
 
-    obtenerEntidadesSalud( id: string ){
-      let url = URL_SERVICIOS + '/socialSecurityEntity/salud/' + id;
+    obtenerEntidadesSalud(){
+      let url = URL_SERVICIOS + '/socialSecurityEntity/salud';
       console.log(url);
       return this.http.get( url )
           .map( (resp: any ) => resp.socialSecurityEntity );
     }
 
-    obtenerEntidadesPension( id: string ){
-      let url = URL_SERVICIOS + '/socialSecurityEntity/pension/' + id;
+    obtenerEntidadesPension(){
+      let url = URL_SERVICIOS + '/socialSecurityEntity/pension';
       console.log(url);
       return this.http.get( url )
           .map( (resp: any ) => resp.socialSecurityEntity );
     }
 
-    obtenerEntidadesCesantia( id: string ){
-      let url = URL_SERVICIOS + '/socialSecurityEntity/cesantia/' + id;
+    obtenerEntidadesCesantia(){
+      let url = URL_SERVICIOS + '/socialSecurityEntity/cesantia';
       console.log(url);
       return this.http.get( url )
           .map( (resp: any ) => resp.socialSecurityEntity );

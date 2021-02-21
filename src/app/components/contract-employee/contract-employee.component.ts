@@ -122,8 +122,8 @@ export class ContractEmployeeComponent implements OnInit {
       const id = params['id'];
       const Employee = params['Employee'];
       if ( id !== 'new') {
-        this._employeeContractService.actualizarEmployeeContract( this.employeeContract )
-        .subscribe( () => this.getEmployeeContract(this.employeeContract.id));
+        this._employeeContractService.actualizarEmployeeContract( this.employeeContract[0] )
+        .subscribe( () => this.getEmployeeContract(this.employeeContract[0].idEmployee));
       } else {
           const employeeContractr = new EmployeeContract(
          

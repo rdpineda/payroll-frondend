@@ -35,9 +35,9 @@ export class EmployeeWorkingService {
     
  
 
-    cargarEmployeeWorking( id: string){
+    cargarEmployeeWorking( idEmployee: string){
 
-      let url = URL_SERVICIOS + '/employeeWorking/' + id;
+      let url = URL_SERVICIOS + '/employeeWorking/' + idEmployee;
       return this.http.get( url )
           .map( (resp: any) => resp.employeeWorking );
     }

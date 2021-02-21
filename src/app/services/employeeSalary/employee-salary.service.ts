@@ -34,9 +34,9 @@ export class EmployeeSalaryService  {
     
  
 
-    cargarEmployeeSalary( id: string){
+    cargarEmployeeSalary( idEmployee: string){
 
-      let url = URL_SERVICIOS + '/employeeSalary/' + id;
+      let url = URL_SERVICIOS + '/employeeSalary/' + idEmployee;
       return this.http.get( url )
           .map( (resp: any) => resp.employeeSalary );
     }

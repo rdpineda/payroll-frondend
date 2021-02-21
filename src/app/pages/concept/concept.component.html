@@ -1,5 +1,148 @@
 <div class="accordion" id="accordionConceptos">
     <div class="card">
+
+        <div class="card-header" id="headingSalario">
+            <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseSalario" aria-expanded="true" aria-controls="collapseSalario">
+            Salario y Aux.Transport
+          </button>
+            </h2>
+        </div>
+        <div id="collapseSalario" class="collapse" aria-labelledby="headingSalario" data-parent="#accordionConceptos">
+            <div class="card-body">
+
+                <!-- <div class="row">
+                    <div class="col">
+                        <div class="card"> -->
+                <div class="text-right">
+                    <button type="button" class="btn btn-sm btn-circle boton" data-toggle="modal" data-target="#conceptoModal">
+                                        <i class="fa fa-plus boton text-color"></i>
+                                     </button>
+                </div>
+                <!--   <div class="card-body"> -->
+
+
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                <h6 class="text-color"><strong>Código</strong></h6>
+                            </th>
+                            <th>
+                                <h6 class="text-color"><strong>Descripción</strong></h6>
+                            </th>
+                            <th>
+                                <h6 class="text-color"><strong>Cuenta Contable</strong></h6>
+                            </th>
+                            <th>
+                                <h6 class="text-color"><strong>Contrapartida</strong></h6>
+                            </th>
+                            <th>
+                                <h6 class="text-color"><strong>Acciones</strong></h6>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let conce of concept let i= index">
+                            <td>
+                                <input [(ngModel)]="conce.code" name="codigo" type="text" class="form-control form-control-sm " placeholder="Codigo" style="width: 4rem; border-width: 0px; font-size: 10px;">
+                            </td>
+
+                            <td>
+                                <input [(ngModel)]="conce.description" name="descripcion" type="text" class="form-control form-control-sm" placeholder="Descripcion" style="width: 10rem; border-width: 0px; font-size: 10px;">
+                            </td>
+
+                            <td>
+                                <input [(ngModel)]="conce.account" name="cuenta" type="text" class="form-control form-control-sm" style="width: 8rem; border-width: 0px; font-size: 10px;">
+                            </td>
+                            <td>
+                                <input [(ngModel)]="conce.counterPart" name="contrapartida" type="text" class="form-control form-control-sm" style="width: 8rem; border-width: 0px; font-size: 10px;">
+                            </td>
+
+
+
+
+                            <td>
+                                <button (click)="guardarConcept(conce)" data-toggle="tooltip" data-placement="top" title="actualizar" type="button" class="btn btn-sm text-primary">
+                                                    <i class="fa fa-save"></i>
+                                                </button>
+
+                                <button (click)="guardarConcept(conce)" data-toggle="tooltip" data-placement="top" title="Acumulador" type="button" class="btn btn-sm text-danger">
+                                                    <i class="fa fa-bullseye"></i>
+                                                </button>
+
+                            </td>
+
+
+                        </tr>
+                    </tbody>
+
+                </table>
+
+                <!-- </div> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ************modal************* -->
+
+    <div class="modal fade" id="conceptoModal" tabindex="-1" aria-labelledby="conceptoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="conceptoModalLabel">Crear Concepto</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+                </div>
+                <div class="modal-body">
+                    <form autocomplete="off" [formGroup]="forma" (ngSubmit)="guardar()" id="conceptoform" action="index.html">
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Codigo:</label>
+                            <input class="form-control form-control-sm" formControlName="codigo" name="codigo" type="text" placeholder="Codigo" [class.is-invalid]="codigoNoValido">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Descripción:</label>
+                            <input class="form-control form-control-sm" formControlName="descripcion" name="descripcion" type="text" placeholder="descripcion" [class.is-invalid]="descripcionNoValido">
+
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Cuenta Contable:</label>
+                            <input class="form-control form-control-sm" formControlName="cuenta" name="cuenta" type="text" placeholder="cuentaContable" [class.is-invalid]="cuentaNoValido">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">ContraPartida:</label>
+                            <input class="form-control form-control-sm" formControlName="contrapartida" name="contrapartida" type="text" placeholder="contraPartida" [class.is-invalid]="contrapartidaNoValido">
+                        </div>
+
+                        <div class="form-group">
+                            <button type="button" class="btn btn-secondary mr-3" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+
+                        </div>
+
+                    </form>
+                </div>
+                <!-- <div class="modal-footer"> -->
+
+
+                <!-- </div> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ************fin modal************* -->
+
+
+
+    <!--        </div>
+        </div>
+
+
+    </div> -->
+    <div class="card">
         <div class="card-header" id="headingSalarial">
             <h2 class="mb-0">
                 <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseSalarial" aria-expanded="true" aria-controls="collapseSalarial">
@@ -8,7 +151,7 @@
             </h2>
         </div>
 
-        <div id="collapseSalarial" class="collapse show" aria-labelledby="headingSalarial" data-parent="#accordionConceptos">
+        <div id="collapseSalarial" class="collapse" aria-labelledby="headingSalarial" data-parent="#accordionConceptos">
             <div class="card-body">
 
             </div>
@@ -43,3 +186,56 @@
         </div>
     </div>
 </div>
+
+
+
+
+<!-- ********************inicia modal de acumuladores******************* -->
+
+<div class="modal fade" id="acumuladorModal" tabindex="-1" aria-labelledby="acumuladorModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="acumuladorModalLabel">Acumuladores</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <form autocomplete="off" [formGroup]="forma" (ngSubmit)="guardar()" id="acumuladorform" action="index.html">
+
+                    <div *ngFor="let accum of accumulator let i= index">
+
+                        <div class="checkbox checkbox-primary p-t-0">
+                            <!--  <input name="segsoc" type="checkbox" class="form-control form-control-sm filled-in chk-col-blue" formControlName="segsoc" id="{{'checkbox-signup' + i}}">
+                            <label class="col-form-label col-form-label-sm" for="{{'checkbox-signup' + i}}">
+                            accum.description 
+                          </label>-->
+
+                            <input name="accumulator" id="{{'checkbox-accumulator' + i}}" type="checkbox" class=" form-control form-control-sm filled-in chk-col-light-blue">
+                            <label for="{{'checkbox-accumulator' + i}}">{{accum.description}}</label>
+
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class="form-group">
+                        <button type="button" class="btn btn-secondary mr-3" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+
+                    </div>
+
+                </form>
+            </div>
+            <!-- <div class="modal-footer"> -->
+
+
+            <!-- </div> -->
+        </div>
+    </div>
+</div>
+<!-- 
+    ********************finaliza modal de acumuladores**************** -->

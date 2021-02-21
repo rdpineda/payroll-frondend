@@ -18,7 +18,8 @@ import { SettingsService, SharedService,
   VerificaTokenGuard, ContractRegimeService, EmployeeTypeService, WorkPlaceRisksService, ContractTypeService,
   SalaryTypeService, EmployeeContractService, EmployeeSalaryService, EmployeeJobService, EmployeePaymentService,
   EmployeeSocialSecurityService, WorkingHourService, EmployeeWorkingService,
-  ContributorSubTypeService, ContributorTypeService } from './service.index';
+  ContributorSubTypeService, ContributorTypeService, ConceptService, ConceptCategoryService,
+  AccumulatorService} from './service.index';
 
 
 
@@ -44,6 +45,9 @@ import { SettingsService, SharedService,
     BankService,
     AccounttypeService,
     CostCenterService,
+    ConceptService,
+    AccumulatorService,
+    ConceptCategoryService,
     AreaService,
     GenderService,
     SubsidiaryService,

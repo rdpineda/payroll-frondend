@@ -19,6 +19,8 @@ export class EmployeesComponent implements OnInit {
   empresaseleccionada: any = {};
   usuario: any = {};
   empresa: any = {};
+  desde = 0;
+  totalRegistros = 0;
 
   constructor( public _employeeService:EmployeeService,
                public router: Router,
@@ -40,15 +42,9 @@ export class EmployeesComponent implements OnInit {
                               this.empresa =  JSON.parse(JSON.stringify(this.company[0]));
                             }
                           }
-                
 
-                
-                         
-                              this.cargarEmployees( this.empresa.id )
-                                    
-                
                           
-
+                          this.cargarEmployees( this.empresa.id );
 
                }
 
@@ -56,7 +52,8 @@ export class EmployeesComponent implements OnInit {
 
   ngOnInit(){
     
-
+    
+    
    // this.employees = this._employeesService.searchemployee('termino');
 
     /* this.activateRoute.params.subscribe( params =>{
@@ -79,9 +76,11 @@ export class EmployeesComponent implements OnInit {
   }
 
   cargarEmployees( id: string ) {
-    this._employeeService.cargarEmployeeCompany( id )
-        .subscribe( employee => {
-          this.employees = employee;
+    this._employeeService.cargarEmployeeCompany( id, this.desde )
+        .subscribe( (employee: any) => {
+          this.totalRegistros = employee.total;
+          this.employees = employee.employee;
+         
         });
 
   }
@@ -90,5 +89,32 @@ export class EmployeesComponent implements OnInit {
     // console.log(termino);
     this.router.navigate( ['/newemployee'] );
   }
+
+
+  buscarEmployees( termino: string){
+
+    if ( termino.length <= 0 ){
+      this.cargarEmployees( this.empresa.id);
+      return;
+    }
+
+    this._employeeService.buscarEmployees( termino )
+        .subscribe( resp => this.employees = resp );
+}
+
+cambiarDesde( valor: number){
+
+  let desde = this.desde + valor;
+  if ( desde >= this.totalRegistros){
+    return;
+  }
+
+  if ( desde < 0 ) {
+    return;
+  }
+
+  this.desde += valor;
+  this.cargarEmployees( this.empresa.id);
+}
 
 }

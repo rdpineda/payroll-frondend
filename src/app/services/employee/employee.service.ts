@@ -41,18 +41,20 @@ export class EmployeeService {
           .map( (resp: any) => resp.employee );
     }
 
-    cargarEmployeeCompany( idcompany: string){
+    cargarEmployeeCompany( idcompany: string, desde: number = 0){
 
-      let url = URL_SERVICIOS + '/employee/' + idcompany;
+      let url = URL_SERVICIOS + '/employee/' + idcompany + '?desde=' + desde;
      
-      return this.http.get( url )
-          .map( (resp: any) => resp.employee );
+      return this.http.get( url );
+          // .map( (resp: any) => resp.employee );
     }
 
     buscarEmployees( termino: string ) {
-      let url = URL_SERVICIOS + '/busqueda/coleccion/companys/' + termino;
+      let url = URL_SERVICIOS + '/busqueda/coleccion/employee/' + termino;
       return this.http.get( url )
           .map(( resp: any ) => resp.employee);
+
+
     }
     borrarEmployees( id: string ){
       let url = URL_SERVICIOS + '/employee/' + id;

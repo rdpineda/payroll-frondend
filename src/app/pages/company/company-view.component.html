@@ -1,6 +1,316 @@
-<div class="row gutters-sm">
-    <div class="d-md-block">
-        <div class="card" style="width: 16rem;">
+<!-- inicio encabezado -->
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="content" class="content content-full-width">
+                            <!-- begin profile -->
+                            <div class="profile">
+                                <div class="profile-header">
+                                    <!-- BEGIN profile-header-cover -->
+                                    <div class="profile-header-cover"></div>
+                                    <!-- END profile-header-cover -->
+                                    <!-- BEGIN profile-header-content -->
+                                    <div class="profile-header-content">
+                                        <!-- BEGIN profile-header-img -->
+
+                                        <div class="profile-header-img">
+                                            <img [src]="company.img | imagen: 'company'" alt="Compañia" width="100">
+
+                                        </div>
+
+                                        <!--  <div class="d-flex flex-column align-items-center text-center waves-effect waves-dark">
+                                            <img [src]="employee.img | imagen: 'employee'" width="100" alt="empleado">
+                                            <button (click)="actualizarImagen( employee )" type="button" class="btn btn-link"><small>Cambiar foto</small></button>
+                                        </div> -->
+
+                                        <!-- END profile-header-img -->
+                                        <!-- BEGIN profile-header-info -->
+                                        <div class="profile-header-info">
+                                            <h4 class="m-t-10 m-b-5"> {{companyInfo.name}}</h4>
+                                            <p class="m-b-10">{{companyInfo.identification}} - {{companyInfo.verificationNumber}}</p>
+                                            <button (click)="actualizarImagen( companyInfo )" type="button" class="btn btn-xs btn-success"> Cambiar Logo</button>
+
+                                        </div>
+                                        <!-- END profile-header-info -->
+                                    </div>
+                                    <!-- END profile-header-content -->
+                                    <!-- BEGIN profile-header-tab -->
+                                    <ul class="profile-header-tab nav nav-tabs">
+                                        <li class="nav-item"><a href="#profile-basica" class="nav-link active show" data-toggle="tab">BASICA</a></li>
+                                        <li class="nav-item"><a href="#profile-pago" class="nav-link" data-toggle="tab">PAGO</a></li>
+                                        <li class="nav-item"><a href="#profile-nomina" class="nav-link" data-toggle="tab">NÓMINA</a></li>
+                                        <li class="nav-item"><a href="#profile-ceco" class="nav-link" data-toggle="tab">CENTRO DE COSTOS</a></li>
+                                        <li class="nav-item"><a href="#profile-area" class="nav-link" data-toggle="tab">ÁREA</a></li>
+                                        <li class="nav-item"><a href="#profile-sucursal" class="nav-link" data-toggle="tab">SUCURSALES</a></li>
+                                        <li class="nav-item"><a href="#profile-cargo" class="nav-link" data-toggle="tab">CARGOS</a></li>
+                                        <li class="nav-item"><a href="#profile-concepto" class="nav-link" data-toggle="tab">CONCEPTOS</a></li>
+                                    </ul>
+                                    <!-- END profile-header-tab -->
+                                </div>
+                            </div>
+                            <!-- end profile -->
+                            <!-- begin profile-content -->
+                            <div class="profile-content">
+                                <!-- begin tab-content -->
+                                <div class="tab-content p-0">
+
+                                    <!-- begin #profile-about tab -->
+                                    <div class="tab-pane fade in active show" id="profile-basica">
+
+
+                                        <form>
+                                            <div class="row">
+                                                <div class="col" style="text-align:right">
+                                                    <button [routerLink]="['/company', empresa.id, 'Edit']" class="btn btn-lg btn-circle boton" data-toggle="tooltip" data-placement="top" title="Editar">
+                                                <i class="fa fa-edit text-primary boton text-color"></i>
+                                                
+                                            </button>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <h6 class="mb-0 text-color"><strong>Nit:</strong></h6>
+                                                </div>
+                                                <div class="col-sm-8 text-secondary">
+                                                    <small>{{companyInfo.identification}} - {{companyInfo.verificationNumber}}</small>
+                                                </div>
+                                            </div>
+                                            <br>
+
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <h6 class="mb-0 text-color"><strong>Email:</strong></h6>
+                                                </div>
+                                                <div class="col-sm-8 text-secondary">
+                                                    <small>{{companyInfo.email}}</small>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <h6 class="mb-0 text-color"><strong>Dirección:</strong></h6>
+                                                </div>
+                                                <div class="col-sm-8 text-secondary">
+                                                    <small>{{companyInfo.address}}</small>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <h6 class="mb-0 text-color"><strong>Telefono de Contacto:</strong></h6>
+                                                </div>
+                                                <div class="col-sm-8 text-secondary">
+                                                    <small>{{companyInfo.phone}}</small>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <h6 class="mb-0 text-color"><strong>Pais:</strong></h6>
+                                                </div>
+                                                <div class="col-sm-8 text-secondary">
+                                                    <small>{{paises.name}}</small>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <h6 class="mb-0 text-color"><strong>Departamento:</strong></h6>
+                                                </div>
+                                                <div class="col-sm-8 text-secondary">
+                                                    <small>{{depto.name}}</small>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <h6 class="mb-0 text-color"><strong>Municipio:</strong></h6>
+                                                </div>
+                                                <div class="col-sm-8 text-secondary">
+                                                    <small>{{municip.name}}</small>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <h6 class="mb-0 text-color"><strong>Representante Legal:</strong></h6>
+                                                </div>
+                                                <div class="col-sm-8 text-secondary">
+                                                    <small>{{companyInfo.legalRepresentant}}</small>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <h6 class="mb-0 text-color"><strong>Fecha de Fundación:</strong> </h6>
+                                                </div>
+                                                <div class="col-sm-8 text-secondary">
+                                                    <small>{{companyInfo.fundationDate}}</small>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <h6 class="mb-0 text-color"><strong>Caja de Compensación:</strong> </h6>
+                                                </div>
+                                                <div class="col-sm-8 text-secondary">
+                                                    <small *ngIf="caja[0]">{{caja[0].name}}</small>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <h6 class="mb-0 text-color"><strong>Entidad de Riesgo:</strong> </h6>
+                                                </div>
+                                                <div class="col-sm-8 text-secondary">
+                                                    <small *ngIf="riesgo[0]">{{riesgo[0].name}}</small>
+                                                </div>
+                                            </div>
+
+                                        </form>
+
+
+                                    </div>
+
+                                    <div class="tab-pane fade in" id="profile-pago">
+
+                                        <form>
+                                            <div class="row">
+                                                <div class="col" style="text-align:right">
+                                                    <button [routerLink]="['/companyPayment', empresa.id, 'Edit']" class="btn btn-lg btn-circle" data-toggle="tooltip" data-placement="top" title="Editar">
+                            <i class="fa fa-edit text-primary"></i>
+                        </button>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <h6 class="mb-0">Periodo de Pago</h6>
+                                                </div>
+                                                <div class="col-sm-8 text-secondary">
+                                                    <small>{{paymentFrequency.description}}</small>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <h6 class="mb-0">Forma de Pago</h6>
+                                                </div>
+                                                <div class="col-sm-8 text-secondary">
+                                                    <small>{{paymentMethod.description}}</small>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <h6 class="mb-0">Banco Dispersor</h6>
+                                                </div>
+                                                <div class="col-sm-8 text-secondary">
+                                                    <small *ngIf="banks[0]">{{banks[0].name}}</small>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <h6 class="mb-0">Tipo de Cuenta</h6>
+                                                </div>
+                                                <div class="col-sm-8 text-secondary">
+                                                    <small *ngIf="accountType[0]">{{accountType[0].description}}</small>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <h6 class="mb-0">Número de Cuenta</h6>
+                                                </div>
+                                                <div class="col-sm-8 text-secondary">
+                                                    <small>{{companyPayment.accountNumber}}</small>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <div class="tab-pane fade in" id="profile-nomina">
+
+                                        <form>
+                                            <div class="row">
+                                                <div class="col" style="text-align:right">
+                                                    <button [routerLink]="['/companyPayroll', empresa.id, 'Edit']" class="btn btn-lg btn-circle" data-toggle="tooltip" data-placement="top" title="Editar">
+                            <i class="fa fa-edit text-primary"></i>
+                        </button>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
+
+                                    <div class="tab-pane fade in" id="profile-ceco">
+
+                                        <form>
+                                            <app-cost-center></app-cost-center>
+                                        </form>
+
+                                    </div>
+
+                                    <div class="tab-pane fade in" id="profile-area">
+                                        <form>
+                                            <app-area></app-area>
+                                        </form>
+
+                                    </div>
+
+                                    <div class="tab-pane fade in" id="profile-sucursal">
+                                        <form>
+                                            <app-subsidiary></app-subsidiary>
+                                        </form>
+
+                                    </div>
+
+                                    <div class="tab-pane fade in" id="profile-cargo">
+
+                                        <form>
+                                            <app-position></app-position>
+                                        </form>
+
+                                    </div>
+
+                                    <div class="tab-pane fade in" id="profile-concepto">
+
+                                        <form>
+                                            <app-concept></app-concept>
+                                        </form>
+
+                                    </div>
+
+                                    <!-- end #profile-about tab -->
+                                </div>
+                                <!-- end tab-content -->
+                            </div>
+                            <!-- end profile-content -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- fin encabezado -->
+
+
+
+
+
+
+
+<!-- <div class="row gutters-sm">
+     <div class="d-md-block">
+        <div class="card" style="width: 14rem;">
             <div class="card-body" style="background-color: #fafafa;">
                 <nav class="nav flex-column nav-pills nav-gap-y-1 waves-effect waves-dark">
                     <div class="d-flex flex-column align-items-center text-center waves-effect waves-dark">
@@ -40,7 +350,7 @@
                 </nav>
             </div>
         </div>
-    </div>
+    </div> 
     <div class="col">
         <div class="card">
 
@@ -144,7 +454,7 @@
                                 <h6 class="mb-0 text-color"><strong>Caja de Compensación:</strong> </h6>
                             </div>
                             <div class="col-sm-8 text-secondary">
-                                <small>{{caja[0].name}}</small>
+                                <small *ngIf="caja[0]">{{caja[0].name}}</small>
                             </div>
                         </div>
                         <br>
@@ -153,7 +463,7 @@
                                 <h6 class="mb-0 text-color"><strong>Entidad de Riesgo:</strong> </h6>
                             </div>
                             <div class="col-sm-8 text-secondary">
-                                <small>{{riesgo[0].name}}</small>
+                                <small *ngIf="riesgo[0]">{{riesgo[0].name}}</small>
                             </div>
                         </div>
 
@@ -192,7 +502,7 @@
                                 <h6 class="mb-0">Banco Dispersor</h6>
                             </div>
                             <div class="col-sm-8 text-secondary">
-                                <small>{{banks[0].name}}</small>
+                                <small *ngIf="banks[0]">{{banks[0].name}}</small>
                             </div>
                         </div>
                         <br>
@@ -201,7 +511,7 @@
                                 <h6 class="mb-0">Tipo de Cuenta</h6>
                             </div>
                             <div class="col-sm-8 text-secondary">
-                                <small>{{accountType[0].description}}</small>
+                                <small *ngIf="accountType[0]">{{accountType[0].description}}</small>
                             </div>
                         </div>
                         <br>
@@ -260,4 +570,4 @@
                 </div>
 
 
-            </div>
+            </div> -->

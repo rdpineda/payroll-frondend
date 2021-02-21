@@ -35,9 +35,6 @@ export class SocialSecurityEmployeeComponent implements OnInit {
   entityPension: SocialSecurityEntity[] = [];
   entityHealth: SocialSecurityEntity[] = [];
   entitySeverance: SocialSecurityEntity[] = [];
-  idEntityHealth = 'aff13277-d855-44dc-a7b2-55fb0d24d806';
-  idEntityPension = 'c4c1704c-bed3-428b-92b7-98641dcf75a9';
-  idEntitySeverance = '835d136e-a19a-4061-8a06-3388f233877e';
   empresaseleccionada: any = {};
   usuario: any = {};
   empresa: any = {};
@@ -74,9 +71,12 @@ employeeSocialSecurity: EmployeeSocialSecurity = new EmployeeSocialSecurity('', 
                   }
                 }
 
-               /*  this.activatedRoute.params.subscribe( params =>{
-                  this.getEmployeeWorking( params[ 'id' ]);
-              }); */
+                 this.activatedRoute.params.subscribe( params =>{
+                  const id = params['id'];
+                    if( id !== 'new' ){this.getEmployeeSocialSecurity( params[ 'id' ])};
+                   
+                  
+              }); 
 
 
     this.crearFormulario();
@@ -88,9 +88,9 @@ employeeSocialSecurity: EmployeeSocialSecurity = new EmployeeSocialSecurity('', 
   
     this.getContributorType();
     this.getContributorSubType();
-    this.getEntityHealt( this.idEntityHealth );
-    this.getEntityPension( this.idEntityPension );
-    this.getEntitySeverance( this.idEntitySeverance );
+    this.getEntityHealt();
+    this.getEntityPension();
+    this.getEntitySeverance();
   }
 
   
@@ -139,8 +139,8 @@ employeeSocialSecurity: EmployeeSocialSecurity = new EmployeeSocialSecurity('', 
       const id = params['id'];
       const Employee = params['Employee'];
       if ( id !== 'new') {
-        this._employeeSocialSecurityService.actualizarEmployeeSocialSecurity( this.employeeSocialSecurity )
-        .subscribe( () => this.getEmployeeSocialSecurity(this.employeeSocialSecurity.id));
+        this._employeeSocialSecurityService.actualizarEmployeeSocialSecurity( this.employeeSocialSecurity[0] )
+        .subscribe( () => this.getEmployeeSocialSecurity(this.employeeSocialSecurity[0].idEmployee));
       } else {
           const employeeSocialSecurityr = new EmployeeSocialSecurity(
          
@@ -184,18 +184,18 @@ employeeSocialSecurity: EmployeeSocialSecurity = new EmployeeSocialSecurity('', 
     .subscribe( resp => this.contributorSubType = resp);
   }
 
-  getEntityHealt( id: string ) {
-    this._socialSecurityEntityService.obtenerEntidadesSalud( id )
+  getEntityHealt() {
+    this._socialSecurityEntityService.obtenerEntidadesSalud()
     .subscribe( resp => this.entityHealth = resp);
   }
 
-  getEntityPension( id: string ) {
-    this._socialSecurityEntityService.obtenerEntidadesPension( id )
+  getEntityPension() {
+    this._socialSecurityEntityService.obtenerEntidadesPension()
     .subscribe( resp => this.entityPension = resp);
   }
  
-  getEntitySeverance( id: string ) {
-    this._socialSecurityEntityService.obtenerEntidadesCesantia( id )
+  getEntitySeverance() {
+    this._socialSecurityEntityService.obtenerEntidadesCesantia()
     .subscribe( resp => this.entitySeverance = resp);
   }
 

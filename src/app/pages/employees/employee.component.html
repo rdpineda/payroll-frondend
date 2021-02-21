@@ -1,414 +1,1280 @@
+<!-- <div class="container"> -->
+<!-- 
+inicio encabezado -->
+
+
 <div class="container">
-
     <div class="row">
+        <div class="col-md-12">
+            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="content" class="content content-full-width">
+                            <!-- begin profile -->
+                            <div class="profile">
+                                <div class="profile-header">
+                                    <!-- BEGIN profile-header-cover -->
+                                    <div class="profile-header-cover"></div>
+                                    <!-- END profile-header-cover -->
+                                    <!-- BEGIN profile-header-content -->
+                                    <div class="profile-header-content">
+                                        <!-- BEGIN profile-header-img -->
+
+                                        <div class="profile-header-img">
+                                            <img [src]="employee.img | imagen: 'employee'" width="100" alt="empleado">
+                                            <!-- <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt=""> -->
+                                        </div>
+
+                                        <!--  <div class="d-flex flex-column align-items-center text-center waves-effect waves-dark">
+                                            <img [src]="employee.img | imagen: 'employee'" width="100" alt="empleado">
+                                            <button (click)="actualizarImagen( employee )" type="button" class="btn btn-link"><small>Cambiar foto</small></button>
+                                        </div> -->
+
+                                        <!-- END profile-header-img -->
+                                        <!-- BEGIN profile-header-info -->
+                                        <div class="profile-header-info">
+                                            <h4 class="m-t-10 m-b-5">{{employee.firstname}} {{employee.secondname}}</h4>
+                                            <p class="m-b-10">{{employee.identification}}</p>
+                                            <button (click)="actualizarImagen( employee )" type="button" class="btn btn-xs btn-success">Cambiar foto</button>
+                                            <!-- <a href="#" class="btn btn-xs btn-success">Edit Profile</a> -->
+                                        </div>
+                                        <!-- END profile-header-info -->
+                                    </div>
+                                    <!-- END profile-header-content -->
+                                    <!-- BEGIN profile-header-tab -->
+                                    <ul class="profile-header-tab nav nav-tabs">
+                                        <li class="nav-item"><a href="#profile-personal" class="nav-link active" data-toggle="tab">PERSONAL</a></li>
+                                        <li class="nav-item"><a href="#profile-laboral" class="nav-link" data-toggle="tab">LABORAL</a></li>
+                                        <li class="nav-item"><a href="#profile-contrato" class="nav-link" data-toggle="tab">CONTRATO</a></li>
+                                        <li class="nav-item"><a href="#profile-salario" class="nav-link" data-toggle="tab">SALARIO</a></li>
+                                        <li class="nav-item"><a href="#profile-puesto" class="nav-link" data-toggle="tab">PUESTO</a></li>
+                                        <li class="nav-item"><a href="#profile-pago" class="nav-link" data-toggle="tab">PAGO</a></li>
+                                        <li class="nav-item"><a href="#profile-segsocial" class="nav-link" data-toggle="tab">SEG.SOCIAL</a></li>
+                                        <li class="nav-item"><a href="#profile-recurrentes" class="nav-link" data-toggle="tab">RECURRENTES</a></li>
+                                    </ul>
+                                    <!-- END profile-header-tab -->
+                                </div>
+                            </div>
+                            <!-- end profile -->
+                            <!-- begin profile-content -->
+                            <div class="profile-content">
+                                <!-- begin tab-content -->
+                                <div class="tab-content p-0">
+
+                                    <!-- begin #profile-about tab -->
+                                    <div class="tab-pane fade in active show" id="profile-personal">
+
+                                        <div class="row">
+                                            <div class="col" style="text-align:right">
+
+                                                <button [routerLink]="['/employee', employee.id, 'Edit']" class="btn btn-sm btn-circle boton" data-toggle="tooltip" data-placement="top" title="Editar">
+                                                        <i class="fa fa-edit text-primary boton text-color"></i></button>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <h6 class="mb-0 text-color"><strong>Fecha de Nacimiento:</strong></h6>
+                                            </div>
+                                            <div class="col-sm-6 text-secondary">
+                                                <small>{{employee.birthDate}}</small>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <h6 class="mb-0 text-color"><strong>Genero:</strong></h6>
+                                            </div>
+                                            <div class="col-sm-6 text-secondary">
+                                                <small>{{genero.description}}</small>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <h6 class="mb-0 text-color"><strong>Dirección:</strong></h6>
+                                            </div>
+                                            <div class="col-sm-6 text-secondary">
+                                                <small>{{employee.address}}</small>
+                                            </div>
+                                        </div>
+                                        <br>
+
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <h6 class="mb-0 text-color"><strong>Pais de Residencia:</strong></h6>
+                                            </div>
+                                            <div class="col-sm-6 text-secondary">
+                                                <small>{{paises.name}}</small>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <h6 class="mb-0 text-color"><strong>Departamento de Residencia:</strong></h6>
+                                            </div>
+                                            <div class="col-sm-6 text-secondary">
+                                                <small>{{depto.name}}</small>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <h6 class="mb-0 text-color"><strong>Municipio de Residencia:</strong></h6>
+                                            </div>
+                                            <div class="col-sm-6 text-secondary">
+                                                <small>{{municip.name}}</small>
+                                            </div>
+                                        </div>
 
 
-        <!--  col-md-4 d-none d-md-block -->
-        <div class="col-lg-4">
-
-            <div class="card">
 
 
 
-                <div class="card-body">
+                                    </div>
 
-                    <div class="dropdown float-right">
-                        <button class="btn btn-link btn-rounded" type="button" id="gedf-drop2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-ellipsis-h"></i>
-                                
-                            </button>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop2">
-                            <!-- <div class="h6 dropdown-header">Acciones</div> -->
-                            <a class="dropdown-item" href="#">Colillas de pago</a>
-                            <a class="dropdown-item" href="#">Carta laboral</a>
-                            <a class="dropdown-item" href="#">Certificado de ingresos</a>
+                                    <div class="tab-pane fade in" id="profile-laboral">
+                                        <div *ngIf="!employeeWorking[0]" class="alert alert-danger" role="alert">
+                                            El empleado no tiene información laboral registrada!
+
+                                            <button [routerLink]="['/employee', 'new', employee.id, 'working']" class="btn btn-link">Registrala!!</button>
+                                        </div>
+
+
+                                        <form *ngIf="employeeWorking[0]">
+
+
+
+                                            <div class="row">
+                                                <div class="col" style="text-align:right">
+
+                                                    <button [routerLink]="['/employeeWorking', employee.id, 'Edit']" class="btn btn-sm btn-circle boton" data-toggle="tooltip" data-placement="top" title="Editar">
+                                                        <i class="fa fa-edit text-primary boton text-color"></i></button>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <h6 class="mb-0 text-color"><strong>Tipo de Empleado:</strong></h6>
+                                                </div>
+                                                <div class="col-sm-6 text-secondary">
+                                                    <small> {{employeeType.description}}</small>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <h6 class="mb-0 text-color"><strong>Regimen Laboral:</strong></h6>
+                                                </div>
+                                                <div class="col-sm-6 text-secondary">
+                                                    <small>{{contractRegime.description}}</small>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <h6 class="mb-0 text-color"><strong>Horario Laboral:</strong></h6>
+                                                </div>
+                                                <div class="col-sm-6 text-secondary">
+                                                    <small>{{workingHour.description}}</small>
+                                                </div>
+                                            </div>
+                                            <br>
+
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <h6 class="mb-0 text-color"><strong>Centro de Trabajo:</strong></h6>
+                                                </div>
+                                                <div class="col-sm-6 text-secondary">
+                                                    <small>{{workPlaceRisks.description}} - {{workPlaceRisks.percentaje}}</small>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <h6 class="mb-0 text-color"><strong>Se le paga Auxilio Transporte?:</strong></h6>
+                                                </div>
+                                                <div class="col-sm-6 text-secondary">
+                                                    <small *ngIf="employeeWorking[0].transportAssistence; else No">Si</small>
+                                                    <ng-template #No>
+                                                        <small>No</small>
+                                                    </ng-template>
+
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <h6 class="mb-0 text-color"><strong>Sueldo Variable?:</strong></h6>
+                                                </div>
+                                                <div class="col-sm-6 text-secondary">
+                                                    <small *ngIf="employeeWorking[0].variableSalary; else No">Si</small>
+                                                    <ng-template #No>
+                                                        <small>No</small>
+                                                    </ng-template>
+
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <div class="tab-pane fade in" id="profile-contrato">
+                                        <div *ngIf="!employeeContract[0]" class="alert alert-danger" role="alert">
+                                            El empleado no tiene información de contrato registrada!
+                                            <button [routerLink]="['/employee', 'new', employee.id, 'contract']" class="btn btn-link">Registrala!!</button>
+                                        </div>
+
+
+
+                                        <form *ngIf="employeeContract[0]">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="card">
+
+                                                        <div *ngIf="!employeeContract[0]" class="text-right">
+                                                            <button type="button" class="btn btn-sm btn-circle boton" data-toggle="modal" data-target="#cecoModal">
+                                                                        <i class="fa fa-plus boton text-color"></i>
+                                                                     </button>
+                                                        </div>
+
+                                                        <div class="card-body">
+
+
+
+                                                            <table class="table table-hover">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>
+                                                                            <h6 class="text-color"><strong>Tipo Contrato</strong></h6>
+                                                                        </th>
+                                                                        <th>
+                                                                            <h6 class="text-color"><strong>F.Inicial</strong></h6>
+                                                                        </th>
+                                                                        <th>
+                                                                            <h6 class="text-color"><strong>F.Final</strong></h6>
+                                                                        </th>
+                                                                        <th>
+                                                                            <h6 class="text-color"><strong>Estado</strong></h6>
+                                                                        </th>
+                                                                        <th>
+                                                                            <h6 class="text-color"><strong>Acciones</strong></h6>
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr *ngFor="let employeeC of employeeContract let i= index">
+                                                                        <td>
+                                                                            <select [(ngModel)]="employeeC.idContractType" class="form-control form-control-sm" name="contractType" style="width: 9rem; border-width: 0px; font-size: 12px">
+                                                
+                                                                                    <option *ngFor="let contractT of contractType" [value]="contractT.id">
+                                                                                      <small>{{contractT.description}}</small> 
+                                                                                   </option>
+                                                                                </select>
+                                                                        </td>
+
+                                                                        <td>
+                                                                            <small><input [(ngModel)]="employeeC.initialContractDate" name="FechaInicial" type="date" class="form-control form-control-sm" style="width: 8rem; border-width: 0px; font-size: 12px;"></small>
+                                                                        </td>
+                                                                        <td>
+                                                                            <small><input [(ngModel)]="employeeC.endContractDate" name="FechaFinal" type="date" class="form-control form-control-sm" style="width: 8rem; border-width: 0px; font-size: 12px;"></small>
+                                                                        </td>
+                                                                        <td>
+                                                                            <small *ngIf="employeeC.isActive; else Estado">Activo</small>
+                                                                            <ng-template #Estado>
+                                                                                <small>Inactivo</small>
+                                                                            </ng-template>
+
+                                                                        </td>
+
+
+
+
+                                                                        <td *ngIf="employeeC.isActive">
+
+                                                                            <button (click)="guardarEmployeeContract( employeeC )" data-toggle="tooltip" data-placement="top" title="Actualizar" type="button" class="btn btn-sm text-primary">
+                                                                                    <i class="fa fa-save"></i>
+                                                                                </button>
+
+
+
+
+                                                                            <button *ngIf="employeeC.idContractType!='afdec5c1-b0fb-4fd9-a109-8158fe4c0600'" (click)="guardarEmployeeContract( employeeC )" data-toggle="tooltip" data-placement="top" title="Prorrogar" type="button" class="btn btn-sm text-success">
+                                                                                    <i class="fa fa-pencil"></i>
+                                                                                </button>
+
+
+
+                                                                            <button (click)="guardarEmployeeContract( employeeC )" data-toggle="tooltip" data-placement="top" title="Terminar" type="button" class="btn btn-sm text-danger">
+                                                                                    <i class="fa fa-close"></i>
+                                                                                </button>
+
+
+
+
+
+
+
+
+
+
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+
+                                                            </table>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane fade in" id="profile-salario">
+
+                                        <div *ngIf="!employeeSalary[0]" class="alert alert-danger" role="alert">
+                                            El empleado no tiene información Salarial registrada!
+                                            <button [routerLink]="['/employee', 'new', employee.id, 'salary']" class="btn btn-link">Registrala!!</button>
+                                        </div>
+
+                                        <form *ngIf="employeeSalary[0]">
+
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="card">
+
+                                                        <div class="card-body">
+
+                                                            <div class="text-right">
+                                                                <button type="button" class="btn btn-sm btn-circle boton" data-toggle="modal" data-target="#cecoModal">
+                                                                            <i class="fa fa-plus boton text-color"></i>
+                                                                         </button>
+                                                            </div>
+
+                                                            <table class="table table-hover" style="left: 0px;">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>
+                                                                            <h6 class="text-color" style="font-size: 13px;"><strong>Tipo Salario</strong></h6>
+                                                                        </th>
+
+                                                                        <th>
+                                                                            <h6 class="text-color" style="font-size: 13px;"><strong>Salario</strong></h6>
+                                                                        </th>
+
+                                                                        <th>
+                                                                            <h6 class="text-color" style="font-size: 13px;"><strong>F.Inicial</strong></h6>
+                                                                        </th>
+                                                                        <th>
+                                                                            <h6 class="text-color" style="font-size: 13px;"><strong>F.Final</strong></h6>
+                                                                        </th>
+                                                                        <th>
+                                                                            <h6 class="text-color" style="font-size: 13px;"><strong>Estado</strong></h6>
+                                                                        </th>
+                                                                        <th>
+                                                                            <h6 class="text-color" style="font-size: 13px;"><strong>Acciones</strong></h6>
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr *ngFor="let employeeS of employeeSalary let i= index">
+                                                                        <td>
+                                                                            <select [(ngModel)]="employeeS.idSalaryType" class="form-control form-control-sm" name="salaryType" style="width: 10rem; border-width: 0px; font-size: 11px">
+                                                
+                                                                                    <option *ngFor="let salaryT of salaryType" [value]="salaryT.id">
+                                                                                      <small>{{salaryT.description}}</small> 
+                                                                                   </option>
+                                                                                </select>
+                                                                        </td>
+
+                                                                        <td>
+                                                                            <small><input [(ngModel)]="employeeS.salary" name="salary" type="number" class="form-control form-control-sm" style="width: 6rem; border-width: 0px; font-size: 11px;"></small>
+                                                                        </td>
+
+                                                                        <td>
+                                                                            <small><input [(ngModel)]="employeeS.initialSalaryDate" name="FechaInicial" type="date" class="form-control form-control-sm" style="width: 8rem; border-width: 0px; font-size: 11px;"></small>
+                                                                        </td>
+                                                                        <td>
+                                                                            <small><input [(ngModel)]="employeeS.endSalaryDate" name="FechaFinal" type="date" class="form-control form-control-sm" style="width: 8rem; border-width: 0px; font-size: 11px;"></small>
+                                                                        </td>
+                                                                        <td>
+                                                                            <small *ngIf="employeeS.isActive; else Estado">Activo</small>
+                                                                            <ng-template #Estado>
+                                                                                <small>Inactivo</small>
+                                                                            </ng-template>
+
+
+
+                                                                        </td>
+
+
+
+
+                                                                        <td *ngIf="employeeS.isActive">
+                                                                            <button (click)="guardarEmployeeSalary( employeeS )" data-toggle="tooltip" data-placement="top" title="Actualizar" type="button" class="btn btn-sm text-primary">
+                                                                                    <i class="fa fa-save"></i>
+                                                                                </button>
+
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+
+                                                            </table>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </form>
+
+                                    </div>
+
+                                    <div class="tab-pane fade in" id="profile-puesto">
+
+                                        <div *ngIf="!employeeJob[0]" class="alert alert-danger" role="alert">
+                                            El empleado no tiene información del puesto de trabajo registrada!
+                                            <button [routerLink]="['/employee', 'new', employee.id, 'job']" class="btn btn-link">Registrala!!</button>
+                                        </div>
+
+                                        <form *ngIf="employeeJob[0]">
+
+                                            <div class="row">
+                                                <div class="col" style="text-align:right">
+
+                                                    <button [routerLink]="['/employeeJob', employee.id, 'Edit']" class="btn btn-sm btn-circle boton" data-toggle="tooltip" data-placement="top" title="Editar">
+                                                        <i class="fa fa-edit text-primary boton text-color"></i></button>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <h6 class="mb-0 text-color"><strong>Centro de Costo:</strong></h6>
+                                                </div>
+                                                <div class="col-sm-6 text-secondary">
+                                                    <small *ngIf="costCenter[0]">{{costCenter[0].code}} - {{costCenter[0].description}}</small>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <h6 class="mb-0 text-color"><strong>Area:</strong></h6>
+                                                </div>
+                                                <div class="col-sm-6 text-secondary">
+                                                    <small *ngIf="area[0]">{{area[0].description}}</small>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <h6 class="mb-0 text-color"><strong>Cargo:</strong></h6>
+                                                </div>
+                                                <div class="col-sm-6 text-secondary">
+                                                    <small *ngIf="position[0]">{{position[0].description}}</small>
+                                                </div>
+                                            </div>
+                                            <br>
+
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <h6 class="mb-0 text-color"><strong>Sucursal:</strong></h6>
+                                                </div>
+                                                <div class="col-sm-6 text-secondary">
+                                                    <small *ngIf="subsidiary[0]">{{subsidiary[0].description}}</small>
+                                                </div>
+                                            </div>
+
+
+                                        </form>
+
+                                    </div>
+
+                                    <div class="tab-pane fade in" id="profile-pago">
+
+                                        <div *ngIf="!employeePayment[0]" class="alert alert-danger" role="alert">
+                                            El empleado no tiene información para el Pago registrada!
+                                            <button [routerLink]="['/employee', 'new', employee.id, 'payment']" class="btn btn-link">Registrala!!</button>
+                                        </div>
+
+                                        <form *ngIf="employeePayment[0]">
+
+                                            <div class="row">
+                                                <div class="col" style="text-align:right">
+
+                                                    <button [routerLink]="['/employeePayment', employee.id, 'Edit']" class="btn btn-sm btn-circle boton" data-toggle="tooltip" data-placement="top" title="Editar">
+                                                        <i class="fa fa-edit text-primary boton text-color"></i></button>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <h6 class="mb-0 text-color"><strong>Banco:</strong></h6>
+                                                </div>
+                                                <div class="col-sm-6 text-secondary">
+                                                    <small *ngIf="bank[0]">{{bank[0].code}} - {{bank[0].name}}</small>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <h6 class="mb-0 text-color"><strong>Tipo de cuenta:</strong></h6>
+                                                </div>
+                                                <div class="col-sm-6 text-secondary">
+                                                    <small *ngIf="accountType[0]">{{accountType[0].description}}</small>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <h6 class="mb-0 text-color"><strong>Numero de Cuenta:</strong></h6>
+                                                </div>
+                                                <div class="col-sm-6 text-secondary">
+                                                    <small *ngIf="employeePayment[0].accountNumber">{{employeePayment[0].accountNumber}}</small>
+                                                </div>
+                                            </div>
+                                            <br>
+
+
+                                        </form>
+
+                                    </div>
+
+                                    <div class="tab-pane fade in" id="profile-segsocial">
+
+
+                                        <div *ngIf="!employeeSocialSecurity[0]" class="alert alert-danger" role="alert">
+                                            El empleado no tiene información de Seguridad Social registrada!
+                                            <button [routerLink]="['/employee', 'new', employee.id, 'socialSecurity']" class="btn btn-link">Registrala!!</button>
+                                        </div>
+
+                                        <form *ngIf="employeeSocialSecurity[0]">
+
+                                            <div class="row">
+                                                <div class="col" style="text-align:right">
+
+                                                    <button [routerLink]="['/employeeSocialSecurity', employee.id, 'Edit']" class="btn btn-sm btn-circle boton" data-toggle="tooltip" data-placement="top" title="Editar">
+                                        <i class="fa fa-edit text-primary boton text-color"></i></button>
+
+
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <h6 class="mb-0 text-color"><strong>Entidad de Salud:</strong></h6>
+                                                </div>
+                                                <div class="col-sm-6 text-secondary">
+                                                    <small *ngIf="socialSecurityEntityHealth[0]">{{socialSecurityEntityHealth[0].identification}} - {{socialSecurityEntityHealth[0].name}}</small>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <h6 class="mb-0 text-color"><strong>Entidad de Pensión:</strong></h6>
+                                                </div>
+                                                <div class="col-sm-6 text-secondary">
+                                                    <small *ngIf="socialSecurityEntityPension[0]">{{socialSecurityEntityPension[0].identification}} - {{socialSecurityEntityPension[0].name}}</small>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <h6 class="mb-0 text-color"><strong>Fondo de Cesantias:</strong></h6>
+                                                </div>
+                                                <div class="col-sm-6 text-secondary">
+                                                    <small *ngIf="socialSecurityEntitySeverance[0]">{{socialSecurityEntitySeverance[0].identification}} - {{socialSecurityEntitySeverance[0].name}}</small>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <h6 class="mb-0 text-color"><strong>Tipo de Cotizante:</strong></h6>
+                                                </div>
+                                                <div class="col-sm-6 text-secondary">
+                                                    <small *ngIf="contributorType[0]">{{contributorType[0].description}}</small>
+                                                </div>
+                                            </div>
+                                            <br>
+
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <h6 class="mb-0 text-color"><strong>Subtipo de Cotizante:</strong></h6>
+                                                </div>
+                                                <div class="col-sm-6 text-secondary">
+                                                    <small *ngIf="contributorSubType[0]">{{contributorSubType[0].description}}</small>
+                                                </div>
+                                            </div>
+
+
+
+                                        </form>
+                                    </div>
+
+                                    <!-- end #profile-about tab -->
+                                </div>
+                                <!-- end tab-content -->
+                            </div>
+                            <!-- end profile-content -->
                         </div>
-                    </div>
-
-
-                    <div class="d-flex flex-column align-items-center text-center">
-                        <div class="d-flex flex-column align-items-center text-center waves-effect waves-dark">
-                            <img [src]="employee.img | imagen: 'employee'" width="100" alt="empleado">
-                            <button (click)="actualizarImagen( employee )" type="button" class="btn btn-link"><small>Cambiar Logo</small></button>
-                        </div>
-                        <!-- <div class="mt-2">
-                            <h6>{{employee.firstname}} {{employee.secondname}} <small class="text-muted font-size-sm">{{employee.surname}} {{employee.secondsurname}}</small></h6>
-
-                            <h6 class="text-secondary mb-1">{{employee.identification}}</h6>
-                            
-
-
-                        </div> -->
-                        <div class="media-body overflow-hiddenmt-2 mt-2">
-                            <h6 class="mb-0">{{employee.firstname}} {{employee.secondname}} <small class="text-muted font-size-sm">{{employee.surname}} {{employee.secondsurname}}</small></h6>
-                            <p class="text-muted"><small>{{employee.identification}}</small></p>
-
-                        </div>
-
-
-                        <h4 class="mb-0">Gerente</h4>
-                        <p class="text-muted mb-0"><small>{{employee.cellPhone}} </small><span>| </span><span><small class="text-pink">{{employee.phone}}</small></span></p>
-                        <p class="text-muted"><small>{{employee.email}}</small></p>
-
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
 
 
-        <div class="col-lg-8">
-            <div class="card right-profile-card">
-                <div class="card-header alert-primary">
-                    <ul class="nav nav-pills" id="pills-tab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="pills-personal-tab" data-toggle="pill" href="#pills-personal" role="tab" aria-selected="true"><small>Personal</small></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="pills-laboral-tab" data-toggle="pill" href="#pills-laboral" role="tab" aria-selected="false"><small>Laboral</small></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="pills-puesto-tab" data-toggle="pill" href="#pills-puesto" role="tab" aria-selected="false"><small>Puesto</small></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="pills-pago-tab" data-toggle="pill" href="#pills-pago" role="tab" aria-selected="false"><small>Pago</small></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="pills-social-tab" data-toggle="pill" href="#pills-social" role="tab" aria-selected="false"><small>Seg Social</small></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="pills-recurrentes-tab" data-toggle="pill" href="#pills-recurrentes" role="tab" aria-selected="false"><small>Recurrentes</small></a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="card-body">
-                    <div class="tab-content" id="pills-tabContent">
-                        <div class="tab-pane fade show active" id="pills-personal" role="tabpanel" aria-labelledby="pills-personal-tab">
+<!-- 
+fin encabezado -->
 
 
-                            <!-- <div class="work-container"> -->
 
-                            <!-- <form> -->
 
-                            <div class="row">
-                                <div class="col" style="text-align:right">
 
-                                    <button [routerLink]="['/employee', employee.id, 'Edit']" class="btn btn-sm btn-circle boton" data-toggle="tooltip" data-placement="top" title="Editar">
-                                        <i class="fa fa-edit text-primary boton text-color"></i></button>
-                                </div>
+
+
+
+
+
+
+<!-- <div class="row gutters-sm">
+
+
+   
+       <div class="row gutters-sm">
+        <div class="d-md-block">
+            <div class="col-lg-4">
+
+                <div class="card right" style="width: 15rem;">
+
+
+
+                    <div class="card-body">
+
+                        <div class="dropdown float-right">
+                            <button class="btn btn-link btn-rounded" type="button" id="gedf-drop2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-ellipsis-h"></i>
+                                
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop2">
+                               
+                                <a class="dropdown-item" href="#">Colillas de pago</a>
+                                <a class="dropdown-item" href="#">Carta laboral</a>
+                                <a class="dropdown-item" href="#">Certificado de ingresos</a>
                             </div>
-
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <h6 class="mb-0 text-color"><strong>Fecha de Nacimiento:</strong></h6>
-                                </div>
-                                <div class="col-sm-6 text-secondary">
-                                    <small>{{employee.birthDate}}</small>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <h6 class="mb-0 text-color"><strong>Genero:</strong></h6>
-                                </div>
-                                <div class="col-sm-6 text-secondary">
-                                    <small>{{genero.description}}</small>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <h6 class="mb-0 text-color"><strong>Dirección:</strong></h6>
-                                </div>
-                                <div class="col-sm-6 text-secondary">
-                                    <small>{{employee.address}}</small>
-                                </div>
-                            </div>
-                            <br>
-
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <h6 class="mb-0 text-color"><strong>Pais de Residencia:</strong></h6>
-                                </div>
-                                <div class="col-sm-6 text-secondary">
-                                    <small>{{paises.name}}</small>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <h6 class="mb-0 text-color"><strong>Departamento de Residencia:</strong></h6>
-                                </div>
-                                <div class="col-sm-6 text-secondary">
-                                    <small>{{depto.name}}</small>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <h6 class="mb-0 text-color"><strong>Municipio de Residencia:</strong></h6>
-                                </div>
-                                <div class="col-sm-6 text-secondary">
-                                    <small>{{municip.name}}</small>
-                                </div>
-                            </div>
-                            <!-- </form> -->
-
-
-                            <!-- </div> -->
-
-
-                        </div>
-                        <div class="tab-pane fade" id="pills-laboral" role="tabpanel" aria-labelledby="pills-personal-tab">
-                            <!-- <div class="work-container"> -->
-
-                            <form *ngIf="employeeWorking">
-
-                                <div class="row">
-                                    <div class="col" style="text-align:right">
-
-                                        <button [routerLink]="['/employeeWorking', employee.id, 'Edit']" class="btn btn-sm btn-circle boton" data-toggle="tooltip" data-placement="top" title="Editar">
-                                        <i class="fa fa-edit text-primary boton text-color"></i></button>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <h6 class="mb-0 text-color"><strong>Tipo de Empleado:</strong></h6>
-                                    </div>
-                                    <div class="col-sm-6 text-secondary">
-                                        <small> {{employeeType.description}}</small>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <h6 class="mb-0 text-color"><strong>Regimen Laboral:</strong></h6>
-                                    </div>
-                                    <div class="col-sm-6 text-secondary">
-                                        <small>{{contractRegime.description}}</small>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <h6 class="mb-0 text-color"><strong>Horario Laboral:</strong></h6>
-                                    </div>
-                                    <div class="col-sm-6 text-secondary">
-                                        <small>{{workingHour.description}}</small>
-                                    </div>
-                                </div>
-                                <br>
-
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <h6 class="mb-0 text-color"><strong>Centro de Trabajo:</strong></h6>
-                                    </div>
-                                    <div class="col-sm-6 text-secondary">
-                                        <small>{{workPlaceRisks.description}} - {{workPlaceRisks.percentaje}}</small>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <h6 class="mb-0 text-color"><strong>Sueldo Variable?:</strong></h6>
-                                    </div>
-                                    <div class="col-sm-6 text-secondary">
-                                        <small>{{employeeWorking.variableSalary}}</small>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <h6 class="mb-0 text-color"><strong>Se le paga Auxilio Transporte?:</strong></h6>
-                                    </div>
-                                    <div class="col-sm-6 text-secondary">
-                                        <small>{{employeeWorking.transportAssistence}}</small>
-                                    </div>
-                                </div>
-                            </form>
-
-
-
-                            <!-- </div> -->
-                        </div>
-                        <div class="tab-pane fade" id="pills-puesto" role="tabpanel" aria-labelledby="pills-personal-tab">
-                            <!-- <div class="work-container"> -->
-
-
-                            <form *ngIf="employeeJob.length > 0">
-
-                                <div class="row">
-                                    <div class="col" style="text-align:right">
-
-                                        <button [routerLink]="['/employeeWorking', employee.id, 'Edit']" class="btn btn-sm btn-circle boton" data-toggle="tooltip" data-placement="top" title="Editar">
-                                        <i class="fa fa-edit text-primary boton text-color"></i></button>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <h6 class="mb-0 text-color"><strong>Centro de Costo:</strong></h6>
-                                    </div>
-                                    <div class="col-sm-6 text-secondary">
-                                        <small *ngIf="employeeJob.length > 0">{{costCenter[0].code}} - {{costCenter[0].description}}</small>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <h6 class="mb-0 text-color"><strong>Area:</strong></h6>
-                                    </div>
-                                    <div class="col-sm-6 text-secondary">
-                                        <small *ngIf="area[0].description">{{area[0].description}}</small>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <h6 class="mb-0 text-color"><strong>Cargo:</strong></h6>
-                                    </div>
-                                    <div class="col-sm-6 text-secondary">
-                                        <small *ngIf="position[0].description">{{position[0].description}}</small>
-                                    </div>
-                                </div>
-                                <br>
-
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <h6 class="mb-0 text-color"><strong>Sucursal:</strong></h6>
-                                    </div>
-                                    <div class="col-sm-6 text-secondary">
-                                        <small *ngIf="subsidiary[0].description">{{subsidiary[0].description}}</small>
-                                    </div>
-                                </div>
-
-
-                            </form>
-
-
-                            <!-- </div> -->
-                        </div>
-                        <!-- <div class="work-container">
-
-                        </div> -->
-
-                        <div class="tab-pane fade" id="pills-pago" role="tabpanel" aria-labelledby="pills-personal-tab">
-
-                            <form *ngIf="employeePayment.length > 0">
-
-                                <div class="row">
-                                    <div class="col" style="text-align:right">
-
-                                        <button [routerLink]="['/employeeWorking', employee.id, 'Edit']" class="btn btn-sm btn-circle boton" data-toggle="tooltip" data-placement="top" title="Editar">
-                                        <i class="fa fa-edit text-primary boton text-color"></i></button>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <h6 class="mb-0 text-color"><strong>Banco:</strong></h6>
-                                    </div>
-                                    <div class="col-sm-6 text-secondary">
-                                        <small *ngIf="bank[0].code">{{bank[0].code}} - {{bank[0].name}}</small>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <h6 class="mb-0 text-color"><strong>Tipo de cuenta:</strong></h6>
-                                    </div>
-                                    <div class="col-sm-6 text-secondary">
-                                        <small *ngIf="accountType[0].description">{{accountType[0].description}}</small>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <h6 class="mb-0 text-color"><strong>Numero de Cuenta:</strong></h6>
-                                    </div>
-                                    <div class="col-sm-6 text-secondary">
-                                        <small *ngIf="employeePayment[0].accountNumber">{{employeePayment[0].accountNumber}}</small>
-                                    </div>
-                                </div>
-                                <br>
-
-
-                            </form>
-
                         </div>
 
-                        <div class="tab-pane fade" id="pills-social" role="tabpanel" aria-labelledby="pills-personal-tab">
 
-                            <form *ngIf="employeeSocialSecurity.length > 0">
+                        <div class="d-flex flex-column align-items-center text-center">
+                            <div class="d-flex flex-column align-items-center text-center waves-effect waves-dark">
+                                <img [src]="employee.img | imagen: 'employee'" width="100" alt="empleado">
+                                <button (click)="actualizarImagen( employee )" type="button" class="btn btn-link"><small>Cambiar foto</small></button>
+                            </div>
+                          
+                            <div class="media-body overflow-hiddenmt-2 mt-2">
+                                <h6 class="mb-0">{{employee.firstname}} {{employee.secondname}} <small class="text-muted font-size-sm">{{employee.surname}} {{employee.secondsurname}}</small></h6>
+                                <p class="text-muted"><small>{{employee.identification}}</small></p>
 
-                                <div class="row">
-                                    <div class="col" style="text-align:right">
-
-                                        <button [routerLink]="['/employeeWorking', employee.id, 'Edit']" class="btn btn-sm btn-circle boton" data-toggle="tooltip" data-placement="top" title="Editar">
-                                        <i class="fa fa-edit text-primary boton text-color"></i></button>
-
-
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <h6 class="mb-0 text-color"><strong>Entidad de Salud:</strong></h6>
-                                    </div>
-                                    <div class="col-sm-6 text-secondary">
-                                        <small *ngIf="socialSecurityEntityHealth[0].identification">{{socialSecurityEntityHealth[0].identification}} - {{socialSecurityEntityHealth[0].name}}</small>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <h6 class="mb-0 text-color"><strong>Entidad de Pensión:</strong></h6>
-                                    </div>
-                                    <div class="col-sm-6 text-secondary">
-                                        <small *ngIf="socialSecurityEntityPension[0].identification">{{socialSecurityEntityPension[0].identification}} - {{socialSecurityEntityPension[0].name}}</small>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <h6 class="mb-0 text-color"><strong>Fondo de Cesantias:</strong></h6>
-                                    </div>
-                                    <div class="col-sm-6 text-secondary">
-                                        <small *ngIf="socialSecurityEntitySeverance[0].identification">{{socialSecurityEntitySeverance[0].identification}} - {{socialSecurityEntitySeverance[0].name}}</small>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <h6 class="mb-0 text-color"><strong>Tipo de Cotizante:</strong></h6>
-                                    </div>
-                                    <div class="col-sm-6 text-secondary">
-                                        <small *ngIf="contributorType[0].description">{{contributorType[0].description}}</small>
-                                    </div>
-                                </div>
-                                <br>
-
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <h6 class="mb-0 text-color"><strong>Subtipo de Cotizante:</strong></h6>
-                                    </div>
-                                    <div class="col-sm-6 text-secondary">
-                                        <small *ngIf="contributorSubType[0].description">{{contributorSubType[0].description}}</small>
-                                    </div>
-                                </div>
+                            </div>
 
 
-
-                            </form>
+                            <h4 class="mb-0">Gerente</h4>
+                            <p class="text-muted mb-0"><small>{{employee.cellPhone}} </small><span>| </span><span><small class="text-pink">{{employee.phone}}</small></span></p>
+                            <p class="text-muted"><small>{{employee.email}}</small></p>
 
                         </div>
-
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
 
 
+
+    <div class="col">
+        <div class="card right-profile-card" style="width: 50rem;">
+            <div class="card-header alert-primary">
+                <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="pills-personal-tab" data-toggle="pill" href="#pills-personal" role="tab" aria-selected="true"><small>Personal</small></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-laboral-tab" data-toggle="pill" href="#pills-laboral" role="tab" aria-selected="false"><small>Laboral</small></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-puesto-tab" data-toggle="pill" href="#pills-puesto" role="tab" aria-selected="false"><small>Puesto</small></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-pago-tab" data-toggle="pill" href="#pills-pago" role="tab" aria-selected="false"><small>Pago</small></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-social-tab" data-toggle="pill" href="#pills-social" role="tab" aria-selected="false"><small>Seg Social</small></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-recurrentes-tab" data-toggle="pill" href="#pills-recurrentes" role="tab" aria-selected="false"><small>Recurrentes</small></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-personal" role="tabpanel" aria-labelledby="pills-personal-tab">
+
+
+                       
+                        <div class="row">
+                            <div class="col" style="text-align:right">
+
+                                <button [routerLink]="['/employee', employee.id, 'Edit']" class="btn btn-sm btn-circle boton" data-toggle="tooltip" data-placement="top" title="Editar">
+                                        <i class="fa fa-edit text-primary boton text-color"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h6 class="mb-0 text-color"><strong>Fecha de Nacimiento:</strong></h6>
+                            </div>
+                            <div class="col-sm-6 text-secondary">
+                                <small>{{employee.birthDate}}</small>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h6 class="mb-0 text-color"><strong>Genero:</strong></h6>
+                            </div>
+                            <div class="col-sm-6 text-secondary">
+                                <small>{{genero.description}}</small>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h6 class="mb-0 text-color"><strong>Dirección:</strong></h6>
+                            </div>
+                            <div class="col-sm-6 text-secondary">
+                                <small>{{employee.address}}</small>
+                            </div>
+                        </div>
+                        <br>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h6 class="mb-0 text-color"><strong>Pais de Residencia:</strong></h6>
+                            </div>
+                            <div class="col-sm-6 text-secondary">
+                                <small>{{paises.name}}</small>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h6 class="mb-0 text-color"><strong>Departamento de Residencia:</strong></h6>
+                            </div>
+                            <div class="col-sm-6 text-secondary">
+                                <small>{{depto.name}}</small>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h6 class="mb-0 text-color"><strong>Municipio de Residencia:</strong></h6>
+                            </div>
+                            <div class="col-sm-6 text-secondary">
+                                <small>{{municip.name}}</small>
+                            </div>
+                        </div>
+                      
+
+
+                    </div>
+                    <div class="tab-pane fade" id="pills-laboral" role="tabpanel" aria-labelledby="pills-personal-tab">
+                       
+
+                        <div *ngIf="!employeeWorking[0]" class="alert alert-danger" role="alert">
+                            El empleado no tiene información laboral registrada!
+
+                            <button [routerLink]="['/employee', 'new', employee.id, 'working']" class="btn btn-link">Registrala!!</button>
+                        </div>
+
+
+                        <form *ngIf="employeeWorking[0]">
+
+
+
+                            <div class="row">
+                                <div class="col" style="text-align:right">
+
+                                    <button [routerLink]="['/employeeWorking', employee.id, 'Edit']" class="btn btn-sm btn-circle boton" data-toggle="tooltip" data-placement="top" title="Editar">
+                                        <i class="fa fa-edit text-primary boton text-color"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h6 class="mb-0 text-color"><strong>Tipo de Empleado:</strong></h6>
+                                </div>
+                                <div class="col-sm-6 text-secondary">
+                                    <small> {{employeeType.description}}</small>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h6 class="mb-0 text-color"><strong>Regimen Laboral:</strong></h6>
+                                </div>
+                                <div class="col-sm-6 text-secondary">
+                                    <small>{{contractRegime.description}}</small>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h6 class="mb-0 text-color"><strong>Horario Laboral:</strong></h6>
+                                </div>
+                                <div class="col-sm-6 text-secondary">
+                                    <small>{{workingHour.description}}</small>
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h6 class="mb-0 text-color"><strong>Centro de Trabajo:</strong></h6>
+                                </div>
+                                <div class="col-sm-6 text-secondary">
+                                    <small>{{workPlaceRisks.description}} - {{workPlaceRisks.percentaje}}</small>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h6 class="mb-0 text-color"><strong>Se le paga Auxilio Transporte?:</strong></h6>
+                                </div>
+                                <div class="col-sm-6 text-secondary">
+                                    <small *ngIf="employeeWorking[0].transportAssistence; else No">Si</small>
+                                    <ng-template #No>
+                                        <small>No</small>
+                                    </ng-template>
+
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h6 class="mb-0 text-color"><strong>Sueldo Variable?:</strong></h6>
+                                </div>
+                                <div class="col-sm-6 text-secondary">
+                                    <small *ngIf="employeeWorking[0].variableSalary; else No">Si</small>
+                                    <ng-template #No>
+                                        <small>No</small>
+                                    </ng-template>
+
+                                </div>
+                            </div>
+                        </form>
+                        <hr>
+
+                        <div *ngIf="!employeeContract[0]" class="alert alert-danger" role="alert">
+                            El empleado no tiene información de contrato registrada!
+                            <button [routerLink]="['/employee', 'new', employee.id, 'contract']" class="btn btn-link">Registrala!!</button>
+                        </div>
+
+
+
+                        <form *ngIf="employeeContract[0]">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <h3>Historico de Contrato</h3>
+                                        <div *ngIf="!employeeContract[0]" class="text-right">
+                                            <button type="button" class="btn btn-sm btn-circle boton" data-toggle="modal" data-target="#cecoModal">
+                                                        <i class="fa fa-plus boton text-color"></i>
+                                                     </button>
+                                        </div>
+
+                                        <div class="card-body">
+
+
+
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>
+                                                            <h6 class="text-color"><strong>Tipo Contrato</strong></h6>
+                                                        </th>
+                                                        <th>
+                                                            <h6 class="text-color"><strong>F.Inicial</strong></h6>
+                                                        </th>
+                                                        <th>
+                                                            <h6 class="text-color"><strong>F.Final</strong></h6>
+                                                        </th>
+                                                        <th>
+                                                            <h6 class="text-color"><strong>Estado</strong></h6>
+                                                        </th>
+                                                        <th>
+                                                            <h6 class="text-color"><strong>Acciones</strong></h6>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let employeeC of employeeContract let i= index">
+                                                        <td>
+                                                            <select [(ngModel)]="employeeC.idContractType" class="form-control form-control-sm" name="contractType" style="width: 9rem; border-width: 0px; font-size: 12px">
+                                
+                                                                    <option *ngFor="let contractT of contractType" [value]="contractT.id">
+                                                                      <small>{{contractT.description}}</small> 
+                                                                   </option>
+                                                                </select>
+                                                        </td>
+
+                                                        <td>
+                                                            <small><input [(ngModel)]="employeeC.initialContractDate" name="FechaInicial" type="date" class="form-control form-control-sm" style="width: 8rem; border-width: 0px; font-size: 12px;"></small>
+                                                        </td>
+                                                        <td>
+                                                            <small><input [(ngModel)]="employeeC.endContractDate" name="FechaFinal" type="date" class="form-control form-control-sm" style="width: 8rem; border-width: 0px; font-size: 12px;"></small>
+                                                        </td>
+                                                        <td>
+                                                            <small *ngIf="employeeC.isActive; else Estado">Activo</small>
+                                                            <ng-template #Estado>
+                                                                <small>Inactivo</small>
+                                                            </ng-template>
+
+                                                        </td>
+
+
+
+
+                                                        <td *ngIf="employeeC.isActive">
+
+                                                            <button (click)="guardarEmployeeContract( employeeC )" data-toggle="tooltip" data-placement="top" title="Actualizar" type="button" class="btn btn-sm text-primary">
+                                                                    <i class="fa fa-save"></i>
+                                                                </button>
+
+
+
+
+                                                            <button *ngIf="employeeC.idContractType!='afdec5c1-b0fb-4fd9-a109-8158fe4c0600'" (click)="guardarEmployeeContract( employeeC )" data-toggle="tooltip" data-placement="top" title="Prorrogar" type="button" class="btn btn-sm text-success">
+                                                                    <i class="fa fa-pencil"></i>
+                                                                </button>
+
+
+
+                                                            <button (click)="guardarEmployeeContract( employeeC )" data-toggle="tooltip" data-placement="top" title="Terminar" type="button" class="btn btn-sm text-danger">
+                                                                    <i class="fa fa-close"></i>
+                                                                </button>
+
+
+
+
+
+
+
+
+
+                                                          
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+
+                        <hr>
+
+                        <div *ngIf="!employeeSalary[0]" class="alert alert-danger" role="alert">
+                            El empleado no tiene información Salarial registrada!
+                            <button [routerLink]="['/employee', 'new', employee.id, 'salary']" class="btn btn-link">Registrala!!</button>
+                        </div>
+
+                        <form *ngIf="employeeSalary[0]">
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <h3>Historico de Salario</h3>
+                                        <div class="card-body">
+
+                                            <div class="text-right">
+                                                <button type="button" class="btn btn-sm btn-circle boton" data-toggle="modal" data-target="#cecoModal">
+                                                            <i class="fa fa-plus boton text-color"></i>
+                                                         </button>
+                                            </div>
+
+                                            <table class="table table-hover" style="left: 0px;">
+                                                <thead>
+                                                    <tr>
+                                                        <th>
+                                                            <h6 class="text-color" style="font-size: 13px;"><strong>Tipo Salario</strong></h6>
+                                                        </th>
+
+                                                        <th>
+                                                            <h6 class="text-color" style="font-size: 13px;"><strong>Salario</strong></h6>
+                                                        </th>
+
+                                                        <th>
+                                                            <h6 class="text-color" style="font-size: 13px;"><strong>F.Inicial</strong></h6>
+                                                        </th>
+                                                        <th>
+                                                            <h6 class="text-color" style="font-size: 13px;"><strong>F.Final</strong></h6>
+                                                        </th>
+                                                        <th>
+                                                            <h6 class="text-color" style="font-size: 13px;"><strong>Estado</strong></h6>
+                                                        </th>
+                                                        <th>
+                                                            <h6 class="text-color" style="font-size: 13px;"><strong>Acciones</strong></h6>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let employeeS of employeeSalary let i= index">
+                                                        <td>
+                                                            <select [(ngModel)]="employeeS.idSalaryType" class="form-control form-control-sm" name="salaryType" style="width: 10rem; border-width: 0px; font-size: 11px">
+                                
+                                                                    <option *ngFor="let salaryT of salaryType" [value]="salaryT.id">
+                                                                      <small>{{salaryT.description}}</small> 
+                                                                   </option>
+                                                                </select>
+                                                        </td>
+
+                                                        <td>
+                                                            <small><input [(ngModel)]="employeeS.salary" name="salary" type="number" class="form-control form-control-sm" style="width: 6rem; border-width: 0px; font-size: 11px;"></small>
+                                                        </td>
+
+                                                        <td>
+                                                            <small><input [(ngModel)]="employeeS.initialSalaryDate" name="FechaInicial" type="date" class="form-control form-control-sm" style="width: 8rem; border-width: 0px; font-size: 11px;"></small>
+                                                        </td>
+                                                        <td>
+                                                            <small><input [(ngModel)]="employeeS.endSalaryDate" name="FechaFinal" type="date" class="form-control form-control-sm" style="width: 8rem; border-width: 0px; font-size: 11px;"></small>
+                                                        </td>
+                                                        <td>
+                                                            <small *ngIf="employeeS.isActive; else Estado">Activo</small>
+                                                            <ng-template #Estado>
+                                                                <small>Inactivo</small>
+                                                            </ng-template>
+
+
+
+                                                        </td>
+
+
+
+
+                                                        <td *ngIf="employeeS.isActive">
+                                                            <button (click)="guardarEmployeeSalary( employeeS )" data-toggle="tooltip" data-placement="top" title="Actualizar" type="button" class="btn btn-sm text-primary">
+                                                                    <i class="fa fa-save"></i>
+                                                                </button>
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+
+                      
+                    </div>
+                    <div class="tab-pane fade" id="pills-puesto" role="tabpanel" aria-labelledby="pills-personal-tab">
+                        
+
+                        <div *ngIf="!employeeJob[0]" class="alert alert-danger" role="alert">
+                            El empleado no tiene información del puesto de trabajo registrada!
+                            <button [routerLink]="['/employee', 'new', employee.id, 'job']" class="btn btn-link">Registrala!!</button>
+                        </div>
+
+                        <form *ngIf="employeeJob[0]">
+
+                            <div class="row">
+                                <div class="col" style="text-align:right">
+
+                                    <button [routerLink]="['/employeeJob', employee.id, 'Edit']" class="btn btn-sm btn-circle boton" data-toggle="tooltip" data-placement="top" title="Editar">
+                                        <i class="fa fa-edit text-primary boton text-color"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h6 class="mb-0 text-color"><strong>Centro de Costo:</strong></h6>
+                                </div>
+                                <div class="col-sm-6 text-secondary">
+                                    <small *ngIf="costCenter[0]">{{costCenter[0].code}} - {{costCenter[0].description}}</small>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h6 class="mb-0 text-color"><strong>Area:</strong></h6>
+                                </div>
+                                <div class="col-sm-6 text-secondary">
+                                    <small *ngIf="area[0]">{{area[0].description}}</small>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h6 class="mb-0 text-color"><strong>Cargo:</strong></h6>
+                                </div>
+                                <div class="col-sm-6 text-secondary">
+                                    <small *ngIf="position[0]">{{position[0].description}}</small>
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h6 class="mb-0 text-color"><strong>Sucursal:</strong></h6>
+                                </div>
+                                <div class="col-sm-6 text-secondary">
+                                    <small *ngIf="subsidiary[0]">{{subsidiary[0].description}}</small>
+                                </div>
+                            </div>
+
+
+                        </form>
+
+
+                        
+                    </div>
+                  
+
+                    <div class="tab-pane fade" id="pills-pago" role="tabpanel" aria-labelledby="pills-personal-tab">
+
+                        <div *ngIf="!employeePayment[0]" class="alert alert-danger" role="alert">
+                            El empleado no tiene información para el Pago registrada!
+                            <button [routerLink]="['/employee', 'new', employee.id, 'payment']" class="btn btn-link">Registrala!!</button>
+                        </div>
+
+                        <form *ngIf="employeePayment[0]">
+
+                            <div class="row">
+                                <div class="col" style="text-align:right">
+
+                                    <button [routerLink]="['/employeePayment', employee.id, 'Edit']" class="btn btn-sm btn-circle boton" data-toggle="tooltip" data-placement="top" title="Editar">
+                                        <i class="fa fa-edit text-primary boton text-color"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h6 class="mb-0 text-color"><strong>Banco:</strong></h6>
+                                </div>
+                                <div class="col-sm-6 text-secondary">
+                                    <small *ngIf="bank[0]">{{bank[0].code}} - {{bank[0].name}}</small>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h6 class="mb-0 text-color"><strong>Tipo de cuenta:</strong></h6>
+                                </div>
+                                <div class="col-sm-6 text-secondary">
+                                    <small *ngIf="accountType[0]">{{accountType[0].description}}</small>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h6 class="mb-0 text-color"><strong>Numero de Cuenta:</strong></h6>
+                                </div>
+                                <div class="col-sm-6 text-secondary">
+                                    <small *ngIf="employeePayment[0].accountNumber">{{employeePayment[0].accountNumber}}</small>
+                                </div>
+                            </div>
+                            <br>
+
+
+                        </form>
+
+                    </div>
+
+                    <div class="tab-pane fade" id="pills-social" role="tabpanel" aria-labelledby="pills-personal-tab">
+
+
+                        <div *ngIf="!employeeSocialSecurity[0]" class="alert alert-danger" role="alert">
+                            El empleado no tiene información de Seguridad Social registrada!
+                            <button [routerLink]="['/employee', 'new', employee.id, 'socialSecurity']" class="btn btn-link">Registrala!!</button>
+                        </div>
+
+                        <form *ngIf="employeeSocialSecurity[0]">
+
+                            <div class="row">
+                                <div class="col" style="text-align:right">
+
+                                    <button [routerLink]="['/employeeSocialSecurity', employee.id, 'Edit']" class="btn btn-sm btn-circle boton" data-toggle="tooltip" data-placement="top" title="Editar">
+                                        <i class="fa fa-edit text-primary boton text-color"></i></button>
+
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h6 class="mb-0 text-color"><strong>Entidad de Salud:</strong></h6>
+                                </div>
+                                <div class="col-sm-6 text-secondary">
+                                    <small *ngIf="socialSecurityEntityHealth[0]">{{socialSecurityEntityHealth[0].identification}} - {{socialSecurityEntityHealth[0].name}}</small>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h6 class="mb-0 text-color"><strong>Entidad de Pensión:</strong></h6>
+                                </div>
+                                <div class="col-sm-6 text-secondary">
+                                    <small *ngIf="socialSecurityEntityPension[0]">{{socialSecurityEntityPension[0].identification}} - {{socialSecurityEntityPension[0].name}}</small>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h6 class="mb-0 text-color"><strong>Fondo de Cesantias:</strong></h6>
+                                </div>
+                                <div class="col-sm-6 text-secondary">
+                                    <small *ngIf="socialSecurityEntitySeverance[0]">{{socialSecurityEntitySeverance[0].identification}} - {{socialSecurityEntitySeverance[0].name}}</small>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h6 class="mb-0 text-color"><strong>Tipo de Cotizante:</strong></h6>
+                                </div>
+                                <div class="col-sm-6 text-secondary">
+                                    <small *ngIf="contributorType[0]">{{contributorType[0].description}}</small>
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h6 class="mb-0 text-color"><strong>Subtipo de Cotizante:</strong></h6>
+                                </div>
+                                <div class="col-sm-6 text-secondary">
+                                    <small *ngIf="contributorSubType[0]">{{contributorSubType[0].description}}</small>
+                                </div>
+                            </div>
+
+
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
 </div>
+ -->

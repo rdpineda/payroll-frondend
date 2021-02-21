@@ -38,7 +38,7 @@ export class WorkingEmployeeComponent implements OnInit {
   public newEmployee: any = {};
 
 
-  employeeWorking: EmployeeWorking = new EmployeeWorking('', '', '', true, '', '', '', '', true, true, this.date, this.date);
+  employeeWorking: EmployeeWorking = new EmployeeWorking('', '', true, '', '', '', '', '', true, true, this.date, this.date);
 
   constructor( private fb: FormBuilder,
                public _router: Router,
@@ -67,9 +67,17 @@ export class WorkingEmployeeComponent implements OnInit {
                   }
                 }
 
-               /*  this.activatedRoute.params.subscribe( params =>{
-                  this.getEmployeeWorking( params[ 'id' ]);
-              }); */
+                this.activatedRoute.params.subscribe( params =>{
+
+                  const id = params['id'];
+                   if (id !== 'new') {this.getEmployeeWorking( params[ 'id' ])};
+                 
+                  
+              });
+
+                
+
+              
 
 
     this.crearFormulario();
@@ -77,6 +85,8 @@ export class WorkingEmployeeComponent implements OnInit {
    }
 
   ngOnInit(): void {
+
+    
 
     this.getContractRegime();
     this.getEmployeeType();
@@ -134,17 +144,17 @@ export class WorkingEmployeeComponent implements OnInit {
       const id = params['id'];
       const Employee = params['Employee'];
       if ( id !== 'new') {
-        this._employeeWorkingService.actualizarEmployeeWorking( this.employeeWorking )
-        .subscribe( () => this.getEmployeeWorking(this.employeeWorking.id));
+        this._employeeWorkingService.actualizarEmployeeWorking( this.employeeWorking[0] )
+        .subscribe( () => this.getEmployeeWorking(this.employeeWorking[0].idEmployee));
+        
       } else {
-         console.log('codigo', id);
-         console.log('employee', Employee);
-
+        
          const employeeWorkingr = new EmployeeWorking(
-          Employee,
+         
           this.usuario,
           this.usuario,
           this.isActive,
+          Employee,
           this.forma.value.contractRegime,
           this.forma.value.employeeType,
           this.forma.value.workingHour,
@@ -158,7 +168,7 @@ export class WorkingEmployeeComponent implements OnInit {
           .subscribe(employeeWorking =>  {
           /* this._router.navigate(['/employees']); */
           this.newEmployee = employeeWorking;
-          this._router.navigate(['/employee', 'new', this.newEmployee.id, 'contract']);
+          this._router.navigate(['/employee', 'new', this.newEmployee.idEmployee, 'contract']);
         });
         
       }
@@ -195,8 +205,10 @@ export class WorkingEmployeeComponent implements OnInit {
   
   getEmployeeWorking( id: string ) {
     this._employeeWorkingService.cargarEmployeeWorking( id )
-        .subscribe( employeeWorking => {
+    
+        .subscribe( (employeeWorking)  => {
           this.employeeWorking = employeeWorking;
+       
         });
 
   }

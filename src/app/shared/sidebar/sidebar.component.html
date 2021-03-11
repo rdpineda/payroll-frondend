@@ -20,20 +20,19 @@
                 <li class="nav-small-cap">PERSONAL</li> -->
 
 
-                <li *ngFor="let menu of _sidebar.menu" style="background-color: #fafafa;">
+                <li *ngFor="let menu of this._sidebar.menu" style="background-color: #fafafa;">
 
 
-                    <a *ngIf="menu.url === '/company' " routerLinkActive="active" [routerLink]="[menu.url, id.id]" class="waves-effect waves-dark" class="menu" style="background-color: #fafafa;" aria-expanded="false"><i [class]="menu.icono"></i><span class="hide-menu" >{{menu.titulo}}</span></a>
-                    <a *ngIf="menu.submenu.length === 0 && menu.url != '/company' " routerLinkActive="active" [routerLink]="[menu.url]" class="waves-effect waves-dark" class="menu" style="background-color: #fafafa;" aria-expanded="false"><i [class]="menu.icono"></i><span class="hide-menu" >{{menu.titulo}}</span></a>
-                    <a *ngIf="menu.submenu.length > 0" routerLinkActive="active" [routerLink]="[menu.url]" class="has-arrow waves-effect waves-dark menu" aria-expanded="false"><i [class]="menu.icono"></i><span class="hide-menu" >{{menu.titulo}}</span></a>
+                    <a *ngIf="menu.url === '/company' " routerLinkActive="active" [routerLink]="[menu.url, id.id]" class="waves-effect waves-dark" class="menu" aria-expanded="false"><i [class]="menu.icon"></i><span class="hide-menu" >{{menu.title}}</span></a>
+                    <!-- <a *ngIf="[menu.submenu].length === 0 && menu.url != '/company' " routerLinkActive="active" [routerLink]="[menu.url]" class="waves-effect waves-dark" class="menu" style="background-color: #fafafa;" aria-expanded="false"><i [class]="menu.icono"></i><span class="hide-menu" >{{menu.titulo}}</span></a> -->
+                    <a *ngIf="menu.url !== '/company' && menu.title !== 'Nóminas'" routerLinkActive="active" [routerLink]="[menu.url]" class="waves-effect waves-dark" class="menu" aria-expanded="false"><i [class]="menu.icon"></i><span class="hide-menu" >{{menu.title}}</span></a>
+                    <a *ngIf="menu.title === 'Nóminas' " routerLinkActive="active" [routerLink]="[menu.url]" class="has-arrow waves-effect waves-dark menu" aria-expanded="false"><i [class]="menu.icon"></i><span class="hide-menu" >{{menu.title}}</span></a>
 
                     <ul aria-expanded="false" class="collapse">
-                        <li *ngFor="let submenu of menu.submenu">
-                            <a routerLinkActive="active" [routerLink]="[submenu.url]">{{submenu.titulo}}</a>
+                        <li *ngFor="let submenu of menu.subMenus">
+                            <a routerLinkActive="active" [routerLink]="[submenu.url]">{{submenu.title}}</a>
                         </li>
-                        <!-- <li><a href="index2.html">Analytical</a></li>
-                        <li><a href="index3.html">Demographical</a></li>
-                        <li><a href="index4.html">Modern</a></li> -->
+
                     </ul>
                 </li>
 

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CompanyInfoService } from '../../services/service.index';
 import { CompanyService } from '../../services/service.index';
-import { CompanyInfo } from 'src/app/models/companyInfo.model';
-import { Company } from '../../models/company.model';
+import { Company } from 'src/app/models/company.model';
+import { Companyold } from '../../models/companyold.model';
 import { UsuarioService } from '../../services/usuario/usuario.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ModalUploadService } from '../modal-upload/modal-upload.service';
@@ -47,7 +47,7 @@ export class InfoCompanyComponent implements OnInit {
   idcaja = '85c0ad60-034f-48d5-b798-fd55ad0e92fd';
   idriesgo = 'a9bd6d67-7578-497a-b1b9-118c897e9db3';
   // tslint:disable-next-line: max-line-length
-  companyInfo: CompanyInfo = new CompanyInfo('', '', '', '', '', true, '', '', '', '', '', '', '', this.date, '', '', '', this.date, this.date, '', '', '', '');
+  companyInfo: Company = new Company('', this.date, 0,'', '', '','', true, '', '', '', '','', '', '', this.date, '', '', '', this.date, this.date, '', '', '', '','');
 
 
   constructor(private fb: FormBuilder,
@@ -170,7 +170,7 @@ export class InfoCompanyComponent implements OnInit {
 
 
 
-  guardar(companyInfo: CompanyInfo){
+  guardar(company: Company){
 
     if (this.forma.invalid){
   
@@ -191,7 +191,7 @@ export class InfoCompanyComponent implements OnInit {
   
     
 
-    this._companyInfoService.actualizarCompanyInfo( companyInfo )
+    this._companyInfoService.actualizarCompanyInfo( company )
             .subscribe( () => this.cargarCompanyInfo(this.empresa.id));
     
     
@@ -246,7 +246,7 @@ export class InfoCompanyComponent implements OnInit {
   cargarCompanyInfo( id: string ) {
     this._companyInfoService.cargarCompanyInfo( id )
         .subscribe( company => {
-          this.companyInfo = company;
+          this.company = company;
         });
 
   }
@@ -263,7 +263,7 @@ export class InfoCompanyComponent implements OnInit {
 
  
 
-  actualizarImagen( companyInfo: CompanyInfo ){
+  actualizarImagen( companyInfo: Company ){
   
     this._modalUploadServices.mostrarModal('companys', companyInfo.id );
     

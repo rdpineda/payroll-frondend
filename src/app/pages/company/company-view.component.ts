@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CompanyInfoService } from '../../services/service.index';
 import { CompanyService } from '../../services/service.index';
-import { CompanyInfo } from 'src/app/models/companyInfo.model';
+import { Company } from 'src/app/models/company.model';
 import { Country } from 'src/app/models/country.model';
 import { State } from 'src/app/models/state.model';
 import { City } from 'src/app/models/city.model';
@@ -10,7 +10,7 @@ import { CountryService } from '../../services/service.index';
 import { StateService } from '../../services/service.index';
 import { CityService } from '../../services/service.index';
 import { SocialSecurityEntityService } from '../../services/service.index';
-import { Company } from '../../models/company.model';
+import { Companyold } from '../../models/companyold.model';
 import { UsuarioService } from '../../services/usuario/usuario.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ModalUploadService } from '../../components/modal-upload/modal-upload.service';
@@ -204,7 +204,7 @@ obtenerTipoCuentas( id: string ) {
 
   }
 
-  actualizarImagen( companyInfo: CompanyInfo ){
+  actualizarImagen( companyInfo: Company ){
   
     this._modalUploadServices.mostrarModal('companys', companyInfo.id );
     

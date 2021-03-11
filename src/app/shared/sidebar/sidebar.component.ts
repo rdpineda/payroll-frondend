@@ -15,17 +15,28 @@ export class SidebarComponent implements OnInit {
   
   usuario: Usuario;
   company: Company [] = [];
+  menu: any  = {};
   empresaseleccionada: any = {};
+
   id: any = {};
 
   // tslint:disable-next-line: variable-name
   constructor( public _sidebar: SidebarService,
-               public _usuarioService: UsuarioService) { }
+               public _usuarioService: UsuarioService) { 
+                console.log('menuc', this._sidebar.cargarMenu());
+               }
 
   ngOnInit(): void {
     this.usuario = this._usuarioService.usuario;
     this.company = this._usuarioService.empresas;
-    this._sidebar.cargarMenu();
+    this.menu = this._usuarioService.menu;
+    this._sidebar.cargarMenu()
+
+    
+   
+  
+    
+     
     
     this.empresaseleccionada = localStorage.getItem('empresaseleccionada');
 if (this.empresaseleccionada) {

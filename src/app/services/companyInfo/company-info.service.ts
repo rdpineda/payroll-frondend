@@ -5,8 +5,8 @@ import { URL_SERVICIOS } from '../../config/config';
 import { UsuarioService } from '../usuario/usuario.service';
 import { CompanyService } from '../company/company.service';
 import Swal from 'sweetalert2';
-import { CompanyInfo } from 'src/app/models/companyInfo.model';
 import { Company } from 'src/app/models/company.model';
+import { Companyold } from 'src/app/models/companyold.model';
 import { Router } from '@angular/router';
 import { SubirArhivoService } from '../subirArchivo/subir-arhivo.service';
 import { Observable } from 'rxjs';
@@ -21,8 +21,8 @@ import { getLocaleDateFormat } from '@angular/common';
 })
 export class CompanyInfoService {
 
-  companyInfo: CompanyInfo;
   company: Company;
+  companyold: Companyold;
   
 
   constructor( public http: HttpClient, 
@@ -36,7 +36,7 @@ export class CompanyInfoService {
 
     cargarCompanyInfo( id: string){
 
-      let url = URL_SERVICIOS + '/companyInfo/' + id;
+      let url = URL_SERVICIOS + '/company/' + id;
       return this.http.get( url )
           .map( (resp: any) => resp.companyInfo );
     }
@@ -46,7 +46,7 @@ export class CompanyInfoService {
           .map(( resp: any ) => resp.companyInfo);
     }
     borrarCompanyInfo( id: string ){
-      let url = URL_SERVICIOS + '/companyInfo/' + id;
+      let url = URL_SERVICIOS + '/company/' + id;
       url += '?token=' + this._usuarioService.token;
       return this.http.delete( url )
           .map( (resp: any) => {
@@ -57,9 +57,9 @@ export class CompanyInfoService {
               return resp;
       });
     }
-    crearCompanyInfo( companyInfo: CompanyInfo){
-      const url = URL_SERVICIOS + '/companyInfo';
-      return this.http.post( url, companyInfo)
+    crearCompanyInfo( company: Company){
+      const url = URL_SERVICIOS + '/company';
+      return this.http.post( url, company)
           .map( (resp: any) =>{
 
            /*  Swal.fire({
@@ -67,7 +67,7 @@ export class CompanyInfoService {
               icon: 'success'
             }); */
 
-            return resp.companyInfo;
+            return resp.company;
           })
           .catch( err =>{
             // tslint:disable-next-line: deprecation
@@ -80,9 +80,9 @@ export class CompanyInfoService {
           });
     }
 
-    actualizarCompanyInfo( companyInfo: CompanyInfo ){
+    actualizarCompanyInfo( companyInfo: Company ){
 
-      let url = URL_SERVICIOS + '/companyInfo/' + companyInfo.id;
+      let url = URL_SERVICIOS + '/company/' + companyInfo.id;
       url += '?token=' + this._usuarioService.token;
       return this.http.put( url, companyInfo)
           .map( (resp: any) =>{
@@ -97,10 +97,10 @@ export class CompanyInfoService {
 
     cambiarImagen( archivo: File, id: string ){
 
-      this._subirArhivoService.subirArchivo( archivo, 'companyInfo', id )
+      this._subirArhivoService.subirArchivo( archivo, 'company', id )
     
         .then( (resp: any) =>{
-          this.companyInfo.img = resp.companyInfo.img;
+          this.company.img = resp.companyInfo.img;
           Swal.fire({
             text: 'Imagen Actualizada',
             icon: 'success'

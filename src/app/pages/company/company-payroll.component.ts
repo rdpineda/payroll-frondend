@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Hospital } from 'src/app/models/hospital.model';
-import { CompanyInfo } from 'src/app/models/companyInfo.model' ;
+import { Company } from 'src/app/models/company.model' ;
 import { HospitalService } from '../../services/service.index';
 import { CompanyInfoService } from '../../services/service.index';
 import { Medico } from 'src/app/models/medico.model';
@@ -24,7 +24,7 @@ export class CompanyPayrollComponent implements OnInit {
   paises: Country[] = [];
   medico: Medico = new Medico('', '', '', '', '');
   hospital: Hospital = new Hospital ('');
-  companyInfo: CompanyInfo = new CompanyInfo ('');
+  company: Company = new Company ('');
 
   constructor( public _hospitalService: HospitalService,
     public _companyInfoService: CompanyInfoService,

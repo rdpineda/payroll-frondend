@@ -9,8 +9,8 @@ import { CompanyPaymentService } from '../services/service.index';
 import { CompanyPayrollService } from '../services/service.index';
 import { Usuario } from '../models/usuario.model';
 import { Concept } from '../models/concept.model';
+import { Companyold } from '../models/companyold.model';
 import { Company } from '../models/company.model';
-import { CompanyInfo } from '../models/companyInfo.model';
 import { CompanyPayment } from '../models/companyPayment.model';
 import { CompanyPayroll } from '../models/companyPayroll.model';
 
@@ -140,8 +140,8 @@ export class RegisterComponent implements OnInit {
     this._usuarioService.crearUsuario( usuario )
           .subscribe( resp => {
             this._router.navigate(['/login']);
-
-            const company = new Company(
+console.log('user',resp)
+            /* const company = new Company(
               this.forma.value.empresa,
               this.starDemoDay,
               this.demoDay,
@@ -153,48 +153,55 @@ export class RegisterComponent implements OnInit {
 
           );
             this._companyService.crearCompany( company )
-                .subscribe( respc => {
+                .subscribe( respc => { */
 
-            const companyInfo = new CompanyInfo(
+            const company = new Company(
                   this.forma.value.empresa,
-                  this.idCompany = respc.id,
+                  this.starDemoDay,
+                  this.demoDay,
                   this.forma.value.correo,
                   this.createUser = resp.id,
                   this.updateUser = resp.id,
+                  this.idUser = resp.id,
                   this.isActive,
                   this.idTenant,
+                  
+                  
               );
+              this._companyInfoService.crearCompanyInfo( company )
+                .subscribe( respc1 => { 
 
+console.log('register', respc1)
             const companyPayment = new CompanyPayment(
-                this.idCompany = respc.id,
+                this.idCompany = respc1.id,
                 this.createUser = resp.id,
                 this.updateUser = resp.id,
                 this.isActive,
                 this.idTenant,
               );
-
+            
             const companyPayroll = new CompanyPayroll(
-                this.idCompany = respc.id,
+                this.idCompany = respc1.id,
                 this.createUser = resp.id,
                 this.updateUser = resp.id,
                 this.isActive,
                 this.idTenant,
               );
-            this._companyInfoService.crearCompanyInfo( companyInfo )
-                    .subscribe( respci => {
-                    });
+          
 
-            this._companyPaymentService.crearCompanyPayment( companyPayment )
-                    .subscribe( respcp => {
-                    });
+              this._companyPaymentService.crearCompanyPayment( companyPayment )
+              .subscribe( respcp => {
+              });
+
 
             this._companyPayrollService.crearCompanyPayroll( companyPayroll )
                     .subscribe( respcp => {
                     });
 
+                    
                     // **aca va el json que guarda los conceptos a cada empresa**
 
-                    this._conceptService.crearConceptStandard(respc.id)
+                    this._conceptService.crearConceptStandard(respc1.id)
                     .subscribe( respc => {
                       
                     });

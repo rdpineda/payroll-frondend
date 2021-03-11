@@ -41,7 +41,7 @@ import { VerificaTokenGuard } from '../services/guards/verifica-token.guard';
 const pagesRoutes: Routes = [
         {     path: 'dashboard',
             component: DashboardComponent,
-            canActivate: [ VerificaTokenGuard ],
+            // canActivate: [ VerificaTokenGuard ],
             data: { titulo: 'Dashboard' }
         },
         { path: 'progress', component: ProgressComponent, data: { titulo: 'Progress' }},
@@ -55,7 +55,7 @@ const pagesRoutes: Routes = [
         //Mantenimientos
         { path: 'usuarios',
             component: UsuariosComponent,
-            canActivate: [ AdminGuard ],
+             canActivate: [ AdminGuard ],
             data: { titulo: 'Usuarios' }
         },
         { path: 'hospitales', component: HospitalesComponent, data: { titulo: 'Hospitales' }},

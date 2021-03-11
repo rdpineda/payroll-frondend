@@ -6,8 +6,8 @@ import { CompanyPayrollService } from '../../services/service.index';
 import { CompanyInfoService } from '../../services/service.index';
 import { ConceptService } from '../../services/service.index';
 import { Usuario } from '../../models/usuario.model';
+import { Companyold } from '../../models/companyold.model';
 import { Company } from '../../models/company.model';
-import { CompanyInfo } from '../../models/companyInfo.model';
 import { CompanyPayment } from '../../models/companyPayment.model';
 import { CompanyPayroll } from '../../models/companyPayroll.model';
 import { Concept } from '../../models/concept.model';
@@ -70,7 +70,7 @@ export class HeaderComponent implements OnInit {
     this.usuario = this._usuarioService.usuario;
     // this.cargarEmpresasUsuario(this.usuario.id);
     this.company = this._usuarioService.empresas;
-    console.log(this.empresaseleccionada);
+    
     
     if (this.empresaseleccionada) {
      
@@ -122,7 +122,7 @@ export class HeaderComponent implements OnInit {
   cargarEmpresasUsuario(iduser: string){
     this._companyService.cargarCompanysUser(iduser)
     .subscribe ( resp => this.company2 = resp);
-    console.log('empresas', this.company1);
+    
   }
 
   crearEmpresa(){
@@ -136,7 +136,7 @@ export class HeaderComponent implements OnInit {
         }
        
       
-        const company = new Company(
+        /* const company = new Company(
           value,
           this.starDemoDay,
           this.demoDay,
@@ -148,17 +148,26 @@ export class HeaderComponent implements OnInit {
 
       );
         this._companyService.crearCompany( company )
-            .subscribe(respc => {
+            .subscribe(respc => { */
 
-              const companyInfo = new CompanyInfo(
+              const company = new Company(
                 value,
-                this.idCompany = respc.id,
+                this.starDemoDay,
+                this.demoDay,
+                // this.idCompany = respc.id,
                 this.correo = this.usuario.userName,
                 this.createUser = this.usuario.id,
                 this.updateUser = this.usuario.id,
+                this.idUser = this.usuario.id,
                 this.isActive,
                 this.idTenant,
+                
             );
+
+            //mirar aca
+            this._companyInfoService.crearCompanyInfo( company )
+            .subscribe(respc => {
+
             const companyPayment = new CompanyPayment(
               this.idCompany = respc.id,
               this.createUser = this.usuario.id,
@@ -175,9 +184,7 @@ export class HeaderComponent implements OnInit {
               this.idTenant,
             );
 
-              this._companyInfoService.crearCompanyInfo( companyInfo )
-                  .subscribe( respci => {
-                  });
+              
 
                   this._companyPaymentService.crearCompanyPayment( companyPayment )
                     .subscribe( respcp => {

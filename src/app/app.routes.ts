@@ -20,10 +20,10 @@ const appRoutes: Routes = [
 
         path: '',
         component: PagesComponent,
-        canActivate: [ LoginGuardsGuard ],
+         canActivate: [ LoginGuardsGuard ],
         loadChildren: './pages/pages.module#PagesModule'
 
-    },
+    }, 
 
 
 

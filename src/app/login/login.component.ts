@@ -44,7 +44,9 @@ export class LoginComponent implements OnInit {
   this._usuarioService.login(usuario, forma.value.recuerdame)
       .subscribe(correcto => {
 
-        if (this._usuarioService.empresas.length > 1) {
+        // if (this._usuarioService.empresas.length > 1) {
+          if (this._usuarioService.empresas.length > 1) {
+          console.log('login',this._usuarioService.empresas)
           this._router.navigate(['/companies']);
         } else {
             this._router.navigate(['/dashboard']);

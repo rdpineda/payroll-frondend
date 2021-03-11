@@ -8,8 +8,8 @@ import { SharedService } from '../services/shared/shared.service';
 import { CompanyInfoService } from '../services/service.index';
 import { HeaderComponent } from '../shared/header/header.component';
 import { Usuario } from '../models/usuario.model';
+import { Companyold } from '../models/companyold.model';
 import { Company } from '../models/company.model';
-import { CompanyInfo } from '../models/companyInfo.model';
 import { Concept } from '../models/concept.model';
 import { CompanyPayment } from '../models/companyPayment.model';
 import { CompanyPayroll } from '../models/companyPayroll.model';
@@ -43,7 +43,7 @@ export class CompanysComponent implements OnInit {
 
  
   companys: Company [] = [];
-  companys1: Company [] = [];
+  companyUser: any[]=[]
   usuario: Usuario;
 
   constructor( public _usuarioService: UsuarioService,
@@ -91,9 +91,15 @@ export class CompanysComponent implements OnInit {
 
   cargarEmpresasUsuario(iduser: string){
     this._companyService.cargarCompanysUser(iduser)
-    .subscribe ( resp => this.companys1 = resp);
-   
+    .subscribe ( companyUser => {
+      this.companyUser = companyUser.companies
+      console.log('resp', companyUser)
+      console.log('componente', this.companyUser[0].id)
+    });
   }
+
+ 
+
 
   crearEmpresa(){
     Swal.fire({
@@ -104,7 +110,7 @@ export class CompanysComponent implements OnInit {
         if ( !value || value.length === 0) {
           return 'No ha ingresado ningun dato';
         }
-        const company = new Company(
+        /* const company = new Company(
           value,
           this.starDemoDay,
           this.demoDay,
@@ -116,17 +122,24 @@ export class CompanysComponent implements OnInit {
 
       );
         this._companyService.crearCompany( company )
-            .subscribe(respc => {
+            .subscribe(respc => { */
 
-              const companyInfo = new CompanyInfo(
+              const company = new Company(
                 value,
-                this.idCompany = respc.id,
+                this.starDemoDay,
+                this.demoDay,
+                // this.idCompany = respc.id,
                 this.correo = this.usuario.userName,
                 this.createUser = this.usuario.id,
                 this.updateUser = this.usuario.id,
+                this.idUser = this.usuario.id,
                 this.isActive,
                 this.idTenant,
+                
             );
+
+            this._companyInfoService.crearCompanyInfo( company )
+            .subscribe(respc => {
 
             const companyPayment = new CompanyPayment(
               this.idCompany = respc.id,
@@ -143,9 +156,8 @@ export class CompanysComponent implements OnInit {
               this.isActive,
               this.idTenant,
             );
-              this._companyInfoService.crearCompanyInfo( companyInfo )
-                  .subscribe( respci => {
-                  });
+             
+
                   this._companyPaymentService.crearCompanyPayment( companyPayment )
                   .subscribe( respcp => {
                   });

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { URL_SERVICIOS } from 'src/app/config/config';
+import { URL_SERVICIOS_HEROKU } from 'src/app/config/config';
 import { Usuario } from 'src/app/models/usuario.model';
 import { Router } from '@angular/router';
 
@@ -22,14 +23,17 @@ export class UsuarioService {
 
   usuario: Usuario;
   token: string;
-  menu: any[] = [];
-  empresas: any[] = [];
+  menu: any = {};
+  submenu: any = {};
+  //empresas: any[] = [];
+  empresas: any = {};
 
 
   constructor( public http: HttpClient,
                public _router: Router,
                public _subirArchivoService: SubirArhivoService) { 
     this.cargarStorage();
+    console.log('login', this.menu)
    
   }
 
@@ -59,7 +63,7 @@ export class UsuarioService {
   }
 
 
-  guardarStorage(id: string, token: string, usuario: Usuario, menu: any, empresas: any){
+  guardarStorage(id: string, token: string, usuario: Usuario, menu: any, empresas:any){
     localStorage.setItem('id', id);
     localStorage.setItem('token', token);
     localStorage.setItem('usuario', JSON.stringify(usuario));
@@ -89,7 +93,7 @@ export class UsuarioService {
     } else {
       this.token = '';
       this.usuario = null;
-      this.menu = [];
+      this.menu = {};
       this.empresas = [];
     }
   }
@@ -103,11 +107,15 @@ export class UsuarioService {
       localStorage.removeItem('email');
     }
   
-    let url = URL_SERVICIOS + '/login';
+    //let url = URL_SERVICIOS + '/login';
+    let url = URL_SERVICIOS_HEROKU + '/auth/login';
     return this.http.post( url, usuario )
               .map( (resp: any) =>{
 
-                this.guardarStorage( resp.id, resp.token, resp.usuario, resp.menu, resp.empresas );
+               // this.guardarStorage( resp.id, resp.token, resp.usuario, resp.menu, resp.empresas );
+              
+               
+                this.guardarStorage( resp.user.UserInfo.id, resp.token, resp.user.UserInfo, resp.user.menu.menus, resp.user.UserInfo.companies );
 
 
                 return true;
@@ -116,9 +124,9 @@ export class UsuarioService {
                 // tslint:disable-next-line: deprecation
                 Swal.fire({
                   title: 'Error en el login',
-                  text: err.error.mensaje,
+                  text: 'error al autenticar',
                   icon: 'error'
-                });
+                }); 
                 return Observable.throwError( err );
               });
 

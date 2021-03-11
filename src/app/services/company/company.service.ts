@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { URL_SERVICIOS } from '../../config/config';
+import { URL_SERVICIOS, URL_SERVICIOS_HEROKU } from '../../config/config';
 import { UsuarioService } from '../usuario/usuario.service';
 import Swal from 'sweetalert2';
 import { Company } from 'src/app/models/company.model';
+import { Usuario } from 'src/app/models/usuario.model';
 import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
@@ -19,6 +20,7 @@ import { getLocaleDateFormat } from '@angular/common';
 export class CompanyService {
 
   company: Company;
+  companyUser: any={};
   
 
   constructor( public http: HttpClient, 
@@ -37,12 +39,22 @@ export class CompanyService {
     
     cargarCompanysUser( iduser: string){
 
-      let url = URL_SERVICIOS + '/company/' + iduser;
-     
+      //let url = URL_SERVICIOS + '/company/' + iduser;
+      let url = URL_SERVICIOS_HEROKU + '/users/' + iduser;
+      console.log(url);
+      
       return this.http.get( url )
-          .map( (resp: any) => resp.company );
-    }
 
+          .map( (resp: any) => {
+            console.log('servicio',resp)
+            return resp
+            
+          });
+          
+          
+          
+          
+    }
 
 
     buscarCompanys( termino: string ) {

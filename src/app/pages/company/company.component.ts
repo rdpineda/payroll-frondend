@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Hospital } from 'src/app/models/hospital.model';
-import { CompanyInfo } from 'src/app/models/companyInfo.model' ;
+import { Company } from 'src/app/models/company.model' ;
 import { HospitalService } from '../../services/service.index';
 import { CompanyInfoService } from '../../services/service.index';
 import { Medico } from 'src/app/models/medico.model';
@@ -23,7 +23,7 @@ export class CompanyComponent implements OnInit {
   paises: Country[] = [];
   medico: Medico = new Medico('', '', '', '', '');
   hospital: Hospital = new Hospital ('');
-  companyInfo: CompanyInfo = new CompanyInfo ('');
+  companyInfo: Company = new Company ('');
   
   
   

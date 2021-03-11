@@ -111,11 +111,11 @@ export class AreaService {
           .catch( err =>{
             console.log(err)
             // tslint:disable-next-line: deprecation
-            Swal.fire({
+           /*  Swal.fire({
               title: err.error.mensaje,
               text: err.error.errors.message,
               icon: 'error'
-            });
+            }); */
             return Observable.throwError( err );
           });
     }
